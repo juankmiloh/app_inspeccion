@@ -1,0 +1,70 @@
+.der{
+	border-right: 1px solid #929191;
+}
+
+.izq{
+	border-left: 1px solid #929191;
+}
+
+.der:hover{
+	background-color: #F1D8D8;
+}
+
+.contenedor-secciones{
+	text-align: center;
+	/*background-color: red;*/
+	padding-top: 2%;
+
+}
+
+.navbar{
+	background-color: transparent;
+	background: transparent;
+	border-color: transparent;
+}
+
+.navbar li{
+	background-color: #000;
+}
+
+.contenedor-seccion:hover{
+	cursor: pointer;
+	border-right: 1px outset;
+}
+
+.seccion {
+	font: 180% Corbel; 
+	cursor: pointer;
+}
+
+.contenedor-imagen{
+	background-color: blue;
+}
+
+
+.contenedor-opciones{
+	background-color: #EEF0A4;
+}
+
+.contenedor-opcion{
+	border: 1px solid;
+	text-align: center;
+}
+
+.contenedor-mensaje{
+	background-color: #C4C3C3;
+	text-align: center;
+	font: white;
+}
+
+.contenedor-footer {
+	-webkit-user-select: none; /*comandos para que no se pueda seleccionar el texto*/
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	}
+
+.contenedor-copyleft{
+	text-align: left;
+}
+

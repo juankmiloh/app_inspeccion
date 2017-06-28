@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+  <head>
+    <meta http-equiv="Content-Security-Policy" content="default-src gap://ready file://* *; style-src 'self' http://* https://* 'unsafe-inline'; script-src 'self' http://* https://* 'unsafe-inline' 'unsafe-eval'">
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="estilos_css/estilos_index.css">
+    <script type="text/javascript" src="./js/subir_archivos_servidor.js"></script>
+    <title>Capture Photo</title>
+
+    <script type="text/javascript" charset="utf-8">
+
+    // Wait for device API libraries to load
+    //
+    document.addEventListener("deviceready",onDeviceReady,false);
+
+    // device APIs are available
+    //
+    function onDeviceReady() {
+        console.log(cordova.file);
+    }
+
+    /*==========================================
+    * crear archivo
+    ============================================*/
+
+    function crearArchivo() {
+        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSys) { 
+            fileSys.root.getDirectory("inspeccion_mp", {create: true, exclusive: false}, function(dir) {
+                dir.getDirectory("ascensores", { create: true }, function (subDirEntry) {
+                    subDirEntry.getDirectory("inspecciones", { create: true }, function (sub_subDirEntry) {
+                        sub_subDirEntry.getFile("newPersistentFile.txt", { create: true, exclusive: false }, function (fileEntry) {
+                            console.log("fileEntry is file?" + fileEntry.isFile.toString());
+                            // fileEntry.name == 'someFile.txt'
+                            // fileEntry.fullPath == '/someFile.txt'
+                            writeFile(fileEntry, null);
+                            alert("Archivo creado con éxito!");
+                        }, fallo);
+                    }, fallo);
+                }, fallo);
+            }, fallo);
+        }, fallo);
+    }
+
+    /*function crearArchivo_v1(){
+        alert("entro");
+        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
+            console.log('file system open: ' + fs.name);
+            fs.root.getFile("newPersistentFile.txt", { create: true, exclusive: false }, function (fileEntry) {
+                console.log("fileEntry is file?" + fileEntry.isFile.toString());
+                // fileEntry.name == 'someFile.txt'
+                // fileEntry.fullPath == '/someFile.txt'
+                writeFile(fileEntry, null);
+            }, fallo);
+        }, fallo);
+    }*/
+
+    /*==========================================
+    * escribir en el archivo
+    ============================================*/
+
+    function writeFile(fileEntry, dataObj) {
+        // Create a FileWriter object for our FileEntry (log.txt).
+        fileEntry.createWriter(function (fileWriter) {
+
+            fileWriter.onwriteend = function() {
+                console.log("Successful file write...");
+                readFile(fileEntry);
+            };
+
+            fileWriter.onerror = function (e) {
+                console.log("Failed file write: " + e.toString());
+            };
+
+            // If data object is not passed in,
+            // create a new Blob instead.
+            if (!dataObj) {
+                dataObj = new Blob(['ANA MARIA HERRERA MORENO\nhola mundo'], { type: 'text/plain' });
+            }
+
+            fileWriter.write(dataObj);
+        });
+    }
+
+    function fallo(error) {
+        console.log(error.code);
+        alert(error.code);
+    }    
+
+    /*==========================================
+    * subir archivo al servidor
+    ============================================*/
+
+    /*function upload() {
+        // !! Assumes variable fileURL contains a valid URL to a text file on the device,
+        //var fileURL = "file:///sdcard/inspeccion_mp/ascensores/inspecciones/newPersistentFile.txt";
+
+        var directorio = "file:///sdcard/inspeccion_mp/ascensores/inspecciones";
+        var nombreDeArchivo = "newPersistentFile.txt";
+        var fileURL = directorio + "/" + nombreDeArchivo;
+
+        //alert("ruta -> "+fileURL);
+
+        var success = function (r) {
+            console.log("Successful upload...");
+            console.log("Code = " + r.responseCode);
+            //alert(r.fullPath + " (content uploaded to server)");
+            alert("content uploaded to server");
+            borrarArchivo(directorio, nombreDeArchivo);
+        }
+
+        var fail = function (error) {
+            //alert("An error has occurred: Code = " + error.code);
+            alert("No hay archivos a ser cargados! Code = " + error.code);
+        }
+
+        var options = new FileUploadOptions();
+        options.fileKey = "file";
+        options.fileName = fileURL.substr(fileURL.lastIndexOf('/') + 1);
+        options.mimeType = "text/plain";
+
+        var params = {};
+        params.value1 = "test";
+        params.value2 = "param";
+
+        options.params = params;
+
+        var ft = new FileTransfer();
+        // SERVER must be a URL that can handle the request, like
+        // http://some.server.com/upload.php
+        ft.upload(fileURL, encodeURI("http://192.168.0.27:8080/inspeccion/cliente/php/upload.php"), success, fail, options);
+    };*/
+
+    function upload() {
+        // !! Assumes variable fileURL contains a valid URL to a text file on the device,
+        //var fileURL = "file:///sdcard/inspeccion_mp/ascensores/inspecciones/newPersistentFile.txt";
+
+        var directorio = "file:///sdcard/inspeccion_mp/ascensores/inspecciones";
+        var nombreDeArchivo = "newPersistentFile.txt";
+        var fileURL = directorio + "/" + nombreDeArchivo;
+
+        //alert("ruta -> "+fileURL);
+
+        var win = function (r) {
+            console.log("Successful upload...");
+            console.log("Code = " + r.responseCode);
+            //alert(r.fullPath + " (content uploaded to server)");
+            alert("content uploaded to server");
+            borrarArchivo(directorio, nombreDeArchivo);
+        }
+
+        var fail = function (error) {
+            //alert("An error has occurred: Code = " + error.code);
+            alert("No hay archivos a ser cargados! Code = " + error.code);
+        }
+
+        var uri = encodeURI("http://192.168.0.27:8080/inspeccion/cliente/php/upload.php");
+
+        var options = new FileUploadOptions();
+        options.fileKey="file";
+        options.fileName=fileURL.substr(fileURL.lastIndexOf('/')+1);
+        options.mimeType="text/plain";
+
+        var headers={'headerParam':'headerValue'};
+
+        options.headers = headers;
+
+        var ft = new FileTransfer();
+        ft.onprogress = function(progressEvent) {
+            if (progressEvent.lengthComputable) {
+                loadingStatus.setPercentage(progressEvent.loaded / progressEvent.total);
+            } else {
+                loadingStatus.increment();
+            }
+        };
+        ft.upload(fileURL, uri, win, fail, options);
+    };
+
+    /*==========================================
+    * borrar el archivo - funcion usada luego de cargar el archivo al servidor
+    ============================================*/
+
+    function borrarArchivo(directorio, nombreDeArchivo){
+        window.resolveLocalFileSystemURL(directorio, function(dir) {
+            dir.getFile(nombreDeArchivo, {create:false}, function(fileEntry) {
+                fileEntry.remove(function(){
+                    // El archivo ha sido eliminado satisfactoriamente
+                    alert("Archivo eliminado con éxito!");
+                }, fallo_eliminar_archivo);
+            }, fallo_eliminar_archivo);
+        }, fallo_eliminar_archivo);
+    }
+
+    function fallo_eliminar_archivo(error){
+        console.log(error.code);
+        alert("El archivo no existe! Code = " + error.code);
+    }
+
+    /*==========================================
+    * borrar el archivo
+    ============================================*/
+
+    function borrarArchivo_v1(){
+        var directorio = "file:///sdcard/inspeccion_mp/ascensores/inspecciones";
+        var nombreDeArchivo = "newPersistentFile.txt";
+
+        window.resolveLocalFileSystemURL(directorio, function(dir) {
+            dir.getFile(nombreDeArchivo, {create:false}, function(fileEntry) {
+                fileEntry.remove(function(){
+                    // El archivo ha sido eliminado satisfactoriamente
+                    alert("Archivo eliminado con éxito!");
+                }, fallo_eliminar_archivo);
+            }, fallo_eliminar_archivo);
+        }, fallo_eliminar_archivo);
+    }
+
+    function fallo_eliminar_archivo(error){
+        console.log(error.code);
+        alert("El archivo no existe! Code = " + error.code);
+    }
+
+    </script>
+  </head>
+  <body>
+    <br><br><br>
+    <center>
+        <button onclick="crearArchivo();" style="width:260px;height:160px;">Create file</button><br><br>
+        <a href="leer.html">
+            <button type="button" style="width:260px;height:160px;">
+                Read file
+            </button> 
+        </a><br><br>
+        <button onclick="upload();" style="width:260px;height:160px;">Upload file</button><br><br>
+        <button onclick="borrarArchivo_v1();" style="width:260px;height:160px;">Drop file</button><br><br>
+    </center>    
+    <script type="text/javascript" src="cordova.js"></script>
+  </body>
+</html>

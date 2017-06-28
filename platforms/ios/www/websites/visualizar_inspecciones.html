@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>VISUALIZAR / INSPECCIONES</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="shortcut icon" href="../images/favicon_1.ico" type="image/vnd.microsoft.icon">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../estilos_css/estilos_visualizar_inspecciones.css"/>
+    <script src="../js/jquery.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../cordova.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/Concurrent.Thread.js"></script>
+    <script type="text/javascript" src="../js/script_visualizar_inspecciones.js"/></script>
+    <script type="text/javascript" src="../js/script_visualizar_guardar_enviar_datos.js"/></script>
+    <script type="text/javascript" src="../js/script_visualizar_btnGrabadora.js"/></script>
+</head>
+<body>
+    <a name="arriba"></a> <!--ESTO SE PONE PARA CUANDO SE GUARDE, SE DEVUELVA A LA PARTE DE ARRIBA DE LA PAGINA-->
+    <!-- DIV de imagen de carga -->
+    <div class="fbback" style="z-index: 57;"></div>
+    
+    <div class="container" id="fbdrag1">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="fb" style="z-index: 57;">
+                    <!--<span class="close" onclick="dragClose('fbdrag1')"></span>-->
+                    <div class="dheader">MONTAJES & PROCESOS M.P SAS</div>
+                    <div class="dcontent">
+                        <div style="text-align:center;padding-top:20px">
+                            <center>
+                                <img src="../images/loading.gif" alt="Loading...">
+                                <br><br>
+                                <label id="texto_carga" style="color: black;"></label>
+                            </center>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+
+    <div class="container-fluid">
+        <form id="formulario" method="post" action="javascript:validarConexionInternet()">
+            <header>
+                <!-- Contenedor de la imagen banner y el título de la cabecera -->
+                <div class="row sombra_banner" id="top_home">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <center>
+                            <img src="../images/banner.png" class="img-responsive banner" alt="M.P SAS">
+                        </center>
+                    </div>
+                </div>
+                <br>
+                <div class="row sombra" id="header">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <center><label id="label_cabecera">LISTA DE INSPECCIONES REALIZADAS</label></center>
+                    </div>
+                </div>
+            </header>
+
+            <!-- ///////////////// CONTENEDOR DE LAS INSPECCIONES DE ASCENSORES ///////////////////// -->
+
+            <div id="ascensores">
+                <br>
+                <div class="row contenedor_titulo_lv sombra">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <center><label>ASCENSORES</label></center>
+                    </div>
+                </div>
+
+                <br>
+                <div class="divisionItems sombra"></div>
+                <br>
+
+                <div class="row">
+                    <div class="col-xs-12 col-md-3"></div>   
+                    <div class="col-xs-12 col-md-6">   
+                        <div id="tabla_inspeccion_ascensores"></div> <!-- DIV DONDE SE CARGAN LAS INSPECCIONES -->
+                        &nbsp&nbsp
+                        <img class="selectallarrow" width="38" height="22" src="../images/arrow_ltr.png" alt="Para los elementos que están marcados:">
+                        <input type="checkbox" id="marcarTodos_ascensores" name="marcarTodos_ascensores">
+                        <label for="marcarTodos_ascensores">&nbspMarcar todas las inspecciones.</label>  
+                    </div>
+                    <div class="col-xs-12 col-md-3"></div>
+                </div>
+
+                <br>
+                <div class="divisionItems sombra"></div>
+            </div>
+
+            <br>
+
+            <!-- ///////////////// CONTENEDOR DE LAS INSPECCIONES DE PUERTAS ///////////////////// -->
+
+            <div id="puertas">
+                <br>
+                <div class="row contenedor_titulo_lv sombra">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <center><label>PUERTAS</label></center>
+                    </div>
+                </div>
+
+                <br>
+                <div class="divisionItems sombra"></div>
+                <br>
+
+                <div class="row">
+                    <div class="col-xs-12 col-md-3"></div>   
+                    <div class="col-xs-12 col-md-6">   
+                        <div id="tabla_inspeccion_puertas"></div> <!-- DIV DONDE SE CARGAN LAS INSPECCIONES -->
+                        &nbsp&nbsp
+                        <img class="selectallarrow" width="38" height="22" src="../images/arrow_ltr.png" alt="Para los elementos que están marcados:">
+                        <input type="checkbox" id="marcarTodos_puertas" name="marcarTodos_puertas">
+                        <label for="marcarTodos_puertas">&nbspMarcar todas las inspecciones.</label>  
+                    </div>
+                    <div class="col-xs-12 col-md-3"></div>
+                </div>
+
+                <br>
+                <div class="divisionItems sombra"></div>
+            </div>
+
+            <br>
+
+            <!-- ///////////////// CONTENEDOR DE LAS INSPECCIONES DE ESCALERAS ///////////////////// -->
+
+            <div id="escaleras">
+                <br>
+                <div class="row contenedor_titulo_lv sombra">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <center><label>ESCALERAS</label></center>
+                    </div>
+                </div>
+
+                <br>
+                <div class="divisionItems sombra"></div>
+                <br>
+
+                <div class="row">
+                    <div class="col-xs-12 col-md-3"></div>   
+                    <div class="col-xs-12 col-md-6">   
+                        <div id="tabla_inspeccion_escaleras"></div> <!-- DIV DONDE SE CARGAN LAS INSPECCIONES -->
+                        &nbsp&nbsp
+                        <img class="selectallarrow" width="38" height="22" src="../images/arrow_ltr.png" alt="Para los elementos que están marcados:">
+                        <input type="checkbox" id="marcarTodos_escaleras" name="marcarTodos_escaleras">
+                        <label for="marcarTodos_escaleras">&nbspMarcar todas las inspecciones.</label>  
+                    </div>
+                    <div class="col-xs-12 col-md-3"></div>
+                </div>
+
+                <br>
+                <div class="divisionItems sombra"></div>
+            </div>
+
+            <br>
+
+            <!-- ///////////////// CONTENEDOR DE LOS DATOS DEL CLIENTE ///////////////////// -->
+
+            <div class="row contenedor_titulo titulo_items sombra">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <center><label>DATOS DEL CLIENTE</label></center>
+                </div>
+            </div>
+
+            <br>
+            <div class="divisionItems sombra"></div>
+            <br>
+
+            <div class="row datos_cabecera">
+                <div class="col-xs-12 col-md-4">
+                    <label for="text_encargado">ENCARGADO EMPRESA MANTENIMIENTO</label>
+                    <input type="text" class="form-control" id="text_encargado" name="text_encargado" placeholder="Nombre del encargado" required value="jose">
+                </div>
+                <div class="col-xs-12 col-md-4">
+                    <label for="text_cliente">NOMBRE DEL CLIENTE O RAZÓN SOCIAL</label>
+                    <input type="text" class="form-control" id="text_cliente" name="text_cliente" placeholder="Nombre del cliente" required value="avenida chile">
+                </div>
+                <div class="col-xs-12 col-md-4">
+                    <label for="text_contacto_legal">CONTACTO REPRESENTANTE LEGAL</label>
+                    <input type="text" class="form-control" id="text_contacto_legal" name="text_contacto_legal" placeholder="Nombre representante legal" value="juan">
+                </div>
+                <div class="col-xs-12 col-md-4">
+                    <label for="text_nit_contacto">NIT O DOCUMENTO DE IDENTIDAD</label>
+                    <input type="number" class="form-control" id="text_nit_contacto" name="text_nit_contacto" placeholder="Documento representante legal" value="123456">
+                </div>
+                <div class="col-xs-12 col-md-4">
+                    <label for="text_direccion_cliente">DIRECCIÓN</label>
+                    <input type="text" class="form-control" id="text_direccion_cliente" name="text_direccion_cliente" placeholder="Dirección del cliente" value="calle 23">
+                </div>
+                <div class="col-xs-12 col-md-4">
+                    <label for="text_telefono_cliente">TELÉFONO</label>
+                    <input type="text" class="form-control" id="text_telefono_cliente" name="text_telefono_cliente" placeholder="Teléfono del cliente" value="8065582">
+                </div>                
+            </div>
+
+            <hr>
+            
+            <!-- ///////////////// CONTENEDOR DE LOS DATOS DE ENVIO AL SERVIDOR ///////////////////// -->
+
+            <div class="row contenedor_titulo titulo_items sombra">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <center><label>DATOS DE ENVÍO</label></center>
+                </div>
+            </div>
+
+            <br>
+            <div class="divisionItems sombra"></div>
+            <br>
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-4"></div>
+                <div class="col-xs-12 col-sm-12 col-md-2">
+                    <label for="email">EMAIL AL QUE SE ENVIARA EL INFORME</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Ingrese correo electrónico" required value="juankmilo11_91@hotmail.com">
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-2">
+                    <label for="email_confirmacion">CONFIRME EL EMAIL POR FAVOR</label>
+                    <input type="email" class="form-control" id="email_confirmacion" name="email_confirmacion" placeholder="Ingrese correo electrónico" required value="juankmilo11_91@hotmail.com">
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-4"></div>
+            </div>
+
+            <hr>
+
+            <!-- ///////////////// CONTENEDOR DEL REGISTRO DE AUDIO ///////////////////// -->
+
+            <div class="row contenedor_titulo titulo_items sombra">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <center><label>CONFORMIDAD DEL CLIENTE</label></center>
+                </div>
+            </div>
+
+            <br>
+            <div class="divisionItems sombra"></div>
+            <br>
+
+            <div class="container-fluid">
+                <div class="row" style="border-left:1px solid; border-right:1px solid;">
+                    <div class="col-xs-12 col-sm-12 col-md-12" style="border-top:1px solid; text-align: center; background-color: #5bc0de;">
+                        <label for="botonGrabar">REGISTRO DE AUDIO</label>
+                    </div>
+                </div>
+
+                <div class="row" style="border-top:1px solid; border-left:1px solid; border-right:1px solid; border-bottom:1px solid; text-align: center;">
+                    <div class="col-xs-12 col-md-12">
+                        <br>
+                        <button type="button" id="botonGrabar" class="btn btn-info sombra" onclick="captureAudio();">
+                            <span class="glyphicon glyphicon-volume-up"></span>
+                             Iniciar Grabadora
+                        </button>
+                        <br><br>                    
+                    </div>
+                </div>
+            </div>
+
+            <br>
+            <div class="divisionItems sombra"></div>
+            <br>
+            <hr>
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12" style="text-align: center;">
+                    <br>
+                    <button type="submit" class="btn btn-success btn-lg sombra" id="btn_enviar" style="width: 70%;">
+                        ENVIAR&nbsp
+                        <span class="glyphicon glyphicon-export"></span>
+                    </button>
+                </div>
+            </div>
+            <hr>
+        </form>
+        <table><tbody id="dataTable"></tbody></table> <!--Tabla creada para probar la conexion a internet-->
+    </div>
+</body>
+</html>

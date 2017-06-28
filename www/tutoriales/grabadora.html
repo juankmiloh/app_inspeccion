@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Capture Audio</title>
+        <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+        <script type="text/javascript" charset="utf-8">
+
+            // A button will call this function
+            //
+            function captureAudio() {
+                // Launch device audio recording application,
+                // allowing user to capture up to 2 audio clips
+                navigator.device.capture.captureAudio(captureSuccess, captureError, {limit: 1});
+            }
+
+            // Called when capture operation is finished
+            function captureSuccess(mediaFiles) {
+                var i, len;
+                for (i = 0, len = mediaFiles.length; i < len; i += 1) {            
+                    onAudioURISuccess(mediaFiles[i]);
+                }
+            }
+
+            // Called when a photo is successfully retrieved
+            //
+            function onAudioURISuccess(mediaFile) {
+                /* =================================================
+                *   Intentar guardar el audio 
+                * ==================================================*/
+                path = mediaFile.fullPath;
+                nomaudio=path.substr(path.lastIndexOf('/')+1);
+                createFileEntry(path);
+            }
+
+            // Called if something bad happens.
+            //
+            function captureError(error) {
+                //var msg = 'An error occurred during capture: ' + error.code;
+                //navigator.notification.alert(msg, null, 'Uh oh!');
+                alert('Failed because: ' + message);
+            }
+
+            function createFileEntry(mediaFile) {
+                window.resolveLocalFileSystemURI(mediaFile, copyAudio, fail);    
+            }
+
+            function copyAudio(fileEntry) {
+                window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSys) { 
+                    fileSys.root.getDirectory("inspeccion_mp", {create: true, exclusive: false}, function(dir) { 
+                        dir.getDirectory("ascensores", { create: true }, function (subDirEntry) {
+                            subDirEntry.getDirectory("audios", { create: true }, function (sub_subDirEntry) {
+                                fileEntry.moveTo(sub_subDirEntry, "inspeccion"+nomaudio, onCopySuccess, fail);
+                            }, fail); 
+                        }, fail);                    
+                    }, fail); 
+                }, fail); 
+            }
+
+            function onCopySuccess(entry) {
+                //alert(entry.fullPath);
+                alert("Todo salio bien el audio ha sido guardado!");
+            }
+
+            function fail(error) {
+                console.log(error.code);
+                alert(error.code);
+            }    
+        </script>
+    </head>
+    <body>
+        <br><br><br>
+        <center>
+            <button onclick="captureAudio();" style="width:260px;height:160px;">Capture Audio</button> <br>
+        </center>
+    </body>
+</html>

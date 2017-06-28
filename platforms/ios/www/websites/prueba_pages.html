@@ -1,0 +1,88 @@
+<html class="no-js ui-mobile" lang="en"><head><base href="http://demos.jquerymobile.com/1.4.5/backbone-requirejs/backbone-require.html#categories">
+	<title>Categories</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../css/themes/default/jquery.mobile-1.4.5.min.css">
+	<script src="//cdn.jsdelivr.net/requirejs/2.1.8/require.min.js"></script>
+    
+    <script src="js/main.js"></script>
+<script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="jquery" src="../js/jquery.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="backbone-requirejs-demos/routers/mobileRouter" src="../js/../backbone-requirejs/js/routers/mobileRouter.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="underscore" src="//cdn.jsdelivr.net/lodash/2.4.1/lodash.min.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="backbone-requirejs-demos/models/CategoryModel" src="../js/../backbone-requirejs/js/models/CategoryModel.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="backbone-requirejs-demos/collections/CategoriesCollection" src="../js/../backbone-requirejs/js/collections/CategoriesCollection.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="backbone-requirejs-demos/views/CategoryView" src="../js/../backbone-requirejs/js/views/CategoryView.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="backbone" src="//cdn.jsdelivr.net/backbonejs/1.1.2/backbone-min.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="jquerymobile" src="../js/jquery.mobile-1.4.5.js"></script></head>
+<body class="ui-mobile-viewport ui-overlay-a">
+
+<div id="categories" data-role="page" data-title="Categories" data-url="categories" tabindex="0" class="ui-page ui-page-theme-a ui-page-active" style="min-height: 404px;">
+  
+	<div data-role="header" role="banner" class="ui-header ui-bar-inherit">
+		<h1 class="ui-title" role="heading" aria-level="1">Categories</h1>
+	</div><!-- /header -->
+
+	<div role="main" class="ui-content">
+		<h2>Select a Category Below:</h2>
+		<ul data-role="listview" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
+			<li class="ui-first-child">
+				<a href="#category?animals" class="animals ui-btn ui-btn-icon-right ui-icon-carat-r">Animals</a>
+			</li>
+			<li>
+				<a href="#category?colors" class="colors ui-btn ui-btn-icon-right ui-icon-carat-r">Colors</a>
+			</li>
+			<li class="ui-last-child">
+				<a href="#category?vehicles" class="vehicles ui-btn ui-btn-icon-right ui-icon-carat-r">Vehicles</a>
+			</li>
+		</ul>
+	</div><!-- /content -->
+
+</div>
+
+<div id="animals" data-role="page" data-title="Animals" data-url="animals">
+
+      <div data-role="header">
+	    <h1>Animals</h1>
+      </div><!-- /header -->
+  
+      <div role="main" class="ui-content">
+            <ul data-role="listview" data-inset="true">
+            </ul>
+      </div><!-- /content -->
+</div>
+
+<div id="colors" data-role="page" data-title="Colors" data-url="colors">
+
+      <div data-role="header">
+	    <h1>Colors</h1>
+      </div><!-- /header -->
+
+      <div role="main" class="ui-content">
+            <ul data-role="listview" data-inset="true">
+            </ul>
+      </div><!-- /content -->
+
+</div>
+
+<div id="vehicles" data-role="page" data-title="Vehicles" data-url="vehicles">
+
+      <div data-role="header">
+	    <h1>Vehicles</h1>
+      </div><!-- /header -->
+  
+      <div role="main" class="ui-content">
+            <ul data-role="listview" data-inset="true">
+            </ul>
+      </div><!-- /content -->
+
+</div>
+
+<!-- Underscore Template that is used to display all of the Category Models -->
+<script id="categoryItems" type="text/template">
+
+      <% _.each( collection.toJSON(), function( category, id ) { %>
+
+            <li class="ui-li-static">
+                  <%= alert("hola"); %>
+            </li>
+
+      <% }); %>
+
+</script>
+
+
+
+<div class="ui-loader ui-corner-all ui-body-a ui-loader-default"><span class="ui-icon-loading"></span><h1>loading</h1></div></body></html>
