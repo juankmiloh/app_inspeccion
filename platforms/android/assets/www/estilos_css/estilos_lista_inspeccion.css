@@ -1,9 +1,108 @@
+/* 
+* ======================================================================
+* //////////// Estilos para contenedor de botones flotantes ////////////
+* ======================================================================
+*/
+.botonF1{
+  width:60px;
+  height:60px;
+  border-radius:100%;
+  background:#d9534f;
+  right:0;
+  bottom:0;
+  position:fixed;
+  margin-right:16px;
+  margin-bottom:16px;
+  border:none;
+  outline:none;
+  color:#FFF;
+  font-size:36px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  transition:.3s;  
+  z-index:3;
+}
+span{
+  transition:.5s;  
+}
+/*.botonF1:active{
+  transform:scale(1.1) rotate(45deg);
+}*/
+.botonF1_girar{
+	transform:rotate(45deg);
+}
+.btn_flotante{
+  width:40px;
+  height:40px;
+  border-radius:100%;
+  border:none;
+  color:#FFF;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  font-size:28px;
+  outline:none;
+  position:fixed;
+  right:0;
+  bottom:0;
+  margin-right:26px;
+  transform:scale(0);
+  z-index:3;
+}
+.botonF2{
+  background:#ffffff;
+  margin-bottom:100px;
+  font-size:17px;
+  transition:0.5s;
+}
+.botonF3{
+  background:#ffffff;
+  margin-bottom:165px;
+  font-size:17px;
+  transition:0.7s;
+}
+.texto_boton_flotante{
+  width:40px;
+  height:40px;
+  border:none;
+  color:#FFF;
+  font-size:20px;
+  position:fixed;
+  right:0;
+  bottom:0;
+  color: white;
+  margin-right:130px;
+  transform:scale(0);
+  text-align: right;
+  font-weight: bold;
+}
+.img_boton_flotante{
+	color: #000;
+}
+.animacionVer{
+  transform:scale(1);
+}
+
+.fbback_1{
+	display:none;
+	position:fixed;
+	opacity: 0.9;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	z-index:2; /*se muestra por encima de los controles*/
+	background-color:#5cb85c;
+}
+
+/* 
+* ======================================================================
+* /////////////////// Estilos para barra fija del header ///////////////
+* ======================================================================
+*/
 .av_header_effect{
     position: fixed !important;
     top: 0px !important;
     left: 0px;
     background-color: #5cb85c;
-    z-index: 3;
+    z-index: 1;
     width: 105%;
     height: 3em;
     color: white;
@@ -87,6 +186,10 @@
           box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
 }
 
+#cabecera{
+	z-index: 1;
+}
+
 /* 
 * ======================================================================
 * //////////////////// Estilos para ventana de cargar //////////////////
@@ -95,20 +198,19 @@
 
 .fbback{
 	display:none;
-	z-index:55;
+	z-index:4;
 	position:fixed;
 	top:0;
 	left:0;
 	right:0;
 	bottom:0;
-	z-index:55;
 	background-color:rgba(0,0,0,0.5);
 }
 
 .fb{
 	display: none;
 	position:absolute;
-	z-index:55;
+	z-index:4;
 	background-color:#fff;
 	border-radius:7px;
 	box-shadow:1px 2px 4px rgba(0,0,0,0.7);

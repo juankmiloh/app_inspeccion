@@ -15,6 +15,9 @@ jQuery(document).ready(function($){
   clickDivMotorizacion();
   clickDivOtras();
   clickDivManiobras();
+  clickBtnF1();
+  clickBtnF2_guardar();
+  dejarContenerdorBtnsFLot();
 });
 
 /*=============================================
@@ -49,6 +52,51 @@ function mostrarBarraHeader(){
       withClass = false;
     }
   });  
+}
+
+/*=============================================
+* Funcion que se ejecuta cuando se presiona el boton (+) de la lista de inspeccion
+* Se verifica si el boton tiene la clase de girar y dependiendo se activa la clase 'animacionVer' la cual permite mostrar los btns flotantes
+* y se muestra el 'fbback_1' que es el div verde clarito que permite ocultar los controles
+*==============================================*/
+function clickBtnF1() {
+  $('.botonF1').click(function(){
+    if ($('.botonF1').hasClass('botonF1_girar')){
+      $('.botonF1').removeClass('botonF1_girar');
+      $('.btn_flotante').removeClass('animacionVer');
+      $('.fbback_1').hide();
+    }else{
+      $('.botonF1').addClass('botonF1_girar');
+      $('.btn_flotante').addClass('animacionVer');
+      $('.texto_boton_flotante').addClass('animacionVer');
+      $('.fbback_1').show();
+    }
+  })
+}
+
+/*=============================================
+* Funcion que se ejecuta cuando se presiona el boton guardar de la lista de inspeccion
+* Se quita la clase 'botonF1_girar' del btn (+) y se ocultan los btns flotantes al igual que el 'fbback_1'
+*==============================================*/
+function clickBtnF2_guardar() {
+  $('.botonF2').click(function(){
+    $('.botonF1').removeClass('botonF1_girar');
+    $('.btn_flotante').removeClass('animacionVer');
+    $('.fbback_1').hide();
+  })
+}
+
+/*=============================================
+* Funcion que se ejecuta cuando se deja de pasar el mouse por encima del btn (+)
+* Se quita la clase 'botonF1_girar' del btn (+) y se ocultan los btns flotantes al igual que el 'fbback_1'
+* En la aplicacion funciona es pinchando en el div verde 'fbback_1'
+*==============================================*/
+function dejarContenerdorBtnsFLot() {
+  $('.contenedor_btns_flotantes').mouseleave(function(){
+    $('.botonF1').removeClass('botonF1_girar');
+    $('.btn_flotante').removeClass('animacionVer');
+    $('.fbback_1').hide();
+  })
 }
 
 /*=============================================

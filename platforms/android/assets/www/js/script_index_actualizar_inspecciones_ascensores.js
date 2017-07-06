@@ -1263,7 +1263,7 @@ function comprobarCambiosBD_ascensores(){
               title, // title
               ['SI','NO'] // buttonLabels -> valores [1,0]
             );
-          }else{
+          }else{//si no acepta la alerta (esto se ejecuta cuando estamos desde el pc)
             llenarTablas_ascensores();
             setTimeout('comprobarCambiosBD_ascensores()',1000);
           }

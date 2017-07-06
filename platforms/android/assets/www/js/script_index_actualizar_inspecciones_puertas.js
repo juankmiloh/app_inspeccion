@@ -69,7 +69,7 @@ function llenarTablaPuertasValoresMecanicos(){
           tx.executeSql(query, [k_codusuario,codigo_inspeccion], function (tx, resultSet) {
             if (resultSet.rows.length == 0) {
               //alert("Agregar -> "+resultSet.rows.length);
-              addItemspPuertasValoresMecanicos(k_codusuario,codigo_inspeccion,k_coditem,n_calificacion,v_calificacion,o_observacion); 
+              addItemsPuertasValoresMecanicos(k_codusuario,codigo_inspeccion,k_coditem,n_calificacion,v_calificacion,o_observacion); 
             }else{
               //alert("Actualizar -> "+resultSet.rows.length);
               updateItemsPuertasValoresMecanicos(k_codusuario,codigo_inspeccion,k_coditem,n_calificacion,v_calificacion,o_observacion);

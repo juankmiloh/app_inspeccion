@@ -739,7 +739,7 @@ function uploadFotoEscaleras(directorio,nombre_archivo,cod_usuario,codi_inspecci
   }
 
   var fail = function (error) {
-    //alert("No hay fotos de escaleras a ser cargadas! Code = " + error.code);
+    //alert("No existe la foto de puertas en el dispositivo! Code = " + error.code);
     enviarInspeccionesSeleccionadasEscaleras(cod_usuario,codi_inspeccion,cod_item,nombre_archivo,json);
     $('#texto_carga').text("Datos foto "+nombre_archivo+" cargados...ok");
     bandera_fotos_escaleras += 1;

@@ -269,9 +269,10 @@ function obtenerCodigoInspeccionesPendientesAscensores(estado){
 *==============================================*/
 function visualizarInspeccionesAscensores(k_codusuario,codigo_inspeccion,cantidad_nocumple){
   db.transaction(function (tx) {
-    var query = "SELECT o_consecutivoinsp,n_equipo,o_tipo_informe FROM ascensor_valores_iniciales WHERE k_codusuario = ? AND k_codinspeccion = ?";
+    var query = "SELECT * FROM ascensor_valores_iniciales WHERE k_codusuario = ? AND k_codinspeccion = ?";
     tx.executeSql(query, [k_codusuario,codigo_inspeccion], function (tx, resultSet) {
       var consecutivo_inspe = resultSet.rows.item(0).o_consecutivoinsp;
+      var nombre_cliente = resultSet.rows.item(0).n_cliente;
       var nombre_equipo = resultSet.rows.item(0).n_equipo;
       var tipo_informe = resultSet.rows.item(0).o_tipo_informe;
       var contenidoDiv = 
@@ -280,7 +281,7 @@ function visualizarInspeccionesAscensores(k_codusuario,codigo_inspeccion,cantida
         '<table class="table table-bordered">'+
             '<thead>'+
               '<tr>'+
-                '<th colspan="5" bgcolor="#70b6e0">'+
+                '<th colspan="6" bgcolor="#70b6e0">'+
                   '<center><div><b>INSPECCIÓN - </b><b style="color:#d9534f;">'+consecutivo_inspe+'</b></div></center>'+
                 '</th>'+
               '</tr>'+
@@ -290,6 +291,9 @@ function visualizarInspeccionesAscensores(k_codusuario,codigo_inspeccion,cantida
                 '</th>'+
                 '<th class="active">'+
                   '<center><b>TIPO</b></center>'+
+                '</th>'+
+                '<th class="active">'+
+                  '<center><b>CLIENTE</b></center>'+
                 '</th>'+
                 '<th class="active">'+
                   '<center><b>EQUIPO</b></center>'+
@@ -316,6 +320,11 @@ function visualizarInspeccionesAscensores(k_codusuario,codigo_inspeccion,cantida
                     '</td>'+
                     '<td>'+
                       '<center>'+
+                        nombre_cliente+
+                      '</center>'+
+                    '</td>'+
+                    '<td>'+
+                      '<center>'+
                         nombre_equipo+
                       '</center>'+
                     '</td>'+
@@ -330,14 +339,14 @@ function visualizarInspeccionesAscensores(k_codusuario,codigo_inspeccion,cantida
                       '</center>'+
                     '</td>'+
                     '<tr>'+
-                      '<td colspan="5" class="info">'+
+                      '<td colspan="6" class="info">'+
                         '<center><b>ACCIONES</b></center>'+
                       '</td>'+
                     '</tr>'+
-                    '<td colspan="5">'+
+                    '<td colspan="6">'+
                       '<center>'+
-                        '<a href="./ascensor_modificar_lista_inspeccion.html?cod_usuario='+k_codusuario+'&id_inspeccion='+codigo_inspeccion+'">MODIFICAR</a>&nbsp| '+
-                        '<a href="./ascensor_confirma_eliminar_lista_insp.html?cod_usuario='+k_codusuario+'&id_inspeccion='+codigo_inspeccion+'">ELIMINAR</a>'+
+                        '<a href="./ascensor_modificar_lista_inspeccion.html?cod_usuario='+k_codusuario+'&id_inspeccion='+codigo_inspeccion+'">MODIFICAR</a>'+
+                        //'&nbsp| <a href="./ascensor_confirma_eliminar_lista_insp.html?cod_usuario='+k_codusuario+'&id_inspeccion='+codigo_inspeccion+'">ELIMINAR</a>'+
                       '</center>'+
                     '</td>'+
                 '</tr>'+
@@ -424,9 +433,10 @@ function obtenerCodigoInspeccionesPendientesPuertas(estado){
 *==============================================*/
 function visualizarInspeccionesPuertas(k_codusuario,codigo_inspeccion,cantidad_nocumple){
   db.transaction(function (tx) {
-    var query = "SELECT o_consecutivoinsp,n_equipo,o_tipo_informe FROM puertas_valores_iniciales WHERE k_codusuario = ? AND k_codinspeccion = ?";
+    var query = "SELECT * FROM puertas_valores_iniciales WHERE k_codusuario = ? AND k_codinspeccion = ?";
     tx.executeSql(query, [k_codusuario,codigo_inspeccion], function (tx, resultSet) {
       var consecutivo_inspe = resultSet.rows.item(0).o_consecutivoinsp;
+      var nombre_cliente = resultSet.rows.item(0).n_cliente;
       var nombre_equipo = resultSet.rows.item(0).n_equipo;
       var tipo_informe = resultSet.rows.item(0).o_tipo_informe;
       var contenidoDiv = 
@@ -435,7 +445,7 @@ function visualizarInspeccionesPuertas(k_codusuario,codigo_inspeccion,cantidad_n
         '<table class="table table-bordered">'+
             '<thead>'+
               '<tr>'+
-                '<th colspan="5" bgcolor="#70b6e0">'+
+                '<th colspan="6" bgcolor="#70b6e0">'+
                   '<center><div><b>INSPECCIÓN - </b><b style="color:#d9534f;">'+consecutivo_inspe+'</b></div></center>'+
                 '</th>'+
               '</tr>'+
@@ -445,6 +455,9 @@ function visualizarInspeccionesPuertas(k_codusuario,codigo_inspeccion,cantidad_n
                 '</th>'+
                 '<th class="active">'+
                   '<center><b>TIPO</b></center>'+
+                '</th>'+
+                '<th class="active">'+
+                  '<center><b>CLIENTE</b></center>'+
                 '</th>'+
                 '<th class="active">'+
                   '<center><b>EQUIPO</b></center>'+
@@ -471,6 +484,11 @@ function visualizarInspeccionesPuertas(k_codusuario,codigo_inspeccion,cantidad_n
                     '</td>'+
                     '<td>'+
                       '<center>'+
+                        nombre_cliente+
+                      '</center>'+
+                    '</td>'+
+                    '<td>'+
+                      '<center>'+
                         nombre_equipo+
                       '</center>'+
                     '</td>'+
@@ -485,14 +503,14 @@ function visualizarInspeccionesPuertas(k_codusuario,codigo_inspeccion,cantidad_n
                       '</center>'+
                     '</td>'+
                     '<tr>'+
-                      '<td colspan="5" class="info">'+
+                      '<td colspan="6" class="info">'+
                         '<center><b>ACCIONES</b></center>'+
                       '</td>'+
                     '</tr>'+
-                    '<td colspan="5">'+
+                    '<td colspan="6">'+
                       '<center>'+
-                        '<a href="./puertas_modificar_lista_inspeccion.html?cod_usuario='+k_codusuario+'&id_inspeccion='+codigo_inspeccion+'">MODIFICAR</a>&nbsp| '+
-                        '<a href="./puertas_confirma_eliminar_lista_insp.html?cod_usuario='+k_codusuario+'&id_inspeccion='+codigo_inspeccion+'">ELIMINAR</a>'+
+                        '<a href="./puertas_modificar_lista_inspeccion.html?cod_usuario='+k_codusuario+'&id_inspeccion='+codigo_inspeccion+'">MODIFICAR</a>'+
+                        //'&nbsp| <a href="./puertas_confirma_eliminar_lista_insp.html?cod_usuario='+k_codusuario+'&id_inspeccion='+codigo_inspeccion+'">ELIMINAR</a>'+
                       '</center>'+
                     '</td>'+
                 '</tr>'+
@@ -579,9 +597,10 @@ function obtenerCodigoInspeccionesPendientesEscaleras(estado){
 *==============================================*/
 function visualizarInspeccionesEscaleras(k_codusuario,codigo_inspeccion,cantidad_nocumple){
   db.transaction(function (tx) {
-    var query = "SELECT o_consecutivoinsp,n_equipo,o_tipo_informe,o_tipo_equipo FROM escaleras_valores_iniciales WHERE k_codusuario = ? AND k_codinspeccion = ?";
+    var query = "SELECT * FROM escaleras_valores_iniciales WHERE k_codusuario = ? AND k_codinspeccion = ?";
     tx.executeSql(query, [k_codusuario,codigo_inspeccion], function (tx, resultSet) {
       var consecutivo_inspe = resultSet.rows.item(0).o_consecutivoinsp;
+      var nombre_cliente = resultSet.rows.item(0).n_cliente;
       var nombre_equipo = resultSet.rows.item(0).n_equipo;
       var tipo_informe = resultSet.rows.item(0).o_tipo_informe;
       var tipo_equipo = resultSet.rows.item(0).o_tipo_equipo;
@@ -591,7 +610,7 @@ function visualizarInspeccionesEscaleras(k_codusuario,codigo_inspeccion,cantidad
         '<table class="table table-bordered">'+
             '<thead>'+
               '<tr>'+
-                '<th colspan="5" bgcolor="#70b6e0">'+
+                '<th colspan="6" bgcolor="#70b6e0">'+
                   '<center><div><b>INSPECCIÓN - </b><b style="color:#d9534f;">'+consecutivo_inspe+'</b></div></center>'+
                 '</th>'+
               '</tr>'+
@@ -601,6 +620,9 @@ function visualizarInspeccionesEscaleras(k_codusuario,codigo_inspeccion,cantidad
                 '</th>'+
                 '<th class="active">'+
                   '<center><b>TIPO</b></center>'+
+                '</th>'+
+                '<th class="active">'+
+                  '<center><b>CLIENTE</b></center>'+
                 '</th>'+
                 '<th class="active">'+
                   '<center><b>EQUIPO</b></center>'+
@@ -627,6 +649,11 @@ function visualizarInspeccionesEscaleras(k_codusuario,codigo_inspeccion,cantidad
                     '</td>'+
                     '<td>'+
                       '<center>'+
+                        nombre_cliente+
+                      '</center>'+
+                    '</td>'+
+                    '<td>'+
+                      '<center>'+
                         nombre_equipo+
                       '</center>'+
                     '</td>'+
@@ -641,14 +668,14 @@ function visualizarInspeccionesEscaleras(k_codusuario,codigo_inspeccion,cantidad
                       '</center>'+
                     '</td>'+
                     '<tr>'+
-                      '<td colspan="5" class="info">'+
+                      '<td colspan="6" class="info">'+
                         '<center><b>ACCIONES</b></center>'+
                       '</td>'+
                     '</tr>'+
-                    '<td colspan="5">'+
+                    '<td colspan="6">'+
                       '<center>'+
-                        '<a href="./escaleras_modificar_lista_inspeccion.html?cod_usuario='+k_codusuario+'&id_inspeccion='+codigo_inspeccion+'">MODIFICAR</a>&nbsp| '+
-                        '<a href="./escaleras_confirma_eliminar_lista_insp.html?cod_usuario='+k_codusuario+'&id_inspeccion='+codigo_inspeccion+'">ELIMINAR</a>'+
+                        '<a href="./escaleras_modificar_lista_inspeccion.html?cod_usuario='+k_codusuario+'&id_inspeccion='+codigo_inspeccion+'">MODIFICAR</a>'+
+                        //'&nbsp| <a href="./escaleras_confirma_eliminar_lista_insp.html?cod_usuario='+k_codusuario+'&id_inspeccion='+codigo_inspeccion+'">ELIMINAR</a>'+
                       '</center>'+
                     '</td>'+
                 '</tr>'+
