@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>VISUALIZAR / ELIMINADAS</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="shortcut icon" href="../../images/favicon_1.ico" type="image/vnd.microsoft.icon">
+    <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../estilos_css/estilos_visualizar_inspecciones.css"/>
+    <script src="../../js/jquery.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../../cordova.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="../../css/sweetalert2.min.css">
+    <script src="../../js/Concurrent.Thread.js"></script>
+    <script type="text/javascript" src="../../js/script_escaleras_visualizar_inspecciones_eliminadas.js"/></script>
+    <script type="text/javascript" src="../../js/script_restaurar_inspeccion.js"/></script>
+</head>
+<body>
+    <a name="arriba"></a> <!--ESTO SE PONE PARA CUANDO SE GUARDE, SE DEVUELVA A LA PARTE DE ARRIBA DE LA PAGINA-->
+    <!-- DIV de imagen de carga -->
+    <div class="fbback" style="z-index: 57;"></div>
+    
+    <div class="container" id="fbdrag1">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="fb" style="z-index: 57;">
+                    <!--<span class="close" onclick="dragClose('fbdrag1')"></span>-->
+                    <div class="dheader">MONTAJES & PROCESOS M.P SAS</div>
+                    <div class="dcontent">
+                        <div style="text-align:center;padding-top:20px">
+                            <center>
+                                <img src="../../images/loading.gif" alt="Loading...">
+                                <br><br>
+                                <label id="texto_carga" style="color: black;"></label>
+                            </center>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+
+    <div class="container-fluid">
+        <form id="formulario">
+            <header>
+                <!-- Contenedor de la imagen banner y el título de la cabecera -->
+                <div class="row sombra_banner" id="top_home">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <center>
+                            <img src="../../images/banner.png" class="img-responsive banner" alt="M.P SAS">
+                        </center>
+                    </div>
+                </div>
+                <br>
+                <div class="row sombra" id="header">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <center><label id="label_cabecera">LISTA DE INSPECCIONES ELIMINADAS</label></center>
+                    </div>
+                </div>
+            </header>
+
+            <!-- ///////////////// CONTENEDOR DE LAS INSPECCIONES DE ESCALERAS ///////////////////// -->
+
+            <div id="escaleras">
+                <br>
+                <div class="row contenedor_titulo_lv sombra">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <center><label>ESCALERAS / ANDENES</label></center>
+                    </div>
+                </div>
+
+                <br>
+                <div class="divisionItems sombra"></div>
+                <br>
+
+                <div class="row">
+                    <div class="col-xs-12 col-md-3"></div>   
+                    <div class="col-xs-12 col-md-6">   
+                        <div id="tabla_inspeccion_escaleras"></div> <!-- DIV DONDE SE CARGAN LAS INSPECCIONES -->
+                    </div>
+                    <div class="col-xs-12 col-md-3"></div>
+                </div>
+
+                <br>
+                <div class="divisionItems sombra"></div>
+            </div>
+            <br>
+            <hr>
+            <div class="container">
+                <footer>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12" style="text-align: center;">
+                            <span style="color: #428bca;"><b>Montajes & Procesos M.P SAS</b></span>
+                            <br>
+                            <span id="fecha_footer" style="color: #428bca; font-size: 0.8em;"></span>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+            <hr>
+        </form>
+        <table><tbody id="dataTable"></tbody></table> <!--Tabla creada para probar la conexion a internet-->
+    </div>
+</body>
+</html>

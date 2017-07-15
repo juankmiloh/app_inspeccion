@@ -351,18 +351,22 @@ function obtenerValoresIniciales(cod_usuario,cod_inspeccion){
                "WHERE k_codusuario = ? AND "+
                "k_codinspeccion = ?";
     tx.executeSql(query, [cod_usuario,cod_inspeccion], function (tx, resultSet) {
-      var cliente = resultSet.rows.item(0).n_cliente;
-      var nombre_equipo = resultSet.rows.item(0).n_equipo;
-      var empresa_mto = resultSet.rows.item(0).n_empresamto;
-      var accionamiento = resultSet.rows.item(0).o_tipoaccion;
-      var capac_person = resultSet.rows.item(0).v_capacperson;
-      var capac_peso = resultSet.rows.item(0).v_capacpeso;
-      var fecha = resultSet.rows.item(0).f_fecha;
-      var num_paradas = resultSet.rows.item(0).v_paradas;
-      var consecutivo = resultSet.rows.item(0).o_consecutivoinsp;
-      var ultimo_mto = resultSet.rows.item(0).ultimo_mto;
-      var inicio_servicio = resultSet.rows.item(0).inicio_servicio;
-      var ultima_inspeccion = resultSet.rows.item(0).ultima_inspeccion;
+      try{
+        var cliente = resultSet.rows.item(0).n_cliente;
+        var nombre_equipo = resultSet.rows.item(0).n_equipo;
+        var empresa_mto = resultSet.rows.item(0).n_empresamto;
+        var accionamiento = resultSet.rows.item(0).o_tipoaccion;
+        var capac_person = resultSet.rows.item(0).v_capacperson;
+        var capac_peso = resultSet.rows.item(0).v_capacpeso;
+        var fecha = resultSet.rows.item(0).f_fecha;
+        var num_paradas = resultSet.rows.item(0).v_paradas;
+        var consecutivo = resultSet.rows.item(0).o_consecutivoinsp;
+        var ultimo_mto = resultSet.rows.item(0).ultimo_mto;
+        var inicio_servicio = resultSet.rows.item(0).inicio_servicio;
+        var ultima_inspeccion = resultSet.rows.item(0).ultima_inspeccion;
+      }catch(err) {
+        //alert(err.message);
+      }
 
       cargarValoresIniciales(cliente,nombre_equipo,empresa_mto,accionamiento,capac_person,capac_peso,num_paradas,fecha,consecutivo,ultimo_mto,inicio_servicio,ultima_inspeccion);
     },

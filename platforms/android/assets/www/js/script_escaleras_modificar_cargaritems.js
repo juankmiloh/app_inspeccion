@@ -380,23 +380,23 @@ function cargarItemsdefectos_1() {
                         '<div class="row" style="border-left:1px solid; border-right:1px solid;">'+
                             '<div class="col-xs-12 col-sm-12 col-md-12" style="border-top:1px solid; text-align: justify;">'+
                                 '<ul id="lightgallery_14" class="list-unstyled row">'+
-                                    '<li class="col-xs-12 col-sm-12 col-md-12" data-responsive="../figuras_escaleras/figura2.png 375, ../figuras_escaleras/figura2.png 480, ../figuras_escaleras/figura2.png 800" data-src="../figuras_escaleras/figura2.png" data-sub-html="<h4>Figura 2</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: block;">'+
+                                    '<li class="col-xs-12 col-sm-12 col-md-12" data-responsive="../../figuras_escaleras/figura2.png 375, ../../figuras_escaleras/figura2.png 480, ../../figuras_escaleras/figura2.png 800" data-src="../../figuras_escaleras/figura2.png" data-sub-html="<h4>Figura 2</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: block;">'+
                                         '<p style="margin: 14px; padding: 15px; width: 88%;">'+descripcion_item+' '+
                                             '<a href="" style="color: #d9534f;">'+
                                                 '<span class="glyphicon glyphicon-picture"></span>'+
                                                 '(Ver Figuras)'+
-                                                '<img class="img-responsive" src="../figuras_escaleras/figura2.png" alt="Thumb-1" style="width: 2em; display: none;">'+
+                                                '<img class="img-responsive" src="../../figuras_escaleras/figura2.png" alt="Thumb-1" style="width: 2em; display: none;">'+
                                             '</a>'+
                                        '</p>'+
                                     '</li>'+
-                                    '<li class="col-xs-6 col-sm-4 col-md-3" data-responsive="../figuras_escaleras/figura5.png 375, ../figuras_escaleras/figura5.png 480, ../figuras_escaleras/figura5.png 800" data-src="../figuras_escaleras/figura5.png" data-sub-html="<h4>Figura 5</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: none;">'+
+                                    '<li class="col-xs-6 col-sm-4 col-md-3" data-responsive="../../figuras_escaleras/figura5.png 375, ../../figuras_escaleras/figura5.png 480, ../../figuras_escaleras/figura5.png 800" data-src="../../figuras_escaleras/figura5.png" data-sub-html="<h4>Figura 5</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: none;">'+
                                         '<a href="">'+
-                                            '<img class="img-responsive" src="../figuras_escaleras/figura5.png" alt="Thumb-2">'+
+                                            '<img class="img-responsive" src="../../figuras_escaleras/figura5.png" alt="Thumb-2">'+
                                         '</a>'+
                                     '</li>'+
-                                    '<li class="col-xs-6 col-sm-4 col-md-3" data-responsive="../figuras_escaleras/figura6.png 375, ../figuras_escaleras/figura6.png 480, ../figuras_escaleras/figura6.png 800" data-src="../figuras_escaleras/figura6.png" data-sub-html="<h4>Figura 6</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: none;">'+
+                                    '<li class="col-xs-6 col-sm-4 col-md-3" data-responsive="../../figuras_escaleras/figura6.png 375, ../../figuras_escaleras/figura6.png 480, ../../figuras_escaleras/figura6.png 800" data-src="../../figuras_escaleras/figura6.png" data-sub-html="<h4>Figura 6</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: none;">'+
                                         '<a href="">'+
-                                            '<img class="img-responsive" src="../figuras_escaleras/figura6.png" alt="Thumb-3">'+
+                                            '<img class="img-responsive" src="../../figuras_escaleras/figura6.png" alt="Thumb-3">'+
                                         '</a>'+
                                     '</li>'+
                                 '</ul>'+
@@ -662,12 +662,12 @@ function cargarItemsdefectos_2() {
                         '<div class="row" style="border-left:1px solid; border-right:1px solid;">'+
                             '<div class="col-xs-12 col-sm-12 col-md-12" style="border-top:1px solid; text-align: justify;">'+
                                 '<ul id="lightgallery_32" class="list-unstyled row">'+
-                                    '<li class="col-xs-12 col-sm-12 col-md-12" data-responsive="../figuras_escaleras/figura6.png 375, ../figuras_escaleras/figura6.png 480, ../figuras_escaleras/figura6.png 800" data-src="../figuras_escaleras/figura6.png" data-sub-html="<h4>Figura 6</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: block;">'+
+                                    '<li class="col-xs-12 col-sm-12 col-md-12" data-responsive="../../figuras_escaleras/figura6.png 375, ../../figuras_escaleras/figura6.png 480, ../../figuras_escaleras/figura6.png 800" data-src="../../figuras_escaleras/figura6.png" data-sub-html="<h4>Figura 6</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: block;">'+
                                         '<p style="margin: 14px; padding: 15px; width: 88%;">'+descripcion_item+' '+
                                             '<a href="" style="color: #d9534f;">'+
                                                 '<span class="glyphicon glyphicon-picture"></span>'+
                                                 '(Ver Figura)'+
-                                                '<img class="img-responsive" src="../figuras_escaleras/figura6.png" alt="Thumb-1" style="width: 2em; display: none;">'+
+                                                '<img class="img-responsive" src="../../figuras_escaleras/figura6.png" alt="Thumb-1" style="width: 2em; display: none;">'+
                                             '</a>'+
                                        '</p>'+
                                     '</li>'+
@@ -682,18 +682,18 @@ function cargarItemsdefectos_2() {
                         '<div class="row" style="border-left:1px solid; border-right:1px solid;">'+
                             '<div class="col-xs-12 col-sm-12 col-md-12" style="border-top:1px solid; text-align: justify;">'+
                                 '<ul id="lightgallery_37" class="list-unstyled row">'+
-                                    '<li class="col-xs-12 col-sm-12 col-md-12" data-responsive="../figuras_escaleras/figura2.png 375, ../figuras_escaleras/figura2.png 480, ../figuras_escaleras/figura2.png 800" data-src="../figuras_escaleras/figura2.png" data-sub-html="<h4>Figura 2</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: block;">'+
+                                    '<li class="col-xs-12 col-sm-12 col-md-12" data-responsive="../../figuras_escaleras/figura2.png 375, ../../figuras_escaleras/figura2.png 480, ../../figuras_escaleras/figura2.png 800" data-src="../../figuras_escaleras/figura2.png" data-sub-html="<h4>Figura 2</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: block;">'+
                                         '<p style="margin: 14px; padding: 15px; width: 88%;">'+descripcion_item+' '+
                                             '<a href="" style="color: #d9534f;">'+
                                                 '<span class="glyphicon glyphicon-picture"></span>'+
                                                 '(Ver Figuras)'+
-                                                '<img class="img-responsive" src="../figuras_escaleras/figura2.png" alt="Thumb-1" style="width: 2em; display: none;">'+
+                                                '<img class="img-responsive" src="../../figuras_escaleras/figura2.png" alt="Thumb-1" style="width: 2em; display: none;">'+
                                             '</a>'+
                                        '</p>'+
                                     '</li>'+
-                                    '<li class="col-xs-6 col-sm-4 col-md-3" data-responsive="../figuras_escaleras/figura3.png 375, ../figuras_escaleras/figura3.png 480, ../figuras_escaleras/figura3.png 800" data-src="../figuras_escaleras/figura3.png" data-sub-html="<h4>Figura 3</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: none;">'+
+                                    '<li class="col-xs-6 col-sm-4 col-md-3" data-responsive="../../figuras_escaleras/figura3.png 375, ../../figuras_escaleras/figura3.png 480, ../../figuras_escaleras/figura3.png 800" data-src="../../figuras_escaleras/figura3.png" data-sub-html="<h4>Figura 3</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: none;">'+
                                         '<a href="">'+
-                                            '<img class="img-responsive" src="../figuras_escaleras/figura3.png" alt="Thumb-2">'+
+                                            '<img class="img-responsive" src="../../figuras_escaleras/figura3.png" alt="Thumb-2">'+
                                         '</a>'+
                                     '</li>'+
                                 '</ul>'+
@@ -707,12 +707,12 @@ function cargarItemsdefectos_2() {
                         '<div class="row" style="border-left:1px solid; border-right:1px solid;">'+
                             '<div class="col-xs-12 col-sm-12 col-md-12" style="border-top:1px solid; text-align: justify;">'+
                                 '<ul id="lightgallery_44" class="list-unstyled row">'+
-                                    '<li class="col-xs-12 col-sm-12 col-md-12" data-responsive="../figuras_escaleras/figura3.png 375, ../figuras_escaleras/figura3.png 480, ../figuras_escaleras/figura3.png 800" data-src="../figuras_escaleras/figura3.png" data-sub-html="<h4>Figura 3</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: block;">'+
+                                    '<li class="col-xs-12 col-sm-12 col-md-12" data-responsive="../../figuras_escaleras/figura3.png 375, ../../figuras_escaleras/figura3.png 480, ../../figuras_escaleras/figura3.png 800" data-src="../../figuras_escaleras/figura3.png" data-sub-html="<h4>Figura 3</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: block;">'+
                                         '<p style="margin: 14px; padding: 15px; width: 88%;">'+descripcion_item+' '+
                                             '<a href="" style="color: #d9534f;">'+
                                                 '<span class="glyphicon glyphicon-picture"></span>'+
                                                 '(Ver Figura)'+
-                                                '<img class="img-responsive" src="../figuras_escaleras/figura3.png" alt="Thumb-1" style="width: 2em; display: none;">'+
+                                                '<img class="img-responsive" src="../../figuras_escaleras/figura3.png" alt="Thumb-1" style="width: 2em; display: none;">'+
                                             '</a>'+
                                        '</p>'+
                                     '</li>'+
@@ -727,12 +727,12 @@ function cargarItemsdefectos_2() {
                         '<div class="row" style="border-left:1px solid; border-right:1px solid;">'+
                             '<div class="col-xs-12 col-sm-12 col-md-12" style="border-top:1px solid; text-align: justify;">'+
                                 '<ul id="lightgallery_50" class="list-unstyled row">'+
-                                    '<li class="col-xs-12 col-sm-12 col-md-12" data-responsive="../figuras_escaleras/figura3.png 375, ../figuras_escaleras/figura3.png 480, ../figuras_escaleras/figura3.png 800" data-src="../figuras_escaleras/figura3.png" data-sub-html="<h4>Figura 3</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: block;">'+
+                                    '<li class="col-xs-12 col-sm-12 col-md-12" data-responsive="../../figuras_escaleras/figura3.png 375, ../../figuras_escaleras/figura3.png 480, ../../figuras_escaleras/figura3.png 800" data-src="../../figuras_escaleras/figura3.png" data-sub-html="<h4>Figura 3</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: block;">'+
                                         '<p style="margin: 14px; padding: 15px; width: 88%;">'+descripcion_item+' '+
                                             '<a href="" style="color: #d9534f;">'+
                                                 '<span class="glyphicon glyphicon-picture"></span>'+
                                                 '(Ver Figura)'+
-                                                '<img class="img-responsive" src="../figuras_escaleras/figura3.png" alt="Thumb-1" style="width: 2em; display: none;">'+
+                                                '<img class="img-responsive" src="../../figuras_escaleras/figura3.png" alt="Thumb-1" style="width: 2em; display: none;">'+
                                             '</a>'+
                                        '</p>'+
                                     '</li>'+
@@ -747,12 +747,12 @@ function cargarItemsdefectos_2() {
                         '<div class="row" style="border-left:1px solid; border-right:1px solid;">'+
                             '<div class="col-xs-12 col-sm-12 col-md-12" style="border-top:1px solid; text-align: justify;">'+
                                 '<ul id="lightgallery_59" class="list-unstyled row">'+
-                                    '<li class="col-xs-12 col-sm-12 col-md-12" data-responsive="../figuras_escaleras/figura2.png 375, ../figuras_escaleras/figura2.png 480, ../figuras_escaleras/figura2.png 800" data-src="../figuras_escaleras/figura2.png" data-sub-html="<h4>Figura 2</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: block;">'+
+                                    '<li class="col-xs-12 col-sm-12 col-md-12" data-responsive="../../figuras_escaleras/figura2.png 375, ../../figuras_escaleras/figura2.png 480, ../../figuras_escaleras/figura2.png 800" data-src="../../figuras_escaleras/figura2.png" data-sub-html="<h4>Figura 2</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: block;">'+
                                         '<p style="margin: 14px; padding: 15px; width: 88%;">'+descripcion_item+' '+
                                             '<a href="" style="color: #d9534f;">'+
                                                 '<span class="glyphicon glyphicon-picture"></span>'+
                                                 '(Ver Figura)'+
-                                                '<img class="img-responsive" src="../figuras_escaleras/figura2.png" alt="Thumb-1" style="width: 2em; display: none;">'+
+                                                '<img class="img-responsive" src="../../figuras_escaleras/figura2.png" alt="Thumb-1" style="width: 2em; display: none;">'+
                                             '</a>'+
                                        '</p>'+
                                     '</li>'+
@@ -945,18 +945,18 @@ function cargarItemsdefectos_3() {
                         '<div class="row" style="border-left:1px solid; border-right:1px solid;">'+
                             '<div class="col-xs-12 col-sm-12 col-md-12" style="border-top:1px solid; text-align: justify;">'+
                                 '<ul id="lightgallery_79" class="list-unstyled row">'+
-                                    '<li class="col-xs-12 col-sm-12 col-md-12" data-responsive="../figuras_escaleras/figura2.png 375, ../figuras_escaleras/figura2.png 480, ../figuras_escaleras/figura2.png 800" data-src="../figuras_escaleras/figura2.png" data-sub-html="<h4>Figura 2</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: block;">'+
+                                    '<li class="col-xs-12 col-sm-12 col-md-12" data-responsive="../../figuras_escaleras/figura2.png 375, ../../figuras_escaleras/figura2.png 480, ../../figuras_escaleras/figura2.png 800" data-src="../../figuras_escaleras/figura2.png" data-sub-html="<h4>Figura 2</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: block;">'+
                                         '<p style="margin: 14px; padding: 15px; width: 88%;">'+descripcion_item+' '+
                                             '<a href="" style="color: #d9534f;">'+
                                                 '<span class="glyphicon glyphicon-picture"></span>'+
                                                 '(Ver Figuras)'+
-                                                '<img class="img-responsive" src="../figuras_escaleras/figura2.png" alt="Thumb-1" style="width: 2em; display: none;">'+
+                                                '<img class="img-responsive" src="../../figuras_escaleras/figura2.png" alt="Thumb-1" style="width: 2em; display: none;">'+
                                             '</a>'+
                                        '</p>'+
                                     '</li>'+
-                                    '<li class="col-xs-6 col-sm-4 col-md-3" data-responsive="../figuras_escaleras/figura8.png 375, ../figuras_escaleras/figura8.png 480, ../figuras_escaleras/figura8.png 800" data-src="../figuras_escaleras/figura8.png" data-sub-html="<h4>Figura 8</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: none;">'+
+                                    '<li class="col-xs-6 col-sm-4 col-md-3" data-responsive="../../figuras_escaleras/figura8.png 375, ../../figuras_escaleras/figura8.png 480, ../../figuras_escaleras/figura8.png 800" data-src="../../figuras_escaleras/figura8.png" data-sub-html="<h4>Figura 8</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: none;">'+
                                         '<a href="">'+
-                                            '<img class="img-responsive" src="../figuras_escaleras/figura8.png" alt="Thumb-2">'+
+                                            '<img class="img-responsive" src="../../figuras_escaleras/figura8.png" alt="Thumb-2">'+
                                         '</a>'+
                                     '</li>'+
                                 '</ul>'+
@@ -970,18 +970,18 @@ function cargarItemsdefectos_3() {
                         '<div class="row" style="border-left:1px solid; border-right:1px solid;">'+
                             '<div class="col-xs-12 col-sm-12 col-md-12" style="border-top:1px solid; text-align: justify;">'+
                                 '<ul id="lightgallery_80" class="list-unstyled row">'+
-                                    '<li class="col-xs-12 col-sm-12 col-md-12" data-responsive="../figuras_escaleras/figura3.png 375, ../figuras_escaleras/figura3.png 480, ../figuras_escaleras/figura3.png 800" data-src="../figuras_escaleras/figura3.png" data-sub-html="<h4>Figura 3</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: block;">'+
+                                    '<li class="col-xs-12 col-sm-12 col-md-12" data-responsive="../../figuras_escaleras/figura3.png 375, ../../figuras_escaleras/figura3.png 480, ../../figuras_escaleras/figura3.png 800" data-src="../../figuras_escaleras/figura3.png" data-sub-html="<h4>Figura 3</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: block;">'+
                                         '<p style="margin: 14px; padding: 15px; width: 88%;">'+descripcion_item+' '+
                                             '<a href="" style="color: #d9534f;">'+
                                                 '<span class="glyphicon glyphicon-picture"></span>'+
                                                 '(Ver Figuras)'+
-                                                '<img class="img-responsive" src="../figuras_escaleras/figura3.png" alt="Thumb-1" style="width: 2em; display: none;">'+
+                                                '<img class="img-responsive" src="../../figuras_escaleras/figura3.png" alt="Thumb-1" style="width: 2em; display: none;">'+
                                             '</a>'+
                                        '</p>'+
                                     '</li>'+
-                                    '<li class="col-xs-6 col-sm-4 col-md-3" data-responsive="../figuras_escaleras/figura7.png 375, ../figuras_escaleras/figura7.png 480, ../figuras_escaleras/figura7.png 800" data-src="../figuras_escaleras/figura7.png" data-sub-html="<h4>Figura 7</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: none;">'+
+                                    '<li class="col-xs-6 col-sm-4 col-md-3" data-responsive="../../figuras_escaleras/figura7.png 375, ../../figuras_escaleras/figura7.png 480, ../../figuras_escaleras/figura7.png 800" data-src="../../figuras_escaleras/figura7.png" data-sub-html="<h4>Figura 7</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: none;">'+
                                         '<a href="">'+
-                                            '<img class="img-responsive" src="../figuras_escaleras/figura7.png" alt="Thumb-2">'+
+                                            '<img class="img-responsive" src="../../figuras_escaleras/figura7.png" alt="Thumb-2">'+
                                         '</a>'+
                                     '</li>'+
                                 '</ul>'+
@@ -995,23 +995,23 @@ function cargarItemsdefectos_3() {
                         '<div class="row" style="border-left:1px solid; border-right:1px solid;">'+
                             '<div class="col-xs-12 col-sm-12 col-md-12" style="border-top:1px solid; text-align: justify;">'+
                                 '<ul id="lightgallery_81" class="list-unstyled row">'+
-                                    '<li class="col-xs-12 col-sm-12 col-md-12" data-responsive="../figuras_escaleras/figura2.png 375, ../figuras_escaleras/figura2.png 480, ../figuras_escaleras/figura2.png 800" data-src="../figuras_escaleras/figura2.png" data-sub-html="<h4>Figura 2</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: block;">'+
+                                    '<li class="col-xs-12 col-sm-12 col-md-12" data-responsive="../../figuras_escaleras/figura2.png 375, ../../figuras_escaleras/figura2.png 480, ../../figuras_escaleras/figura2.png 800" data-src="../../figuras_escaleras/figura2.png" data-sub-html="<h4>Figura 2</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: block;">'+
                                         '<p style="margin: 14px; padding: 15px; width: 88%;">'+descripcion_item+' '+
                                             '<a href="" style="color: #d9534f;">'+
                                                 '<span class="glyphicon glyphicon-picture"></span>'+
                                                 '(Ver Figuras)'+
-                                                '<img class="img-responsive" src="../figuras_escaleras/figura2.png" alt="Thumb-1" style="width: 2em; display: none;">'+
+                                                '<img class="img-responsive" src="../../figuras_escaleras/figura2.png" alt="Thumb-1" style="width: 2em; display: none;">'+
                                             '</a>'+
                                        '</p>'+
                                     '</li>'+
-                                    '<li class="col-xs-6 col-sm-4 col-md-3" data-responsive="../figuras_escaleras/figura4.png 375, ../figuras_escaleras/figura4.png 480, ../figuras_escaleras/figura4.png 800" data-src="../figuras_escaleras/figura4.png" data-sub-html="<h4>Figura 4</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: none;">'+
+                                    '<li class="col-xs-6 col-sm-4 col-md-3" data-responsive="../../figuras_escaleras/figura4.png 375, ../../figuras_escaleras/figura4.png 480, ../../figuras_escaleras/figura4.png 800" data-src="../../figuras_escaleras/figura4.png" data-sub-html="<h4>Figura 4</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: none;">'+
                                         '<a href="">'+
-                                            '<img class="img-responsive" src="../figuras_escaleras/figura4.png" alt="Thumb-2">'+
+                                            '<img class="img-responsive" src="../../figuras_escaleras/figura4.png" alt="Thumb-2">'+
                                         '</a>'+
                                     '</li>'+
-                                    '<li class="col-xs-6 col-sm-4 col-md-3" data-responsive="../figuras_escaleras/figura7.png 375, ../figuras_escaleras/figura7.png 480, ../figuras_escaleras/figura7.png 800" data-src="../figuras_escaleras/figura7.png" data-sub-html="<h4>Figura 7</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: none;">'+
+                                    '<li class="col-xs-6 col-sm-4 col-md-3" data-responsive="../../figuras_escaleras/figura7.png 375, ../../figuras_escaleras/figura7.png 480, ../../figuras_escaleras/figura7.png 800" data-src="../../figuras_escaleras/figura7.png" data-sub-html="<h4>Figura 7</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: none;">'+
                                         '<a href="">'+
-                                            '<img class="img-responsive" src="../figuras_escaleras/figura7.png" alt="Thumb-3">'+
+                                            '<img class="img-responsive" src="../../figuras_escaleras/figura7.png" alt="Thumb-3">'+
                                         '</a>'+
                                     '</li>'+
                                 '</ul>'+
@@ -1025,12 +1025,12 @@ function cargarItemsdefectos_3() {
                         '<div class="row" style="border-left:1px solid; border-right:1px solid;">'+
                             '<div class="col-xs-12 col-sm-12 col-md-12" style="border-top:1px solid; text-align: justify;">'+
                                 '<ul id="lightgallery_85" class="list-unstyled row">'+
-                                    '<li class="col-xs-12 col-sm-12 col-md-12" data-responsive="../figuras_escaleras/figura9.png 375, ../figuras_escaleras/figura9.png 480, ../figuras_escaleras/figura9.png 800" data-src="../figuras_escaleras/figura9.png" data-sub-html="<h4>Figura 9</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: block;">'+
+                                    '<li class="col-xs-12 col-sm-12 col-md-12" data-responsive="../../figuras_escaleras/figura9.png 375, ../../figuras_escaleras/figura9.png 480, ../../figuras_escaleras/figura9.png 800" data-src="../../figuras_escaleras/figura9.png" data-sub-html="<h4>Figura 9</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: block;">'+
                                         '<p style="margin: 14px; padding: 15px; width: 88%;">'+descripcion_item+' '+
                                             '<a href="" style="color: #d9534f;">'+
                                                 '<span class="glyphicon glyphicon-picture"></span>'+
                                                 '(Ver Figura)'+
-                                                '<img class="img-responsive" src="../figuras_escaleras/figura9.png" alt="Thumb-1" style="width: 2em; display: none;">'+
+                                                '<img class="img-responsive" src="../../figuras_escaleras/figura9.png" alt="Thumb-1" style="width: 2em; display: none;">'+
                                             '</a>'+
                                        '</p>'+
                                     '</li>'+

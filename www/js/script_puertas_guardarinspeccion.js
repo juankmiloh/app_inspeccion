@@ -52,7 +52,7 @@ function onConfirm(buttonIndex) {
   if (buttonIndex == 1) {
     reiniciarInspeccion();
   }else{
-    location.href="../index.html";
+    location.href="../../index.html";
   }
 }
 

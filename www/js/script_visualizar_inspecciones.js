@@ -251,7 +251,8 @@ function obtenerCodigoInspeccionesPendientesAscensores(estado){
         var k_codusuario = resultSet.rows.item(x).k_codusuario;
         var codigo_inspeccion = resultSet.rows.item(x).k_codinspeccion;
         var cantidad_nocumple = resultSet.rows.item(x).v_item_nocumple;
-        visualizarInspeccionesAscensores(k_codusuario,codigo_inspeccion,cantidad_nocumple);
+        var consecutivo_inspe = resultSet.rows.item(x).o_consecutivoinsp;
+        visualizarInspeccionesAscensores(k_codusuario,codigo_inspeccion,cantidad_nocumple,consecutivo_inspe);
       }
     },
     function (tx, error) {
@@ -267,14 +268,30 @@ function obtenerCodigoInspeccionesPendientesAscensores(estado){
 /*=============================================
 * Funcion que recibe el codigo de inspeccion que esta pendiente y la muestra en una tabal html
 *==============================================*/
-function visualizarInspeccionesAscensores(k_codusuario,codigo_inspeccion,cantidad_nocumple){
+function visualizarInspeccionesAscensores(k_codusuario,codigo_inspeccion,cantidad_nocumple,consecutivo){
   db.transaction(function (tx) {
     var query = "SELECT * FROM ascensor_valores_iniciales WHERE k_codusuario = ? AND k_codinspeccion = ?";
     tx.executeSql(query, [k_codusuario,codigo_inspeccion], function (tx, resultSet) {
-      var consecutivo_inspe = resultSet.rows.item(0).o_consecutivoinsp;
-      var nombre_cliente = resultSet.rows.item(0).n_cliente;
-      var nombre_equipo = resultSet.rows.item(0).n_equipo;
-      var tipo_informe = resultSet.rows.item(0).o_tipo_informe;
+      try{
+        var consecutivo_inspe = resultSet.rows.item(0).o_consecutivoinsp;
+        var nombre_cliente = resultSet.rows.item(0).n_cliente;
+        var nombre_equipo = resultSet.rows.item(0).n_equipo;
+        var tipo_informe = resultSet.rows.item(0).o_tipo_informe;
+      }catch(err) {
+        //alert(err.message);
+      }
+      if (consecutivo_inspe == undefined) {
+        consecutivo_inspe = consecutivo;
+      }
+      if (nombre_cliente == undefined) {
+        nombre_cliente = "n/a";
+      }
+      if (nombre_equipo == undefined) {
+        nombre_equipo = "n/a";
+      }
+      if (tipo_informe == undefined) {
+        tipo_informe = "n/a";
+      }
       var contenidoDiv = 
       '<br>'+
       '<div class="table-responsive">'+
@@ -345,8 +362,8 @@ function visualizarInspeccionesAscensores(k_codusuario,codigo_inspeccion,cantida
                     '</tr>'+
                     '<td colspan="6">'+
                       '<center>'+
-                        '<a href="./ascensor_modificar_lista_inspeccion.html?cod_usuario='+k_codusuario+'&id_inspeccion='+codigo_inspeccion+'">MODIFICAR</a>'+
-                        //'&nbsp| <a href="./ascensor_confirma_eliminar_lista_insp.html?cod_usuario='+k_codusuario+'&id_inspeccion='+codigo_inspeccion+'">ELIMINAR</a>'+
+                        '<a href="./ascensores/ascensor_modificar_lista_inspeccion.html?cod_usuario='+k_codusuario+'&id_inspeccion='+codigo_inspeccion+'"><span class="glyphicon glyphicon-pencil"></span> MODIFICAR</a>'+
+                        '&nbsp<b>|</b> <a href="./ascensores/ascensor_confirma_eliminar_lista_insp.html?cod_usuario='+k_codusuario+'&id_inspeccion='+codigo_inspeccion+'"><span class="glyphicon glyphicon-trash"></span> ELIMINAR</a>'+
                       '</center>'+
                     '</td>'+
                 '</tr>'+
@@ -509,8 +526,8 @@ function visualizarInspeccionesPuertas(k_codusuario,codigo_inspeccion,cantidad_n
                     '</tr>'+
                     '<td colspan="6">'+
                       '<center>'+
-                        '<a href="./puertas_modificar_lista_inspeccion.html?cod_usuario='+k_codusuario+'&id_inspeccion='+codigo_inspeccion+'">MODIFICAR</a>'+
-                        //'&nbsp| <a href="./puertas_confirma_eliminar_lista_insp.html?cod_usuario='+k_codusuario+'&id_inspeccion='+codigo_inspeccion+'">ELIMINAR</a>'+
+                        '<a href="./puertas/puertas_modificar_lista_inspeccion.html?cod_usuario='+k_codusuario+'&id_inspeccion='+codigo_inspeccion+'"><span class="glyphicon glyphicon-pencil"></span> MODIFICAR</a>'+
+                        '&nbsp<b>|</b> <a href="./puertas/puertas_confirma_eliminar_lista_insp.html?cod_usuario='+k_codusuario+'&id_inspeccion='+codigo_inspeccion+'"><span class="glyphicon glyphicon-trash"></span> ELIMINAR</a>'+
                       '</center>'+
                     '</td>'+
                 '</tr>'+
@@ -674,8 +691,8 @@ function visualizarInspeccionesEscaleras(k_codusuario,codigo_inspeccion,cantidad
                     '</tr>'+
                     '<td colspan="6">'+
                       '<center>'+
-                        '<a href="./escaleras_modificar_lista_inspeccion.html?cod_usuario='+k_codusuario+'&id_inspeccion='+codigo_inspeccion+'">MODIFICAR</a>'+
-                        //'&nbsp| <a href="./escaleras_confirma_eliminar_lista_insp.html?cod_usuario='+k_codusuario+'&id_inspeccion='+codigo_inspeccion+'">ELIMINAR</a>'+
+                        '<a href="./escaleras/escaleras_modificar_lista_inspeccion.html?cod_usuario='+k_codusuario+'&id_inspeccion='+codigo_inspeccion+'"><span class="glyphicon glyphicon-pencil"></span> MODIFICAR</a>'+
+                        '&nbsp<b>|</b> <a href="./escaleras/escaleras_confirma_eliminar_lista_insp.html?cod_usuario='+k_codusuario+'&id_inspeccion='+codigo_inspeccion+'"><span class="glyphicon glyphicon-trash"></span> ELIMINAR</a>'+
                       '</center>'+
                     '</td>'+
                 '</tr>'+

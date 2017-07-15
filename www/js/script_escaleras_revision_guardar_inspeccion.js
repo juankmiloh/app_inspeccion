@@ -33,10 +33,10 @@ function cerrarVentanaCarga(){
   message = 'Todo salio bien, se modifico la inspeccion Nº. ' + consecutivo_inspeccion;
   if(navigator.notification && navigator.notification.alert){
     navigator.notification.alert(message, null, "Montajes & Procesos M.P SAS", "Aceptar");
-    window.location='../index.html';
+    window.location='../../index.html';
   }else{
     alert(message);
-    window.location='../index.html';
+    window.location='../../index.html';
   }
 }
 

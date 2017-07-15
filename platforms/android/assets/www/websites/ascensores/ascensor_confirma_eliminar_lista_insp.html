@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>ELIMINAR / INSPECCIONES</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="shortcut icon" href="../../images/favicon_1.ico" type="image/vnd.microsoft.icon">
+    <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../estilos_css/estilos_eliminar_inspeccion.css"/>
+    <script src="../../js/jquery.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../../cordova.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>   
+    <script type="text/javascript" src="../../js/script_eliminar_inspeccion.js"/></script>
+</head>
+<body>
+    <div class="container">  
+        <!-- DIV de imagen de carga -->
+        <div class="fbback" style="z-index: 57;"></div>
+        
+        <div class="container" id="fbdrag1">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="fb" style="z-index: 57;">
+                        <!--<span class="close" onclick="dragClose('fbdrag1')"></span>-->
+                        <div class="dheader">MONTAJES & PROCESOS M.P SAS</div>
+                        <div class="dcontent">
+                            <div style="text-align:center;padding-top:20px">
+                                <center>
+                                    <img src="../../images/loading.gif" alt="Loading...">
+                                    <br><br>
+                                    <label style="color: black;">Eliminando inspección...Espere</label>
+                                </center>
+                            </div>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>       
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12" style="text-align: center;">
+                <h5><b>¿Realmente desea eliminar la inspección?</b></h5>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6" style="text-align: right;">
+                <a href="../visualizar_inspecciones.html">
+                    <button type="button" class="btn btn-success btn-lg sombra" id="boton">
+                        <span class="glyphicon glyphicon-backward"></span>
+                        NO
+                    </button>
+                </a>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6" style="text-align: left;">
+                <button type="button" class="btn btn-success btn-lg sombra" id="boton" onclick="eliminarInspeccionAscensor();">
+                    SI&nbsp
+                    <span class="glyphicon glyphicon-forward"></span>                
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

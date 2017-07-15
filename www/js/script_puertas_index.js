@@ -24,6 +24,18 @@ function fechaFooter(){
 }
 
 /*=============================================
+* FUNCION PARA DETECTAR SI SE PRESIONA EL BOTON ATRAS DEL DISPOSITIVO
+*==============================================*/
+document.addEventListener("backbutton", onBackKeyDown, false);
+/*=============================================
+* FUNCION PARA DENEGAR EL USO DEL BOTON ATRAS DEL DISPOSITIVO Y EN VEZ REDIRECCIONAMOS A LA PAGINA ANTERIOR
+*==============================================*/
+function onBackKeyDown(e) {
+  e.preventDefault();
+  window.location='./index_opciones.html';
+}
+
+/*=============================================
 * Funcion que se ejecuta cuando clickamos en el boton de informe de revision
 *==============================================*/
 function click_btn_revision(){
@@ -34,6 +46,7 @@ function click_btn_revision(){
 			//si no esta visible
 		  	$('#div_titulo').hide('fast');
 			$('#div_btn_informe_inicial').hide('fast');
+			$('#div_btn_eliminadas').hide('fast');
 			$('#div_btn_revision').hide('fast');
 			$('#div_revision').show('fast'); //muetras el div
 			$('#div_btn_regresar').show('fast');
@@ -50,6 +63,7 @@ function click_btn_regresar(){
 			//si esta visible
 			$('#div_titulo').show('fast');
 			$('#div_btn_informe_inicial').show('fast');
+			$('#div_btn_eliminadas').show('fast');
 			$('#div_btn_revision').show('fast');
 		  	$('#div_revision').hide('fast'); //esconde el div
 		  	$('#div_btn_regresar').hide('fast');
@@ -100,6 +114,6 @@ function redireccionarListaInspeccion(select){
 	var cod_usuario = separar[0];
 	var cod_inspeccion = separar[1];
 
-	location.href="./puertas_revision_lista_inspeccion.html?cod_usuario="+cod_usuario+"&id_inspeccion="+cod_inspeccion;	
+	location.href="../puertas/puertas_revision_lista_inspeccion.html?cod_usuario="+cod_usuario+"&id_inspeccion="+cod_inspeccion;	
 }
 

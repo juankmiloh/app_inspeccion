@@ -532,7 +532,7 @@ function enviarDatosClienteInforme(){
   //alert("informe-> "+window.sessionStorage.getItem("json_informe")+"\ncliente-> "+window.sessionStorage.getItem("json_cliente"));
   var codigoInspector = window.localStorage.getItem("codigo_inspector");
   var consecutivoInforme = window.sessionStorage.getItem("cantidadInformes");
-  $.post('http://www.montajesyprocesos.com/inspeccion/servidor/php/ascensor_guardar_datos_cliente_informe.php',{
+  $.post('http://192.168.0.26:8080/inspeccion/servidor/php/ascensor_guardar_datos_cliente_informe.php',{
     codigo_inspector: codigoInspector,
     json_cliente: window.sessionStorage.getItem("json_cliente"),
     json_informe: window.sessionStorage.getItem("json_informe"),
@@ -610,7 +610,7 @@ function uploadInformeAudio(directorio,nombre_archivo,cod_usuario,cod_informe,es
     //alert("No hay audioInforme a ser cargados! Code = " + error.code);
   }
 
-  var uri = encodeURI("http://www.montajesyprocesos.com/inspeccion/servidor/php/informe_upload_audios.php");
+  var uri = encodeURI("http://192.168.0.26:8080/inspeccion/servidor/php/informe_upload_audios.php");
 
   var options = new FileUploadOptions();
   options.fileKey="file";
@@ -681,7 +681,7 @@ function enviarCorreoElectronico(){
   var correo_electronico = $('#email').val();
   var nombre_empresa = $('#text_cliente').val();
   //alert(nombre_empresa);
-  $.post('http://www.montajesyprocesos.com/inspeccion/servidor/php/email/enviarCorreoInspeccion.php',{
+  $.post('http://192.168.0.26:8080/inspeccion/servidor/php/email/enviarCorreoInspeccion.php',{
     codigo_inspector: codigo_inspector,
     correo: correo_electronico,
     nombre_empresa: nombre_empresa
@@ -1260,7 +1260,7 @@ function enviarDatosAscensores(){
 function enviarInspeccionesSeleccionadasAscensores(codigo_usuario,codigo_inspeccion){
   var k_codusuario_modifica = window.localStorage.getItem("codigo_inspector");
   $('#texto_carga').text('Enviando inspección '+codigo_usuario+'-'+codigo_inspeccion+'...Espere');
-  $.post('http://www.montajesyprocesos.com/inspeccion/servidor/php/ascensor_guardar_datos_lista_inspeccion.php',{
+  $.post('http://192.168.0.26:8080/inspeccion/servidor/php/ascensor_guardar_datos_lista_inspeccion.php',{
     json_AVA: window.sessionStorage.getItem("json_AVA"),
     json_AVC: window.sessionStorage.getItem("json_AVC"),
     json_AVE: window.sessionStorage.getItem("json_AVE"),
@@ -1365,7 +1365,7 @@ function enviarValoresAuditoriaAscensores(codigo_inspector,cod_inspeccion){
 }
 
 function enviarDatosAuditoriaAscensores(codigo_inspector,cod_inspeccion){
-  $.post('http://www.montajesyprocesos.com/inspeccion/servidor/php/ascensor_guardar_datos_auditoria_inspeccion.php',{
+  $.post('http://192.168.0.26:8080/inspeccion/servidor/php/ascensor_guardar_datos_auditoria_inspeccion.php',{
     caso: "auditoria_ascensor",
     codigo_inspector: codigo_inspector,
     json_auditoria_ascensores: window.sessionStorage.getItem("json_auditoria_ascensores")
@@ -1445,7 +1445,7 @@ function uploadAudioAscensores(directorio,nombre_archivo,cod_usuario,cod_inspecc
     //alert("No hay audios a ser cargados! Code = " + error.code);
   }
 
-  var uri = encodeURI("http://www.montajesyprocesos.com/inspeccion/servidor/php/ascensor_upload_audios.php");
+  var uri = encodeURI("http://192.168.0.26:8080/inspeccion/servidor/php/ascensor_upload_audios.php");
 
   var options = new FileUploadOptions();
   options.fileKey="file";
@@ -1473,7 +1473,7 @@ function uploadAudioAscensores(directorio,nombre_archivo,cod_usuario,cod_inspecc
 function crearPDFAscensores(codigo_inspector,codigo_inspeccion){
   var codigo_inspector_dispositivo = window.localStorage.getItem("codigo_inspector");
   $('#texto_carga').text('Creando PDF '+codigo_inspector+'-'+codigo_inspeccion+'...Espere');
-  $.post('http://www.montajesyprocesos.com/inspeccion/servidor/php/ascensor_crear_pdf_inspeccion.php',{
+  $.post('http://192.168.0.26:8080/inspeccion/servidor/php/ascensor_crear_pdf_inspeccion.php',{
     codigo_inspector_dispositivo: codigo_inspector_dispositivo,
     codigo_inspector: codigo_inspector,
     codigo_inspeccion: codigo_inspeccion,
@@ -2144,7 +2144,7 @@ function enviarDatosPuertas(){
 function enviarInspeccionesSeleccionadasPuertas(codigo_usuario,codigo_inspeccion){
   var k_codusuario_modifica = window.localStorage.getItem("codigo_inspector");
   $('#texto_carga').text('Enviando inspección '+codigo_usuario+'-'+codigo_inspeccion+'...Espere');
-  $.post('http://www.montajesyprocesos.com/inspeccion/servidor/php/puertas_guardar_datos_lista_inspeccion.php',{
+  $.post('http://192.168.0.26:8080/inspeccion/servidor/php/puertas_guardar_datos_lista_inspeccion.php',{
     json_PVA: window.sessionStorage.getItem("json_PVA"),
     json_PVM: window.sessionStorage.getItem("json_PVM"),
     json_PVEL: window.sessionStorage.getItem("json_PVEL"),
@@ -2250,7 +2250,7 @@ function enviarValoresAuditoriaPuertas(codigo_inspector,cod_inspeccion){
 }
 
 function enviarDatosAuditoriaPuertas(codigo_inspector,cod_inspeccion){
-  $.post('http://www.montajesyprocesos.com/inspeccion/servidor/php/puertas_guardar_datos_auditoria_inspeccion.php',{
+  $.post('http://192.168.0.26:8080/inspeccion/servidor/php/puertas_guardar_datos_auditoria_inspeccion.php',{
     caso: "auditoria_puertas",
     codigo_inspector: codigo_inspector,
     json_auditoria_puertas: window.sessionStorage.getItem("json_auditoria_puertas")
@@ -2324,7 +2324,7 @@ function uploadAudioPuertas(directorio,nombre_archivo,cod_usuario,cod_inspeccion
     //alert("No hay audios a ser cargados! Code = " + error.code);
   }
 
-  var uri = encodeURI("http://www.montajesyprocesos.com/inspeccion/servidor/php/puertas_upload_audios.php");
+  var uri = encodeURI("http://192.168.0.26:8080/inspeccion/servidor/php/puertas_upload_audios.php");
 
   var options = new FileUploadOptions();
   options.fileKey="file";
@@ -2352,7 +2352,7 @@ function uploadAudioPuertas(directorio,nombre_archivo,cod_usuario,cod_inspeccion
 function crearPDFPuertas(codigo_inspector,codigo_inspeccion){
   var codigo_inspector_dispositivo = window.localStorage.getItem("codigo_inspector");
   $('#texto_carga').text('Creando PDF '+codigo_inspector+'-'+codigo_inspeccion+'...Espere');
-  $.post('http://www.montajesyprocesos.com/inspeccion/servidor/php/puertas_crear_pdf_inspeccion.php',{
+  $.post('http://192.168.0.26:8080/inspeccion/servidor/php/puertas_crear_pdf_inspeccion.php',{
     codigo_inspector_dispositivo: codigo_inspector_dispositivo,
     codigo_inspector: codigo_inspector,
     codigo_inspeccion: codigo_inspeccion,
@@ -2822,7 +2822,7 @@ function enviarDatosEscaleras(){
 function enviarInspeccionesSeleccionadasEscaleras(codigo_usuario,codigo_inspeccion){
   var k_codusuario_modifica = window.localStorage.getItem("codigo_inspector");
   $('#texto_carga').text('Enviando inspección '+codigo_usuario+'-'+codigo_inspeccion+'...Espere');
-  $.post('http://www.montajesyprocesos.com/inspeccion/servidor/php/escaleras_guardar_datos_lista_inspeccion.php',{
+  $.post('http://192.168.0.26:8080/inspeccion/servidor/php/escaleras_guardar_datos_lista_inspeccion.php',{
     json_EVA: window.sessionStorage.getItem("json_EVA"),
     json_EVD: window.sessionStorage.getItem("json_EVD"),
     json_EVE: window.sessionStorage.getItem("json_EVE"),
@@ -2924,7 +2924,7 @@ function enviarValoresAuditoriaEscaleras(codigo_inspector,cod_inspeccion){
 }
 
 function enviarDatosAuditoriaEscaleras(codigo_inspector,cod_inspeccion){
-  $.post('http://www.montajesyprocesos.com/inspeccion/servidor/php/escaleras_guardar_datos_auditoria_inspeccion.php',{
+  $.post('http://192.168.0.26:8080/inspeccion/servidor/php/escaleras_guardar_datos_auditoria_inspeccion.php',{
     caso: "auditoria_escaleras",
     codigo_inspector: codigo_inspector,
     json_auditoria_escaleras: window.sessionStorage.getItem("json_auditoria_escaleras")
@@ -2998,7 +2998,7 @@ function uploadAudioEscaleras(directorio,nombre_archivo,cod_usuario,cod_inspecci
     //alert("No hay audios a ser cargados! Code = " + error.code);
   }
 
-  var uri = encodeURI("http://www.montajesyprocesos.com/inspeccion/servidor/php/escaleras_upload_audios.php");
+  var uri = encodeURI("http://192.168.0.26:8080/inspeccion/servidor/php/escaleras_upload_audios.php");
 
   var options = new FileUploadOptions();
   options.fileKey="file";
@@ -3026,7 +3026,7 @@ function uploadAudioEscaleras(directorio,nombre_archivo,cod_usuario,cod_inspecci
 function crearPDFEscaleras(codigo_inspector,codigo_inspeccion){
   var codigo_inspector_dispositivo = window.localStorage.getItem("codigo_inspector");
   $('#texto_carga').text('Creando PDF '+codigo_inspector+'-'+codigo_inspeccion+'...Espere');
-  $.post('http://www.montajesyprocesos.com/inspeccion/servidor/php/escaleras_crear_pdf_inspeccion.php',{
+  $.post('http://192.168.0.26:8080/inspeccion/servidor/php/escaleras_crear_pdf_inspeccion.php',{
     codigo_inspector_dispositivo: codigo_inspector_dispositivo,
     codigo_inspector: codigo_inspector,
     codigo_inspeccion: codigo_inspeccion,

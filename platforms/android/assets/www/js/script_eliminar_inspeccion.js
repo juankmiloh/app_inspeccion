@@ -27,10 +27,10 @@ function cerrarVentanaCarga(){
   message = 'Se elimino con éxito la inspección!';
   if(navigator.notification && navigator.notification.alert){
     navigator.notification.alert(message, null, "Montajes & Procesos M.P SAS", "Aceptar");
-    window.location='../websites/visualizar_inspecciones.html';
+    window.location='../visualizar_inspecciones.html';
   }else{
     alert(message);
-    window.location='../websites/visualizar_inspecciones.html';
+    window.location='../visualizar_inspecciones.html';
   }
 }
 
@@ -39,19 +39,19 @@ function eliminarInspeccionAscensor(){
   var cod_usuario = getQueryVariable('cod_usuario');
   var cod_inspeccion = getQueryVariable('id_inspeccion');
 
-  borrarArchivosFotograficos(cod_usuario,cod_inspeccion);
-  borrarArchivosAudio(cod_usuario,cod_inspeccion);
-  removeItemsAudios(cod_usuario,cod_inspeccion);
-  removeItemsCabina(cod_usuario,cod_inspeccion);
-  removeItemsElementos(cod_usuario,cod_inspeccion);
-  removeItemsFinales(cod_usuario,cod_inspeccion);
-  removeItemsFoso(cod_usuario,cod_inspeccion);
-  removeItemsFotografias(cod_usuario,cod_inspeccion);
-  removeItemsIniciales(cod_usuario,cod_inspeccion);
-  removeItemsMaquinas(cod_usuario,cod_inspeccion);
-  removeItemsPozo(cod_usuario,cod_inspeccion);
-  removeItemsPreliminar(cod_usuario,cod_inspeccion);
-  removeItemsProteccion(cod_usuario,cod_inspeccion);
+  // borrarArchivosFotograficos(cod_usuario,cod_inspeccion);
+  // borrarArchivosAudio(cod_usuario,cod_inspeccion);
+  // removeItemsAudios(cod_usuario,cod_inspeccion);
+  // removeItemsCabina(cod_usuario,cod_inspeccion);
+  // removeItemsElementos(cod_usuario,cod_inspeccion);
+  // removeItemsFinales(cod_usuario,cod_inspeccion);
+  // removeItemsFoso(cod_usuario,cod_inspeccion);
+  // removeItemsFotografias(cod_usuario,cod_inspeccion);
+  // removeItemsIniciales(cod_usuario,cod_inspeccion);
+  // removeItemsMaquinas(cod_usuario,cod_inspeccion);
+  // removeItemsPozo(cod_usuario,cod_inspeccion);
+  // removeItemsPreliminar(cod_usuario,cod_inspeccion);
+  // removeItemsProteccion(cod_usuario,cod_inspeccion);
   updateItemsAuditoriaInspeccionesAscensores(cod_usuario,cod_inspeccion,"Eliminada");
 }
 
