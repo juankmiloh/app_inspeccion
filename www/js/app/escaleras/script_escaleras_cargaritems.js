@@ -1,14 +1,11 @@
 jQuery(document).ready(function($){
     /* CARGAR ITEMS EN LA LISTA DE INSPECCION */
-    //alert("probando");
     cargarItemsEvaluacionPreliminar();
     cargarItemsProteccionPersonal();
     cargarItemsElementosDelInspector();
-    cargarItemsMecanicos();
-    cargarItemsElectrica();
-    cargarItemsMotorizacion();
-    cargarItemsOtras();
-    cargarItemsManiobras();
+    cargarItemsdefectos_1();
+    cargarItemsdefectos_2();
+    cargarItemsdefectos_3();
 });
 
 /*=============================================
@@ -18,34 +15,15 @@ jQuery(document).ready(function($){
 *==============================================*/
 var db = window.openDatabase("montajes_inspeccion_mp", "1.0", "Inspeccion_MP", 1000000);
 
-/* DATOS PARA CARGAR LA INSPECCION */
-var cod_inspeccion = getQueryVariable('id_inspeccion');
-var codigo_inspector = getQueryVariable("cod_usuario");
-
 /*=============================================
-* Funcion que permite capturar el valor de la variable enviada por URL
-*==============================================*/
-function getQueryVariable(variable) {
-    var query = window.location.search.substring(1);
-    var vars = query.split("&");
-    for (var i=0; i < vars.length; i++) {
-        var pair = vars[i].split("=");
-        if(pair[0] == variable) {
-            return pair[1];
-        }
-    }
-    return false;
-}
-
-/*=============================================
-* Funcion para hacer un select a la tabla puertas_items_preliminar y cargar los items en la lista
+* Funcion para hacer un select a la tabla escaleras_items_preliminar y cargar los items en la lista
 *==============================================*/
 function cargarItemsEvaluacionPreliminar() {
     var valor_seleval = 1;
     var valor_for_options_radio = 1;
     var valor_options_radio = 1;
     db.transaction(function (tx) {
-        var query = "SELECT k_coditem, o_descripcion FROM puertas_items_preliminar";
+        var query = "SELECT k_coditem, o_descripcion FROM escaleras_items_preliminar";
         tx.executeSql(query, [], function (tx, resultSet) {
             for(var x = 0; x < resultSet.rows.length; x++) {
                 var numero_item = resultSet.rows.item(x).k_coditem;
@@ -104,7 +82,7 @@ function cargarItemsEvaluacionPreliminar() {
                         '<div class="col-xs-4 col-sm-4 col-md-4" style="border-top:1px solid; border-left:1px solid;">'+
                             '<div class="radio">'+
                                 '<label for="optionsRadiosPreliminar'+valor_options_radio+'" style="width: 100%;">'+
-                                    '<input type="radio" name="seleval'+valor_seleval+'" id="optionsRadiosPreliminar'+valor_options_radio+'" value="No Aplica">'+
+                                    '<input type="radio" name="seleval'+valor_seleval+'" id="optionsRadiosPreliminar'+valor_options_radio+'" value="No Aplica" checked>'+
                                 '</label>'+
                             '</div>'+
                         '</div>'+
@@ -146,14 +124,14 @@ function cargarItemsEvaluacionPreliminar() {
 }
 
 /*=============================================
-* Funcion para hacer un select a la tabla puertas_items_proteccion y cargar los items en la lista de inspeccion
+* Funcion para hacer un select a la tabla escaleras_items_proteccion y cargar los items en la lista de inspeccion
 *==============================================*/
 function cargarItemsProteccionPersonal() {
     var valor_seleval = 1;
     var valor_for_options_radio = 1;
     var valor_options_radio = 1;
     db.transaction(function (tx) {
-        var query = "SELECT k_coditem, o_descripcion FROM puertas_items_proteccion";
+        var query = "SELECT k_coditem, o_descripcion FROM escaleras_items_proteccion";
         tx.executeSql(query, [], function (tx, resultSet) {
             for(var x = 0; x < resultSet.rows.length; x++) {
                 var numero_item = resultSet.rows.item(x).k_coditem;
@@ -208,7 +186,7 @@ function cargarItemsProteccionPersonal() {
                                     contenidoDiv +=
                                     '<div class="col-xs-4 col-sm-4 col-md-4" style="border-top:1px solid; border-left:1px solid;">'+
                                         '<label>'+
-                                            '<input type="radio" name="sele_protec_person'+numero_item+'" id="options_protec_person'+valor_options_radio+'" value="No Aplica" required>'+
+                                            '<input type="radio" name="sele_protec_person'+numero_item+'" id="options_protec_person'+valor_options_radio+'" value="No Aplica" checked required>'+
                                         '</label>'+
                                     '</div>'+
                                 '</div>'+
@@ -250,7 +228,7 @@ function cargarItemsProteccionPersonal() {
                                     contenidoDiv +=
                                     '<div class="col-xs-4 col-sm-4 col-md-4" style="border-top:1px solid; border-left:1px solid;">'+
                                         '<label>'+
-                                            '<input type="radio" name="sele_protec_person'+numero_item+'_'+numero_item+'" id="options_protec_person'+valor_options_radio+'" value="No Cumple" required>'+
+                                            '<input type="radio" name="sele_protec_person'+numero_item+'_'+numero_item+'" id="options_protec_person'+valor_options_radio+'" value="No Cumple" checked required>'+
                                         '</label>'+
                                     '</div>';
                                     valor_options_radio += 1;
@@ -292,13 +270,13 @@ function cargarItemsProteccionPersonal() {
 }
 
 /*=============================================
-* Funcion para hacer un select a la tabla puertas_items_elementos y cargar los items en la lista de inspeccion
+* Funcion para hacer un select a la tabla escaleras_items_elementos y cargar los items en la lista de inspeccion
 *==============================================*/
 function cargarItemsElementosDelInspector() {
     var valor_seleval = 1;
     var valor_options_radio = 1;
     db.transaction(function (tx) {
-        var query = "SELECT k_coditem, o_descripcion FROM puertas_items_elementos";
+        var query = "SELECT k_coditem, o_descripcion FROM escaleras_items_elementos";
         tx.executeSql(query, [], function (tx, resultSet) {
             for(var x = 0; x < resultSet.rows.length; x++) {
                 var numero_item = resultSet.rows.item(x).k_coditem;
@@ -314,7 +292,7 @@ function cargarItemsElementosDelInspector() {
                 var contenidoDiv_1 =
                 '<div class="col-xs-4 col-sm-4 col-md-4" style="border-top:1px solid; height: 7em;">'+
                     '<label for="options_element_inpec'+valor_options_radio+'" style="margin-top: 2.5em; width: 100%; height: 50%;">'+
-                        '<input type="radio" name="sele_element_inspec'+valor_seleval+'" id="options_element_inpec'+valor_options_radio+'" value="Si Cumple" required>'+
+                        '<input type="radio" name="sele_element_inspec'+valor_seleval+'" id="options_element_inpec'+valor_options_radio+'" value="Si Cumple" checked required>'+
                     '</label>'+
                 '</div>';
                 valor_options_radio += 1;
@@ -347,19 +325,17 @@ function cargarItemsElementosDelInspector() {
 }
 
 /*=============================================
-* Funcion para hacer un select a la tabla puertas_items_mecanicos y puertas_valores_mecanicos para poder cargar los items que no cumplen en la lista de revision
+* Funcion para hacer un select a la tabla escaleras_items_defectos y cargar los 31 PRIMEROS items en la lista
 *==============================================*/
-function cargarItemsMecanicos() {
+function cargarItemsdefectos_1() {
     var valor_seleval = 1;
     var valor_for_options_radio = 1;
     var valor_options_radio = 1;
-    var contador_items = 0; //contador que va aumentando si encuentra items a cargar sino se queda en cero
     db.transaction(function (tx) {
-        var query = "SELECT k_coditem_puertas, o_descripcion, v_clasificacion FROM puertas_items_mecanicos i,puertas_valores_mecanicos v WHERE i.k_coditem_puertas=v.k_coditem AND v.k_codinspeccion=? AND v.k_codusuario=? AND v.v_calificacion='No Cumple'";
-        tx.executeSql(query, [cod_inspeccion,codigo_inspector], function (tx, resultSet) {
-            for(var x = 0; x < resultSet.rows.length; x++) {
-                contador_items += 1;
-                var numero_item = resultSet.rows.item(x).k_coditem_puertas;
+        var query = "SELECT k_coditem_escaleras, o_descripcion, v_clasificacion FROM escaleras_items_defectos";
+        tx.executeSql(query, [], function (tx, resultSet) {
+            for(var x = 0; x < 31; x++) {
+                var numero_item = resultSet.rows.item(x).k_coditem_escaleras;
                 var descripcion_item = resultSet.rows.item(x).o_descripcion;
                 var clasificacion_item = resultSet.rows.item(x).v_clasificacion;
                 if (clasificacion_item == "Leve") {
@@ -373,8 +349,8 @@ function cargarItemsMecanicos() {
                 }
                 var contenidoDiv = 
                 '<div class="container-fluid">'+
-                    '<input type="hidden" id="numero_item_mecanicos'+numero_item+'" value="'+numero_item+'">'+
-                    '<input type="hidden" id="cal_item_mecanicos'+numero_item+'" value="'+clasificacion_item+'">'+
+                    '<input type="hidden" id="numero_item_defectos'+numero_item+'" value="'+numero_item+'">'+
+                    '<input type="hidden" id="cal_item_defectos'+numero_item+'" value="'+clasificacion_item+'">'+
                     '<div class="row" style="border-left:1px solid; border-right:1px solid; text-align: center;">'+
                         '<div class="col-xs-6 col-sm-6 col-md-6" style="border-top:1px solid; background-color: #5bc0de;">'+
                             '<label>ÍTEM</label>'+
@@ -399,76 +375,132 @@ function cargarItemsMecanicos() {
                         '</div>'+
                     '</div>';
 
-                    if (numero_item == 1) {
+                    if (numero_item == 14) {
                         contenidoDiv +=
                         '<div class="row" style="border-left:1px solid; border-right:1px solid;">'+
                             '<div class="col-xs-12 col-sm-12 col-md-12" style="border-top:1px solid; text-align: justify;">'+
-                                '<ul id="lightgallery_1" class="list-unstyled row">'+
-                                    '<li class="col-xs-12 col-sm-12 col-md-12" data-responsive="../figuras_puertas/figura1.png 375, ../figuras_puertas/figura1.png 480, ../figuras_puertas/figura1.png 800" data-src="../figuras_puertas/figura1.png" data-sub-html="<h4>Figura 1</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: block;">'+
+                                '<ul id="lightgallery_14" class="list-unstyled row">'+
+                                    '<li class="col-xs-12 col-sm-12 col-md-12" data-responsive="../../figuras/figuras_escaleras/figura2.png 375, ../../figuras/figuras_escaleras/figura2.png 480, ../../figuras/figuras_escaleras/figura2.png 800" data-src="../../figuras/figuras_escaleras/figura2.png" data-sub-html="<h4>Figura 2</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: block;">'+
                                         '<p style="margin: 14px; padding: 15px; width: 88%;">'+descripcion_item+' '+
                                             '<a href="" style="color: #d9534f;">'+
                                                 '<span class="glyphicon glyphicon-picture"></span>'+
                                                 '(Ver Figuras)'+
-                                                '<img class="img-responsive" src="../figuras_puertas/figura1.png" alt="Thumb-1" style="width: 2em; display: none;">'+
+                                                '<img class="img-responsive" src="../../figuras/figuras_escaleras/figura2.png" alt="Thumb-1" style="width: 2em; display: none;">'+
                                             '</a>'+
                                        '</p>'+
                                     '</li>'+
-                                    '<li class="col-xs-6 col-sm-4 col-md-3" data-responsive="../figuras_puertas/figura2.png 375, ../figuras_puertas/figura2.png 480, ../figuras_puertas/figura2.png 800" data-src="../figuras_puertas/figura2.png" data-sub-html="<h4>Figura 2</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: none;">'+
+                                    '<li class="col-xs-6 col-sm-4 col-md-3" data-responsive="../../figuras/figuras_escaleras/figura5.png 375, ../../figuras/figuras_escaleras/figura5.png 480, ../../figuras/figuras_escaleras/figura5.png 800" data-src="../../figuras/figuras_escaleras/figura5.png" data-sub-html="<h4>Figura 5</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: none;">'+
                                         '<a href="">'+
-                                            '<img class="img-responsive" src="../figuras_puertas/figura2.png" alt="Thumb-2">'+
+                                            '<img class="img-responsive" src="../../figuras/figuras_escaleras/figura5.png" alt="Thumb-2">'+
                                         '</a>'+
                                     '</li>'+
-                                    '<li class="col-xs-6 col-sm-4 col-md-3" data-responsive="../figuras_puertas/figura3.png 375, ../figuras_puertas/figura3.png 480, ../figuras_puertas/figura3.png 800" data-src="../figuras_puertas/figura3.png" data-sub-html="<h4>Figura 3</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: none;">'+
+                                    '<li class="col-xs-6 col-sm-4 col-md-3" data-responsive="../../figuras/figuras_escaleras/figura6.png 375, ../../figuras/figuras_escaleras/figura6.png 480, ../../figuras/figuras_escaleras/figura6.png 800" data-src="../../figuras/figuras_escaleras/figura6.png" data-sub-html="<h4>Figura 6</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: none;">'+
                                         '<a href="">'+
-                                            '<img class="img-responsive" src="../figuras_puertas/figura3.png" alt="Thumb-2">'+
-                                        '</a>'+
-                                    '</li>'+
-                                    '<li class="col-xs-6 col-sm-4 col-md-3" data-responsive="../figuras_puertas/figura4.png 375, ../figuras_puertas/figura4.png 480, ../figuras_puertas/figura4.png 800" data-src="../figuras_puertas/figura4.png" data-sub-html="<h4>Figura 4</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: none;">'+
-                                        '<a href="">'+
-                                            '<img class="img-responsive" src="../figuras_puertas/figura4.png" alt="Thumb-2">'+
-                                        '</a>'+
-                                    '</li>'+
-                                    '<li class="col-xs-6 col-sm-4 col-md-3" data-responsive="../figuras_puertas/figura5.png 375, ../figuras_puertas/figura5.png 480, ../figuras_puertas/figura5.png 800" data-src="../figuras_puertas/figura5.png" data-sub-html="<h4>Figura 5</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: none;">'+
-                                        '<a href="">'+
-                                            '<img class="img-responsive" src="../figuras_puertas/figura5.png" alt="Thumb-2">'+
-                                        '</a>'+
-                                    '</li>'+
-                                    '<li class="col-xs-6 col-sm-4 col-md-3" data-responsive="../figuras_puertas/figura6.png 375, ../figuras_puertas/figura6.png 480, ../figuras_puertas/figura6.png 800" data-src="../figuras_puertas/figura6.png" data-sub-html="<h4>Figura 6</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: none;">'+
-                                        '<a href="">'+
-                                            '<img class="img-responsive" src="../figuras_puertas/figura6.png" alt="Thumb-2">'+
-                                        '</a>'+
-                                    '</li>'+
-                                    '<li class="col-xs-6 col-sm-4 col-md-3" data-responsive="../figuras_puertas/figura7.png 375, ../figuras_puertas/figura7.png 480, ../figuras_puertas/figura7.png 800" data-src="../figuras_puertas/figura7.png" data-sub-html="<h4>Figura 7</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: none;">'+
-                                        '<a href="">'+
-                                            '<img class="img-responsive" src="../figuras_puertas/figura7.png" alt="Thumb-2">'+
-                                        '</a>'+
-                                    '</li>'+
-                                    '<li class="col-xs-6 col-sm-4 col-md-3" data-responsive="../figuras_puertas/figura8.png 375, ../figuras_puertas/figura8.png 480, ../figuras_puertas/figura8.png 800" data-src="../figuras_puertas/figura8.png" data-sub-html="<h4>Figura 8</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: none;">'+
-                                        '<a href="">'+
-                                            '<img class="img-responsive" src="../figuras_puertas/figura8.png" alt="Thumb-2">'+
-                                        '</a>'+
-                                    '</li>'+
-                                    '<li class="col-xs-6 col-sm-4 col-md-3" data-responsive="../figuras_puertas/figura9.png 375, ../figuras_puertas/figura9.png 480, ../figuras_puertas/figura9.png 800" data-src="../figuras_puertas/figura9.png" data-sub-html="<h4>Figura 9</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: none;">'+
-                                        '<a href="">'+
-                                            '<img class="img-responsive" src="../figuras_puertas/figura9.png" alt="Thumb-2">'+
-                                        '</a>'+
-                                    '</li>'+
-                                    '<li class="col-xs-6 col-sm-4 col-md-3" data-responsive="../figuras_puertas/figura10.png 375, ../figuras_puertas/figura10.png 480, ../figuras_puertas/figura10.png 800" data-src="../figuras_puertas/figura10.png" data-sub-html="<h4>Figura 10</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: none;">'+
-                                        '<a href="">'+
-                                            '<img class="img-responsive" src="../figuras_puertas/figura10.png" alt="Thumb-2">'+
-                                        '</a>'+
-                                    '</li>'+
-                                    '<li class="col-xs-6 col-sm-4 col-md-3" data-responsive="../figuras_puertas/figura11.png 375, ../figuras_puertas/figura11.png 480, ../figuras_puertas/figura11.png 800" data-src="../figuras_puertas/figura11.png" data-sub-html="<h4>Figura 11</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: none;">'+
-                                        '<a href="">'+
-                                            '<img class="img-responsive" src="../figuras_puertas/figura11.png" alt="Thumb-2">'+
+                                            '<img class="img-responsive" src="../../figuras/figuras_escaleras/figura6.png" alt="Thumb-3">'+
                                         '</a>'+
                                     '</li>'+
                                 '</ul>'+
                             '</div>'+
                         '</div>'+
                         '<script>'+
-                            'lightGallery(document.getElementById("lightgallery_1"));'+
+                            'lightGallery(document.getElementById("lightgallery_14"));'+
                         '</script>';
+                    }else if (numero_item == 29) {
+                        contenidoDiv +=
+                        '<div class="row" style="border-left:1px solid; border-right:1px solid;">'+
+                            '<div class="col-xs-12 col-sm-12 col-md-12" style="border-top:1px solid; text-align: justify;">'+
+                                '<p style="margin: 14px; padding: 15px; width: 88%;">'+descripcion_item+'</p>'+
+                                '<center>'+
+                                    '<table border="1">'+
+                                        '<tr style="background-color: #5bc0de; text-align:center;">'+
+                                            '<td>'+
+                                                '<b>A la velocidad nominal v de</b>'+
+                                            '</td>'+
+                                            '<td>'+
+                                                '<b>Distancia de frenado comprendida entre</b>'+
+                                            '</td>'+
+                                        '</tr>'+
+                                        '<tr style="text-align: center;">'+
+                                            '<td>'+
+                                                '0,50 m/s'+
+                                            '</td>'+
+                                            '<td>'+
+                                                '0,20 m y 1,00 m'+
+                                            '</td>'+
+                                        '</tr>'+
+                                        '<tr style="text-align: center;">'+
+                                            '<td>'+
+                                                '0,65 m/s'+
+                                            '</td>'+
+                                            '<td>'+
+                                                '0,30 m y 1,30 m'+
+                                            '</td>'+
+                                        '</tr>'+
+                                        '<tr style="text-align: center;">'+
+                                            '<td>'+
+                                                '0,75 m/s'+
+                                            '</td>'+
+                                            '<td>'+
+                                                '0,40 m y 1,50 m'+
+                                            '</td>'+
+                                        '</tr>'+
+                                    '</table>'+
+                                '</center>'+
+                                '<br>'+
+                            '</div>'+
+                        '</div>';
+                    }else if (numero_item == 30) {
+                        contenidoDiv +=
+                        '<div class="row" style="border-left:1px solid; border-right:1px solid;">'+
+                            '<div class="col-xs-12 col-sm-12 col-md-12" style="border-top:1px solid; text-align: justify;">'+
+                                '<p style="margin: 14px; padding: 15px; width: 88%;">'+descripcion_item+'</p>'+
+                                '<center>'+
+                                    '<table border="1">'+
+                                        '<tr style="background-color: #5bc0de; text-align:center;">'+
+                                            '<td>'+
+                                                '<b>A la velocidad nominal v de</b>'+
+                                            '</td>'+
+                                            '<td>'+
+                                                '<b>Distancia de frenado comprendida entre</b>'+
+                                            '</td>'+
+                                        '</tr>'+
+                                        '<tr style="text-align: center;">'+
+                                            '<td>'+
+                                                '0,50 m/s'+
+                                            '</td>'+
+                                            '<td>'+
+                                                '0,20 m y 1,00 m'+
+                                            '</td>'+
+                                        '</tr>'+
+                                        '<tr style="text-align: center;">'+
+                                            '<td>'+
+                                                '0,65 m/s'+
+                                            '</td>'+
+                                            '<td>'+
+                                                '0,30 m y 1,30 m'+
+                                            '</td>'+
+                                        '</tr>'+
+                                        '<tr style="text-align: center;">'+
+                                            '<td>'+
+                                                '0,75 m/s'+
+                                            '</td>'+
+                                            '<td>'+
+                                                '0,40 m y 1,50 m'+
+                                            '</td>'+
+                                        '</tr>'+
+                                        '<tr style="text-align: center;">'+
+                                            '<td>'+
+                                                '0,90 m/s'+
+                                            '</td>'+
+                                            '<td>'+
+                                                '0,55 m y 1,70 m'+
+                                            '</td>'+
+                                        '</tr>'+
+                                    '</table>'+
+                                '</center>'+
+                                '<br>'+
+                            '</div>'+
+                        '</div>';
                     }else{
                         contenidoDiv +=
                         '<div class="row" style="border-left:1px solid; border-right:1px solid;">'+
@@ -481,25 +513,25 @@ function cargarItemsMecanicos() {
                     contenidoDiv +=
                     '<div class="row" style="border-left:1px solid; border-right:1px solid; text-align: center;">'+
                         '<div class="col-xs-4 col-sm-4 col-md-4" style="border-top:1px solid; background-color: #5bc0de; padding-left: 2%;">'+
-                            '<label for="sele_lv_mecanicos'+valor_for_options_radio+'">SI CUMPLE</label>'+
+                            '<label for="sele_lv_defectos'+valor_for_options_radio+'">SI CUMPLE</label>'+
                         '</div>';
                         valor_for_options_radio += 1;
                         contenidoDiv +=
                         '<div class="col-xs-4 col-sm-4 col-md-4" style="border-top:1px solid; border-left:1px solid; background-color: #5bc0de; padding-left: 2%;">'+
-                            '<label for="sele_lv_mecanicos'+valor_for_options_radio+'">NO CUMPLE</label>'+
+                            '<label for="sele_lv_defectos'+valor_for_options_radio+'">NO CUMPLE</label>'+
                         '</div>';
                         valor_for_options_radio += 1;
                         contenidoDiv +=
                         '<div class="col-xs-4 col-sm-4 col-md-4" style="border-top:1px solid; border-left:1px solid; background-color: #5bc0de; padding-left: 2%;">'+
-                            '<label for="sele_lv_mecanicos'+valor_for_options_radio+'">NO APLICA</label>'+
+                            '<label for="sele_lv_defectos'+valor_for_options_radio+'">NO APLICA</label>'+
                         '</div>'+
                     '</div>'+
 
                     '<div class="row" style="border-left:1px solid; border-right:1px solid; text-align: center;">'+
                         '<div class="col-xs-4 col-sm-4 col-md-4" style="border-top:1px solid;">'+
                             '<div class="radio">'+
-                                '<label for="sele_lv_mecanicos'+valor_options_radio+'" style="width: 100%;">'+
-                                    '<input type="radio" name="sele_mecanicos'+valor_seleval+'" id="sele_lv_mecanicos'+valor_options_radio+'" value="Si Cumple">'+
+                                '<label for="sele_lv_defectos'+valor_options_radio+'" style="width: 100%;">'+
+                                    '<input type="radio" name="sele_defectos'+valor_seleval+'" id="sele_lv_defectos'+valor_options_radio+'" value="Si Cumple" checked>'+
                                 '</label>'+
                             '</div>'+
                         '</div>';
@@ -507,8 +539,8 @@ function cargarItemsMecanicos() {
                         contenidoDiv +=
                         '<div class="col-xs-4 col-sm-4 col-md-4" style="border-top:1px solid; border-left:1px solid;">'+
                             '<div class="radio">'+
-                                '<label for="sele_lv_mecanicos'+valor_options_radio+'" style="width: 100%;">'+
-                                    '<input type="radio" name="sele_mecanicos'+valor_seleval+'" id="sele_lv_mecanicos'+valor_options_radio+'" value="No Cumple" required>'+
+                                '<label for="sele_lv_defectos'+valor_options_radio+'" style="width: 100%;">'+
+                                    '<input type="radio" name="sele_defectos'+valor_seleval+'" id="sele_lv_defectos'+valor_options_radio+'" value="No Cumple" required>'+
                                 '</label>'+
                             '</div>'+
                         '</div>';
@@ -516,8 +548,8 @@ function cargarItemsMecanicos() {
                         contenidoDiv +=
                         '<div class="col-xs-4 col-sm-4 col-md-4" style="border-top:1px solid; border-left:1px solid;">'+
                             '<div class="radio">'+
-                                '<label for="sele_lv_mecanicos'+valor_options_radio+'" style="width: 100%;">'+
-                                    '<input type="radio" name="sele_mecanicos'+valor_seleval+'" id="sele_lv_mecanicos'+valor_options_radio+'" value="No Aplica">'+
+                                '<label for="sele_lv_defectos'+valor_options_radio+'" style="width: 100%;">'+
+                                    '<input type="radio" name="sele_defectos'+valor_seleval+'" id="sele_lv_defectos'+valor_options_radio+'" value="No Aplica">'+
                                 '</label>'+
                             '</div>'+
                         '</div>'+
@@ -558,14 +590,10 @@ function cargarItemsMecanicos() {
                 '<br>'+
                 '<div class="divisionItems sombra"></div>'+
                 '<br>';
-                $(contenidoDiv).appendTo("#items_mecanicos");
+                $(contenidoDiv).appendTo("#items_defectos_1");
                 valor_for_options_radio += 1;
                 valor_options_radio += 1;
                 valor_seleval += 1;
-            }
-            if (contador_items == 0) {
-                //alert(contador_items);
-                $('#div_mecanicos').hide();
             }
         },
         function (tx, error) {
@@ -579,20 +607,17 @@ function cargarItemsMecanicos() {
 }
 
 /*=============================================
-* Funcion para hacer un select a la tabla puertas_items_electrica y cargar los items en la lista
+* Funcion para hacer un select a la tabla escaleras_items_defectos y cargar los 31 segundos items en la lista
 *==============================================*/
-function cargarItemsElectrica() {
-    var valor_seleval = 38;
-    var valor_for_options_radio = 1;
-    var valor_options_radio = 1;
-    var contador_items = 0; //contador que va aumentando si encuentra items a cargar sino se queda en cero
+function cargarItemsdefectos_2() {
+    var valor_seleval = 32;
+    var valor_for_options_radio = 94;
+    var valor_options_radio = 94;
     db.transaction(function (tx) {
-        var query = "SELECT k_coditem_electrica, o_descripcion, v_clasificacion FROM puertas_items_electrica i,puertas_valores_electrica v WHERE i.k_coditem_electrica=v.k_coditem AND v.k_codinspeccion=? AND v.k_codusuario=? AND v.v_calificacion='No Cumple'";
-        tx.executeSql(query, [cod_inspeccion,codigo_inspector], function (tx, resultSet) {
-            for(var x = 0; x < resultSet.rows.length; x++) {
-                contador_items += 1;
-                var numero_item = resultSet.rows.item(x).k_coditem_electrica;
-                var valor_Item = resultSet.rows.item(x).v_item;
+        var query = "SELECT k_coditem_escaleras, o_descripcion, v_clasificacion FROM escaleras_items_defectos";
+        tx.executeSql(query, [], function (tx, resultSet) {
+            for(var x = 31; x < 62; x++) {
+                var numero_item = resultSet.rows.item(x).k_coditem_escaleras;
                 var descripcion_item = resultSet.rows.item(x).o_descripcion;
                 var clasificacion_item = resultSet.rows.item(x).v_clasificacion;
                 if (clasificacion_item == "Leve") {
@@ -606,8 +631,8 @@ function cargarItemsElectrica() {
                 }
                 var contenidoDiv = 
                 '<div class="container-fluid">'+
-                    '<input type="hidden" id="numero_item_electrica'+numero_item+'" value="'+numero_item+'">'+
-                    '<input type="hidden" id="cal_item_electrica'+numero_item+'" value="'+clasificacion_item+'">'+
+                    '<input type="hidden" id="numero_item_defectos'+numero_item+'" value="'+numero_item+'">'+
+                    '<input type="hidden" id="cal_item_defectos'+numero_item+'" value="'+clasificacion_item+'">'+
                     '<div class="row" style="border-left:1px solid; border-right:1px solid; text-align: center;">'+
                         '<div class="col-xs-6 col-sm-6 col-md-6" style="border-top:1px solid; background-color: #5bc0de;">'+
                             '<label>ÍTEM</label>'+
@@ -630,35 +655,144 @@ function cargarItemsElectrica() {
                         '<div class="col-xs-12 col-sm-12 col-md-12" style="border-top:1px solid; text-align: center; background-color: #5bc0de;">'+
                             '<label>DEFECTO</label>'+
                         '</div>'+
-                    '</div>'+
+                    '</div>';
 
-                    '<div class="row" style="border-left:1px solid; border-right:1px solid;">'+
-                        '<div class="col-xs-12 col-sm-12 col-md-12" style="border-top:1px solid; text-align: justify;">'+
-                            '<p style="margin: 14px; padding: 15px; width: 88%;">'+descripcion_item+'</p>'+
+                    if (numero_item == 32) {
+                        contenidoDiv +=
+                        '<div class="row" style="border-left:1px solid; border-right:1px solid;">'+
+                            '<div class="col-xs-12 col-sm-12 col-md-12" style="border-top:1px solid; text-align: justify;">'+
+                                '<ul id="lightgallery_32" class="list-unstyled row">'+
+                                    '<li class="col-xs-12 col-sm-12 col-md-12" data-responsive="../../figuras/figuras_escaleras/figura6.png 375, ../../figuras/figuras_escaleras/figura6.png 480, ../../figuras/figuras_escaleras/figura6.png 800" data-src="../../figuras/figuras_escaleras/figura6.png" data-sub-html="<h4>Figura 6</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: block;">'+
+                                        '<p style="margin: 14px; padding: 15px; width: 88%;">'+descripcion_item+' '+
+                                            '<a href="" style="color: #d9534f;">'+
+                                                '<span class="glyphicon glyphicon-picture"></span>'+
+                                                '(Ver Figura)'+
+                                                '<img class="img-responsive" src="../../figuras/figuras_escaleras/figura6.png" alt="Thumb-1" style="width: 2em; display: none;">'+
+                                            '</a>'+
+                                       '</p>'+
+                                    '</li>'+
+                                '</ul>'+
+                            '</div>'+
                         '</div>'+
-                    '</div>'+
+                        '<script>'+
+                            'lightGallery(document.getElementById("lightgallery_32"));'+
+                        '</script>';
+                    }else if (numero_item == 37) {
+                        contenidoDiv +=
+                        '<div class="row" style="border-left:1px solid; border-right:1px solid;">'+
+                            '<div class="col-xs-12 col-sm-12 col-md-12" style="border-top:1px solid; text-align: justify;">'+
+                                '<ul id="lightgallery_37" class="list-unstyled row">'+
+                                    '<li class="col-xs-12 col-sm-12 col-md-12" data-responsive="../../figuras/figuras_escaleras/figura2.png 375, ../../figuras/figuras_escaleras/figura2.png 480, ../../figuras/figuras_escaleras/figura2.png 800" data-src="../../figuras/figuras_escaleras/figura2.png" data-sub-html="<h4>Figura 2</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: block;">'+
+                                        '<p style="margin: 14px; padding: 15px; width: 88%;">'+descripcion_item+' '+
+                                            '<a href="" style="color: #d9534f;">'+
+                                                '<span class="glyphicon glyphicon-picture"></span>'+
+                                                '(Ver Figuras)'+
+                                                '<img class="img-responsive" src="../../figuras/figuras_escaleras/figura2.png" alt="Thumb-1" style="width: 2em; display: none;">'+
+                                            '</a>'+
+                                       '</p>'+
+                                    '</li>'+
+                                    '<li class="col-xs-6 col-sm-4 col-md-3" data-responsive="../../figuras/figuras_escaleras/figura3.png 375, ../../figuras/figuras_escaleras/figura3.png 480, ../../figuras/figuras_escaleras/figura3.png 800" data-src="../../figuras/figuras_escaleras/figura3.png" data-sub-html="<h4>Figura 3</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: none;">'+
+                                        '<a href="">'+
+                                            '<img class="img-responsive" src="../../figuras/figuras_escaleras/figura3.png" alt="Thumb-2">'+
+                                        '</a>'+
+                                    '</li>'+
+                                '</ul>'+
+                            '</div>'+
+                        '</div>'+
+                        '<script>'+
+                            'lightGallery(document.getElementById("lightgallery_37"));'+
+                        '</script>';
+                    }else if (numero_item == 44) {
+                        contenidoDiv +=
+                        '<div class="row" style="border-left:1px solid; border-right:1px solid;">'+
+                            '<div class="col-xs-12 col-sm-12 col-md-12" style="border-top:1px solid; text-align: justify;">'+
+                                '<ul id="lightgallery_44" class="list-unstyled row">'+
+                                    '<li class="col-xs-12 col-sm-12 col-md-12" data-responsive="../../figuras/figuras_escaleras/figura3.png 375, ../../figuras/figuras_escaleras/figura3.png 480, ../../figuras/figuras_escaleras/figura3.png 800" data-src="../../figuras/figuras_escaleras/figura3.png" data-sub-html="<h4>Figura 3</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: block;">'+
+                                        '<p style="margin: 14px; padding: 15px; width: 88%;">'+descripcion_item+' '+
+                                            '<a href="" style="color: #d9534f;">'+
+                                                '<span class="glyphicon glyphicon-picture"></span>'+
+                                                '(Ver Figura)'+
+                                                '<img class="img-responsive" src="../../figuras/figuras_escaleras/figura3.png" alt="Thumb-1" style="width: 2em; display: none;">'+
+                                            '</a>'+
+                                       '</p>'+
+                                    '</li>'+
+                                '</ul>'+
+                            '</div>'+
+                        '</div>'+
+                        '<script>'+
+                            'lightGallery(document.getElementById("lightgallery_44"));'+
+                        '</script>';
+                    }else if (numero_item == 50) {
+                        contenidoDiv +=
+                        '<div class="row" style="border-left:1px solid; border-right:1px solid;">'+
+                            '<div class="col-xs-12 col-sm-12 col-md-12" style="border-top:1px solid; text-align: justify;">'+
+                                '<ul id="lightgallery_50" class="list-unstyled row">'+
+                                    '<li class="col-xs-12 col-sm-12 col-md-12" data-responsive="../../figuras/figuras_escaleras/figura3.png 375, ../../figuras/figuras_escaleras/figura3.png 480, ../../figuras/figuras_escaleras/figura3.png 800" data-src="../../figuras/figuras_escaleras/figura3.png" data-sub-html="<h4>Figura 3</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: block;">'+
+                                        '<p style="margin: 14px; padding: 15px; width: 88%;">'+descripcion_item+' '+
+                                            '<a href="" style="color: #d9534f;">'+
+                                                '<span class="glyphicon glyphicon-picture"></span>'+
+                                                '(Ver Figura)'+
+                                                '<img class="img-responsive" src="../../figuras/figuras_escaleras/figura3.png" alt="Thumb-1" style="width: 2em; display: none;">'+
+                                            '</a>'+
+                                       '</p>'+
+                                    '</li>'+
+                                '</ul>'+
+                            '</div>'+
+                        '</div>'+
+                        '<script>'+
+                            'lightGallery(document.getElementById("lightgallery_50"));'+
+                        '</script>';
+                    }else if (numero_item == 59) {
+                        contenidoDiv +=
+                        '<div class="row" style="border-left:1px solid; border-right:1px solid;">'+
+                            '<div class="col-xs-12 col-sm-12 col-md-12" style="border-top:1px solid; text-align: justify;">'+
+                                '<ul id="lightgallery_59" class="list-unstyled row">'+
+                                    '<li class="col-xs-12 col-sm-12 col-md-12" data-responsive="../../figuras/figuras_escaleras/figura2.png 375, ../../figuras/figuras_escaleras/figura2.png 480, ../../figuras/figuras_escaleras/figura2.png 800" data-src="../../figuras/figuras_escaleras/figura2.png" data-sub-html="<h4>Figura 2</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: block;">'+
+                                        '<p style="margin: 14px; padding: 15px; width: 88%;">'+descripcion_item+' '+
+                                            '<a href="" style="color: #d9534f;">'+
+                                                '<span class="glyphicon glyphicon-picture"></span>'+
+                                                '(Ver Figura)'+
+                                                '<img class="img-responsive" src="../../figuras/figuras_escaleras/figura2.png" alt="Thumb-1" style="width: 2em; display: none;">'+
+                                            '</a>'+
+                                       '</p>'+
+                                    '</li>'+
+                                '</ul>'+
+                            '</div>'+
+                        '</div>'+
+                        '<script>'+
+                            'lightGallery(document.getElementById("lightgallery_59"));'+
+                        '</script>';
+                    }else{
+                        contenidoDiv +=
+                        '<div class="row" style="border-left:1px solid; border-right:1px solid;">'+
+                            '<div class="col-xs-12 col-sm-12 col-md-12" style="border-top:1px solid; text-align: justify;">'+
+                                '<p style="margin: 14px; padding: 15px; width: 88%;">'+descripcion_item+'</p>'+
+                            '</div>'+
+                        '</div>';
+                    }
 
+                    contenidoDiv +=
                     '<div class="row" style="border-left:1px solid; border-right:1px solid; text-align: center;">'+
                         '<div class="col-xs-4 col-sm-4 col-md-4" style="border-top:1px solid; background-color: #5bc0de; padding-left: 2%;">'+
-                            '<label for="sele_lv_electrica'+valor_for_options_radio+'">SI CUMPLE</label>'+
+                            '<label for="sele_lv_defectos'+valor_for_options_radio+'">SI CUMPLE</label>'+
                         '</div>';
                         valor_for_options_radio += 1;
                         contenidoDiv +=
                         '<div class="col-xs-4 col-sm-4 col-md-4" style="border-top:1px solid; border-left:1px solid; background-color: #5bc0de; padding-left: 2%;">'+
-                            '<label for="sele_lv_electrica'+valor_for_options_radio+'">NO CUMPLE</label>'+
+                            '<label for="sele_lv_defectos'+valor_for_options_radio+'">NO CUMPLE</label>'+
                         '</div>';
                         valor_for_options_radio += 1;
                         contenidoDiv +=
                         '<div class="col-xs-4 col-sm-4 col-md-4" style="border-top:1px solid; border-left:1px solid; background-color: #5bc0de; padding-left: 2%;">'+
-                            '<label for="sele_lv_electrica'+valor_for_options_radio+'">NO APLICA</label>'+
+                            '<label for="sele_lv_defectos'+valor_for_options_radio+'">NO APLICA</label>'+
                         '</div>'+
                     '</div>'+
 
                     '<div class="row" style="border-left:1px solid; border-right:1px solid; text-align: center;">'+
                         '<div class="col-xs-4 col-sm-4 col-md-4" style="border-top:1px solid;">'+
                             '<div class="radio">'+
-                                '<label for="sele_lv_electrica'+valor_options_radio+'" style="width: 100%;">'+
-                                    '<input type="radio" name="sele_electrica'+valor_seleval+'" id="sele_lv_electrica'+valor_options_radio+'" value="Si Cumple">'+
+                                '<label for="sele_lv_defectos'+valor_options_radio+'" style="width: 100%;">'+
+                                    '<input type="radio" name="sele_defectos'+valor_seleval+'" id="sele_lv_defectos'+valor_options_radio+'" value="Si Cumple" checked>'+
                                 '</label>'+
                             '</div>'+
                         '</div>';
@@ -666,8 +800,8 @@ function cargarItemsElectrica() {
                         contenidoDiv +=
                         '<div class="col-xs-4 col-sm-4 col-md-4" style="border-top:1px solid; border-left:1px solid;">'+
                             '<div class="radio">'+
-                                '<label for="sele_lv_electrica'+valor_options_radio+'" style="width: 100%;">'+
-                                    '<input type="radio" name="sele_electrica'+valor_seleval+'" id="sele_lv_electrica'+valor_options_radio+'" value="No Cumple"  required>'+
+                                '<label for="sele_lv_defectos'+valor_options_radio+'" style="width: 100%;">'+
+                                    '<input type="radio" name="sele_defectos'+valor_seleval+'" id="sele_lv_defectos'+valor_options_radio+'" value="No Cumple" required>'+
                                 '</label>'+
                             '</div>'+
                         '</div>';
@@ -675,8 +809,8 @@ function cargarItemsElectrica() {
                         contenidoDiv +=
                         '<div class="col-xs-4 col-sm-4 col-md-4" style="border-top:1px solid; border-left:1px solid;">'+
                             '<div class="radio">'+
-                                '<label for="sele_lv_electrica'+valor_options_radio+'" style="width: 100%;">'+
-                                    '<input type="radio" name="sele_electrica'+valor_seleval+'" id="sele_lv_electrica'+valor_options_radio+'" value="No Aplica" >'+
+                                '<label for="sele_lv_defectos'+valor_options_radio+'" style="width: 100%;">'+
+                                    '<input type="radio" name="sele_defectos'+valor_seleval+'" id="sele_lv_defectos'+valor_options_radio+'" value="No Aplica">'+
                                 '</label>'+
                             '</div>'+
                         '</div>'+
@@ -684,14 +818,14 @@ function cargarItemsElectrica() {
 
                     '<div class="row" style="border-left:1px solid; border-right:1px solid;">'+
                         '<div class="col-xs-12 col-sm-12 col-md-12" style="border-top:1px solid; text-align: center; background-color: #5bc0de;">'+
-                            '<label for="text_electrica_observacion_'+numero_item+'">OBSERVACIÓN</label>'+
+                            '<label for="text_lv_valor_observacion_'+numero_item+'">OBSERVACIÓN</label>'+
                         '</div>'+
                     '</div>'+
 
                     '<div class="row" style="border-top:1px solid; border-left:1px solid; border-right:1px solid;">'+
                         '<div class="col-xs-12 col-md-12">'+
                             '<br>'+
-                            '<textarea class="form-control" rows="3" id="text_electrica_observacion_'+numero_item+'" name="text_electrica_observacion_'+numero_item+'" placeholder="Ingrese aquí la observación..."></textarea>'+
+                            '<textarea class="form-control" rows="3" id="text_lv_valor_observacion_'+numero_item+'" name="text_lv_valor_observacion_'+numero_item+'" placeholder="Ingrese aquí la observación..."></textarea>'+
                             '<br>'+
                         '</div>'+
                     '</div>'+
@@ -717,14 +851,10 @@ function cargarItemsElectrica() {
                 '<br>'+
                 '<div class="divisionItems sombra"></div>'+
                 '<br>';
-                $(contenidoDiv).appendTo("#items_electrica");
+                $(contenidoDiv).appendTo("#items_defectos_2");
                 valor_for_options_radio += 1;
                 valor_options_radio += 1;
                 valor_seleval += 1;
-            }
-            if (contador_items == 0) {
-                //alert(contador_items);
-                $('#div_electrica').hide();
             }
         },
         function (tx, error) {
@@ -738,20 +868,17 @@ function cargarItemsElectrica() {
 }
 
 /*=============================================
-* Funcion para hacer un select a la tabla puertas_items_motorizacion y cargar los items en la lista
+* Funcion para hacer un select a la tabla escaleras_items_defectos y cargar los 31 ultimos items en la lista
 *==============================================*/
-function cargarItemsMotorizacion() {
-    var valor_seleval = 43;
-    var valor_for_options_radio = 1;
-    var valor_options_radio = 1;
-    var contador_items = 0; //contador que va aumentando si encuentra items a cargar sino se queda en cero
+function cargarItemsdefectos_3() {
+    var valor_seleval = 63;
+    var valor_for_options_radio = 187;
+    var valor_options_radio = 187;
     db.transaction(function (tx) {
-        var query = "SELECT k_coditem_motorizacion, o_descripcion, v_clasificacion FROM puertas_items_motorizacion i,puertas_valores_motorizacion v WHERE i.k_coditem_motorizacion=v.k_coditem AND v.k_codinspeccion=? AND v.k_codusuario=? AND v.v_calificacion='No Cumple'";
-        tx.executeSql(query, [cod_inspeccion,codigo_inspector], function (tx, resultSet) {
-            for(var x = 0; x < resultSet.rows.length; x++) {
-                contador_items += 1;
-                var numero_item = resultSet.rows.item(x).k_coditem_motorizacion;
-                var valor_Item = resultSet.rows.item(x).v_item;
+        var query = "SELECT k_coditem_escaleras, o_descripcion, v_clasificacion FROM escaleras_items_defectos";
+        tx.executeSql(query, [], function (tx, resultSet) {
+            for(var x = 62; x < resultSet.rows.length; x++) {
+                var numero_item = resultSet.rows.item(x).k_coditem_escaleras;
                 var descripcion_item = resultSet.rows.item(x).o_descripcion;
                 var clasificacion_item = resultSet.rows.item(x).v_clasificacion;
                 if (clasificacion_item == "Leve") {
@@ -765,167 +892,8 @@ function cargarItemsMotorizacion() {
                 }
                 var contenidoDiv = 
                 '<div class="container-fluid">'+
-                    '<input type="hidden" id="numero_item_motorizacion'+numero_item+'" value="'+numero_item+'">'+
-                    '<input type="hidden" id="cal_item_motorizacion'+numero_item+'" value="'+clasificacion_item+'">'+
-                    '<div class="row" style="border-left:1px solid; border-right:1px solid; text-align: center;">'+
-                        '<div class="col-xs-6 col-sm-6 col-md-6" style="border-top:1px solid; background-color: #5bc0de;">'+
-                            '<label>ÍTEM</label>'+
-                        '</div>'+
-                        '<div class="col-xs-6 col-sm-6 col-md-6" style="border-top:1px solid; border-left:1px solid; background-color: #5bc0de;">'+
-                            '<label>CAL</label>'+
-                        '</div>'+
-                    '</div>'+
-
-                    '<div class="row" style="border-left:1px solid; border-right:1px solid; text-align: center;">'+
-                        '<div class="col-xs-6 col-sm-6 col-md-6" style="border-top:1px solid;">'+
-                            '<label>'+numero_item+'</label>'+
-                        '</div>'+
-                        '<div class="col-xs-6 col-sm-6 col-md-6" style="border-top:1px solid; border-left:1px solid;">'+
-                            '<label>"'+clasificacion_item+'"</label>'+
-                        '</div>'+
-                    '</div>'+
-
-                    '<div class="row" style="border-left:1px solid; border-right:1px solid;">'+
-                        '<div class="col-xs-12 col-sm-12 col-md-12" style="border-top:1px solid; text-align: center; background-color: #5bc0de;">'+
-                            '<label>DEFECTO</label>'+
-                        '</div>'+
-                    '</div>'+
-
-                    '<div class="row" style="border-left:1px solid; border-right:1px solid;">'+
-                        '<div class="col-xs-12 col-sm-12 col-md-12" style="border-top:1px solid; text-align: justify;">'+
-                            '<p style="margin: 14px; padding: 15px; width: 88%;">'+descripcion_item+'</p>'+
-                        '</div>'+
-                    '</div>'+
-
-                    '<div class="row" style="border-left:1px solid; border-right:1px solid; text-align: center;">'+
-                        '<div class="col-xs-4 col-sm-4 col-md-4" style="border-top:1px solid; background-color: #5bc0de; padding-left: 2%;">'+
-                            '<label for="sele_lv_motorizacion'+valor_for_options_radio+'">SI CUMPLE</label>'+
-                        '</div>';
-                        valor_for_options_radio += 1;
-                        contenidoDiv +=
-                        '<div class="col-xs-4 col-sm-4 col-md-4" style="border-top:1px solid; border-left:1px solid; background-color: #5bc0de; padding-left: 2%;">'+
-                            '<label for="sele_lv_motorizacion'+valor_for_options_radio+'">NO CUMPLE</label>'+
-                        '</div>';
-                        valor_for_options_radio += 1;
-                        contenidoDiv +=
-                        '<div class="col-xs-4 col-sm-4 col-md-4" style="border-top:1px solid; border-left:1px solid; background-color: #5bc0de; padding-left: 2%;">'+
-                            '<label for="sele_lv_motorizacion'+valor_for_options_radio+'">NO APLICA</label>'+
-                        '</div>'+
-                    '</div>'+
-
-                    '<div class="row" style="border-left:1px solid; border-right:1px solid; text-align: center;">'+
-                        '<div class="col-xs-4 col-sm-4 col-md-4" style="border-top:1px solid;">'+
-                            '<div class="radio">'+
-                                '<label for="sele_lv_motorizacion'+valor_options_radio+'" style="width: 100%;">'+
-                                    '<input type="radio" name="sele_motorizacion'+valor_seleval+'" id="sele_lv_motorizacion'+valor_options_radio+'" value="Si Cumple">'+
-                                '</label>'+
-                            '</div>'+
-                        '</div>';
-                        valor_options_radio += 1;
-                        contenidoDiv +=
-                        '<div class="col-xs-4 col-sm-4 col-md-4" style="border-top:1px solid; border-left:1px solid;">'+
-                            '<div class="radio">'+
-                                '<label for="sele_lv_motorizacion'+valor_options_radio+'" style="width: 100%;">'+
-                                    '<input type="radio" name="sele_motorizacion'+valor_seleval+'" id="sele_lv_motorizacion'+valor_options_radio+'" value="No Cumple"  required>'+
-                                '</label>'+
-                            '</div>'+
-                        '</div>';
-                        valor_options_radio += 1;
-                        contenidoDiv +=
-                        '<div class="col-xs-4 col-sm-4 col-md-4" style="border-top:1px solid; border-left:1px solid;">'+
-                            '<div class="radio">'+
-                                '<label for="sele_lv_motorizacion'+valor_options_radio+'" style="width: 100%;">'+
-                                    '<input type="radio" name="sele_motorizacion'+valor_seleval+'" id="sele_lv_motorizacion'+valor_options_radio+'" value="No Aplica" >'+
-                                '</label>'+
-                            '</div>'+
-                        '</div>'+
-                    '</div>'+
-
-                    '<div class="row" style="border-left:1px solid; border-right:1px solid;">'+
-                        '<div class="col-xs-12 col-sm-12 col-md-12" style="border-top:1px solid; text-align: center; background-color: #5bc0de;">'+
-                            '<label for="text_motorizacion_observacion_'+numero_item+'">OBSERVACIÓN</label>'+
-                        '</div>'+
-                    '</div>'+
-
-                    '<div class="row" style="border-top:1px solid; border-left:1px solid; border-right:1px solid;">'+
-                        '<div class="col-xs-12 col-md-12">'+
-                            '<br>'+
-                            '<textarea class="form-control" rows="3" id="text_motorizacion_observacion_'+numero_item+'" name="text_motorizacion_observacion_'+numero_item+'" placeholder="Ingrese aquí la observación..."></textarea>'+
-                            '<br>'+
-                        '</div>'+
-                    '</div>'+
-
-                    '<div class="row" style="border-left:1px solid; border-right:1px solid;">'+
-                        '<div class="col-xs-12 col-sm-12 col-md-12" style="border-top:1px solid; text-align: center; background-color: #5bc0de;">'+
-                            '<label for="botonIniciar'+numero_item+'">REGISTRO FOTOGRÁFICO</label>'+
-                        '</div>'+
-                    '</div>'+
-
-                    '<div class="row" style="border-top:1px solid; border-left:1px solid; border-right:1px solid; border-bottom:1px solid; text-align: center;">'+
-                        '<div class="col-xs-12 col-md-12">'+
-                            '<br>'+
-                            '<button type="button" id="botonIniciar'+numero_item+'" class="btn btn-success sombra boton_webcam" onclick="capturePhoto(this.id)">'+
-                                '<span class="glyphicon glyphicon-camera"></span>'+
-                                ' Iniciar Cámara'+
-                            '</button>'+
-                            '<br><br>'+                 
-                        '</div>'+
-                    '</div>'+
-                '</div>'+
-                
-                '<br>'+
-                '<div class="divisionItems sombra"></div>'+
-                '<br>';
-                $(contenidoDiv).appendTo("#items_motorizacion");
-                valor_for_options_radio += 1;
-                valor_options_radio += 1;
-                valor_seleval += 1;
-            }
-            if (contador_items == 0) {
-                //alert(contador_items);
-                $('#div_motorizacion').hide();
-            }
-        },
-        function (tx, error) {
-            console.log('SELECT error: ' + error.message);
-        });
-    }, function (error) {
-        console.log('transaction error: ' + error.message);
-    }, function () {
-        console.log('transaction ok');
-    });
-}
-
-/*=============================================
-* Funcion para hacer un select a la tabla puertas_items_otras y cargar los items en la lista
-*==============================================*/
-function cargarItemsOtras() {
-    var valor_seleval = 55;
-    var valor_for_options_radio = 1;
-    var valor_options_radio = 1;
-    var contador_items = 0; //contador que va aumentando si encuentra items a cargar sino se queda en cero
-    db.transaction(function (tx) {
-        var query = "SELECT k_coditem_otras, o_descripcion, v_clasificacion FROM puertas_items_otras i,puertas_valores_otras v WHERE i.k_coditem_otras=v.k_coditem AND v.k_codinspeccion=? AND v.k_codusuario=? AND v.v_calificacion='No Cumple'";
-        tx.executeSql(query, [cod_inspeccion,codigo_inspector], function (tx, resultSet) {
-            for(var x = 0; x < resultSet.rows.length; x++) {
-                contador_items += 1;
-                var numero_item = resultSet.rows.item(x).k_coditem_otras;
-                var valor_Item = resultSet.rows.item(x).v_item;
-                var descripcion_item = resultSet.rows.item(x).o_descripcion;
-                var clasificacion_item = resultSet.rows.item(x).v_clasificacion;
-                if (clasificacion_item == "Leve") {
-                    clasificacion_item = "L";
-                }
-                if (clasificacion_item == "Grave") {
-                    clasificacion_item = "G";
-                }
-                if (clasificacion_item == "Muy Grave") {
-                    clasificacion_item = "MG";
-                }
-                var contenidoDiv = 
-                '<div class="container-fluid">'+
-                    '<input type="hidden" id="numero_item_otras'+numero_item+'" value="'+numero_item+'">'+
-                    '<input type="hidden" id="cal_item_otras'+numero_item+'" value="'+clasificacion_item+'">'+
+                    '<input type="hidden" id="numero_item_defectos'+numero_item+'" value="'+numero_item+'">'+
+                    '<input type="hidden" id="cal_item_defectos'+numero_item+'" value="'+clasificacion_item+'">'+
                     '<div class="row" style="border-left:1px solid; border-right:1px solid; text-align: center;">'+
                         '<div class="col-xs-6 col-sm-6 col-md-6" style="border-top:1px solid; background-color: #5bc0de;">'+
                             '<label>ÍTEM</label>'+
@@ -936,9 +904,9 @@ function cargarItemsOtras() {
                     '</div>'+
 
                     '<div class="row" style="border-left:1px solid; border-right:1px solid; text-align: center;">';
-                        if (numero_item == 55) {
+                        if (numero_item == 77) {
                             contenidoDiv += 
-                            '<div class="col-xs-6 col-sm-6 col-md-6" style="border-top:1px solid;">'+
+                            '<div class="col-xs-6 col-sm-6 col-md-6" style="border-top:1px solid; id="div_item77"">'+
                                 '<br>'+
                                 '<label>'+numero_item+'</label>'+
                                 '<br>'+
@@ -946,7 +914,7 @@ function cargarItemsOtras() {
                             '<div class="col-xs-6 col-sm-6 col-md-6" style="border-top:1px solid; border-left:1px solid;">'+
                                 '<label style="display: none;">"'+clasificacion_item+'"</label>'+
                                 '<br>'+
-                                '<select class="form-control" id="text_calificacion55" name="text_calificacion55" onchange="actualizarCalificacion(this)" required>'+
+                                '<select class="form-control" id="text_calificacion77" name="text_calificacion77" onchange="actualizarCalificacion(this)" required>'+
                                     '<option value="">Seleccione</option>'+
                                     '<option value="L">Leve</option>'+
                                     '<option value="G">Grave</option>'+
@@ -970,35 +938,139 @@ function cargarItemsOtras() {
                         '<div class="col-xs-12 col-sm-12 col-md-12" style="border-top:1px solid; text-align: center; background-color: #5bc0de;">'+
                             '<label>DEFECTO</label>'+
                         '</div>'+
-                    '</div>'+
+                    '</div>';
 
-                    '<div class="row" style="border-left:1px solid; border-right:1px solid;">'+
-                        '<div class="col-xs-12 col-sm-12 col-md-12" style="border-top:1px solid; text-align: justify;">'+
-                            '<p style="margin: 14px; padding: 15px; width: 88%;">'+descripcion_item+'</p>'+
+                    if (numero_item == 79) {
+                        contenidoDiv +=
+                        '<div class="row" style="border-left:1px solid; border-right:1px solid;">'+
+                            '<div class="col-xs-12 col-sm-12 col-md-12" style="border-top:1px solid; text-align: justify;">'+
+                                '<ul id="lightgallery_79" class="list-unstyled row">'+
+                                    '<li class="col-xs-12 col-sm-12 col-md-12" data-responsive="../../figuras/figuras_escaleras/figura2.png 375, ../../figuras/figuras_escaleras/figura2.png 480, ../../figuras/figuras_escaleras/figura2.png 800" data-src="../../figuras/figuras_escaleras/figura2.png" data-sub-html="<h4>Figura 2</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: block;">'+
+                                        '<p style="margin: 14px; padding: 15px; width: 88%;">'+descripcion_item+' '+
+                                            '<a href="" style="color: #d9534f;">'+
+                                                '<span class="glyphicon glyphicon-picture"></span>'+
+                                                '(Ver Figuras)'+
+                                                '<img class="img-responsive" src="../../figuras/figuras_escaleras/figura2.png" alt="Thumb-1" style="width: 2em; display: none;">'+
+                                            '</a>'+
+                                       '</p>'+
+                                    '</li>'+
+                                    '<li class="col-xs-6 col-sm-4 col-md-3" data-responsive="../../figuras/figuras_escaleras/figura8.png 375, ../../figuras/figuras_escaleras/figura8.png 480, ../../figuras/figuras_escaleras/figura8.png 800" data-src="../../figuras/figuras_escaleras/figura8.png" data-sub-html="<h4>Figura 8</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: none;">'+
+                                        '<a href="">'+
+                                            '<img class="img-responsive" src="../../figuras/figuras_escaleras/figura8.png" alt="Thumb-2">'+
+                                        '</a>'+
+                                    '</li>'+
+                                '</ul>'+
+                            '</div>'+
                         '</div>'+
-                    '</div>'+
+                        '<script>'+
+                            'lightGallery(document.getElementById("lightgallery_79"));'+
+                        '</script>';
+                    }else if (numero_item == 80) {
+                        contenidoDiv +=
+                        '<div class="row" style="border-left:1px solid; border-right:1px solid;">'+
+                            '<div class="col-xs-12 col-sm-12 col-md-12" style="border-top:1px solid; text-align: justify;">'+
+                                '<ul id="lightgallery_80" class="list-unstyled row">'+
+                                    '<li class="col-xs-12 col-sm-12 col-md-12" data-responsive="../../figuras/figuras_escaleras/figura3.png 375, ../../figuras/figuras_escaleras/figura3.png 480, ../../figuras/figuras_escaleras/figura3.png 800" data-src="../../figuras/figuras_escaleras/figura3.png" data-sub-html="<h4>Figura 3</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: block;">'+
+                                        '<p style="margin: 14px; padding: 15px; width: 88%;">'+descripcion_item+' '+
+                                            '<a href="" style="color: #d9534f;">'+
+                                                '<span class="glyphicon glyphicon-picture"></span>'+
+                                                '(Ver Figuras)'+
+                                                '<img class="img-responsive" src="../../figuras/figuras_escaleras/figura3.png" alt="Thumb-1" style="width: 2em; display: none;">'+
+                                            '</a>'+
+                                       '</p>'+
+                                    '</li>'+
+                                    '<li class="col-xs-6 col-sm-4 col-md-3" data-responsive="../../figuras/figuras_escaleras/figura7.png 375, ../../figuras/figuras_escaleras/figura7.png 480, ../../figuras/figuras_escaleras/figura7.png 800" data-src="../../figuras/figuras_escaleras/figura7.png" data-sub-html="<h4>Figura 7</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: none;">'+
+                                        '<a href="">'+
+                                            '<img class="img-responsive" src="../../figuras/figuras_escaleras/figura7.png" alt="Thumb-2">'+
+                                        '</a>'+
+                                    '</li>'+
+                                '</ul>'+
+                            '</div>'+
+                        '</div>'+
+                        '<script>'+
+                            'lightGallery(document.getElementById("lightgallery_80"));'+
+                        '</script>';
+                    }else if (numero_item == 81) {
+                        contenidoDiv +=
+                        '<div class="row" style="border-left:1px solid; border-right:1px solid;">'+
+                            '<div class="col-xs-12 col-sm-12 col-md-12" style="border-top:1px solid; text-align: justify;">'+
+                                '<ul id="lightgallery_81" class="list-unstyled row">'+
+                                    '<li class="col-xs-12 col-sm-12 col-md-12" data-responsive="../../figuras/figuras_escaleras/figura2.png 375, ../../figuras/figuras_escaleras/figura2.png 480, ../../figuras/figuras_escaleras/figura2.png 800" data-src="../../figuras/figuras_escaleras/figura2.png" data-sub-html="<h4>Figura 2</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: block;">'+
+                                        '<p style="margin: 14px; padding: 15px; width: 88%;">'+descripcion_item+' '+
+                                            '<a href="" style="color: #d9534f;">'+
+                                                '<span class="glyphicon glyphicon-picture"></span>'+
+                                                '(Ver Figuras)'+
+                                                '<img class="img-responsive" src="../../figuras/figuras_escaleras/figura2.png" alt="Thumb-1" style="width: 2em; display: none;">'+
+                                            '</a>'+
+                                       '</p>'+
+                                    '</li>'+
+                                    '<li class="col-xs-6 col-sm-4 col-md-3" data-responsive="../../figuras/figuras_escaleras/figura4.png 375, ../../figuras/figuras_escaleras/figura4.png 480, ../../figuras/figuras_escaleras/figura4.png 800" data-src="../../figuras/figuras_escaleras/figura4.png" data-sub-html="<h4>Figura 4</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: none;">'+
+                                        '<a href="">'+
+                                            '<img class="img-responsive" src="../../figuras/figuras_escaleras/figura4.png" alt="Thumb-2">'+
+                                        '</a>'+
+                                    '</li>'+
+                                    '<li class="col-xs-6 col-sm-4 col-md-3" data-responsive="../../figuras/figuras_escaleras/figura7.png 375, ../../figuras/figuras_escaleras/figura7.png 480, ../../figuras/figuras_escaleras/figura7.png 800" data-src="../../figuras/figuras_escaleras/figura7.png" data-sub-html="<h4>Figura 7</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: none;">'+
+                                        '<a href="">'+
+                                            '<img class="img-responsive" src="../../figuras/figuras_escaleras/figura7.png" alt="Thumb-3">'+
+                                        '</a>'+
+                                    '</li>'+
+                                '</ul>'+
+                            '</div>'+
+                        '</div>'+
+                        '<script>'+
+                            'lightGallery(document.getElementById("lightgallery_81"));'+
+                        '</script>';
+                    }else if (numero_item == 85) {
+                        contenidoDiv +=
+                        '<div class="row" style="border-left:1px solid; border-right:1px solid;">'+
+                            '<div class="col-xs-12 col-sm-12 col-md-12" style="border-top:1px solid; text-align: justify;">'+
+                                '<ul id="lightgallery_85" class="list-unstyled row">'+
+                                    '<li class="col-xs-12 col-sm-12 col-md-12" data-responsive="../../figuras/figuras_escaleras/figura9.png 375, ../../figuras/figuras_escaleras/figura9.png 480, ../../figuras/figuras_escaleras/figura9.png 800" data-src="../../figuras/figuras_escaleras/figura9.png" data-sub-html="<h4>Figura 9</h4>" data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" style="display: block;">'+
+                                        '<p style="margin: 14px; padding: 15px; width: 88%;">'+descripcion_item+' '+
+                                            '<a href="" style="color: #d9534f;">'+
+                                                '<span class="glyphicon glyphicon-picture"></span>'+
+                                                '(Ver Figura)'+
+                                                '<img class="img-responsive" src="../../figuras/figuras_escaleras/figura9.png" alt="Thumb-1" style="width: 2em; display: none;">'+
+                                            '</a>'+
+                                       '</p>'+
+                                    '</li>'+
+                                '</ul>'+
+                            '</div>'+
+                        '</div>'+
+                        '<script>'+
+                            'lightGallery(document.getElementById("lightgallery_85"));'+
+                        '</script>';
+                    }else{
+                        contenidoDiv +=
+                        '<div class="row" style="border-left:1px solid; border-right:1px solid;">'+
+                            '<div class="col-xs-12 col-sm-12 col-md-12" style="border-top:1px solid; text-align: justify;">'+
+                                '<p style="margin: 14px; padding: 15px; width: 88%;">'+descripcion_item+'</p>'+
+                            '</div>'+
+                        '</div>';
+                    }
 
+                    contenidoDiv +=
                     '<div class="row" style="border-left:1px solid; border-right:1px solid; text-align: center;">'+
                         '<div class="col-xs-4 col-sm-4 col-md-4" style="border-top:1px solid; background-color: #5bc0de; padding-left: 2%;">'+
-                            '<label for="sele_lv_otras'+valor_for_options_radio+'">SI CUMPLE</label>'+
+                            '<label for="sele_lv_defectos'+valor_for_options_radio+'">SI CUMPLE</label>'+
                         '</div>';
                         valor_for_options_radio += 1;
                         contenidoDiv +=
                         '<div class="col-xs-4 col-sm-4 col-md-4" style="border-top:1px solid; border-left:1px solid; background-color: #5bc0de; padding-left: 2%;">'+
-                            '<label for="sele_lv_otras'+valor_for_options_radio+'">NO CUMPLE</label>'+
+                            '<label for="sele_lv_defectos'+valor_for_options_radio+'">NO CUMPLE</label>'+
                         '</div>';
                         valor_for_options_radio += 1;
                         contenidoDiv +=
                         '<div class="col-xs-4 col-sm-4 col-md-4" style="border-top:1px solid; border-left:1px solid; background-color: #5bc0de; padding-left: 2%;">'+
-                            '<label for="sele_lv_otras'+valor_for_options_radio+'">NO APLICA</label>'+
+                            '<label for="sele_lv_defectos'+valor_for_options_radio+'">NO APLICA</label>'+
                         '</div>'+
                     '</div>'+
 
                     '<div class="row" style="border-left:1px solid; border-right:1px solid; text-align: center;">'+
                         '<div class="col-xs-4 col-sm-4 col-md-4" style="border-top:1px solid;">'+
                             '<div class="radio">'+
-                                '<label for="sele_lv_otras'+valor_options_radio+'" style="width: 100%;">'+
-                                    '<input type="radio" name="sele_otras'+valor_seleval+'" id="sele_lv_otras'+valor_options_radio+'" value="Si Cumple">'+
+                                '<label for="sele_lv_defectos'+valor_options_radio+'" style="width: 100%;">'+
+                                    '<input type="radio" name="sele_defectos'+valor_seleval+'" id="sele_lv_defectos'+valor_options_radio+'" value="Si Cumple" checked>'+
                                 '</label>'+
                             '</div>'+
                         '</div>';
@@ -1006,8 +1078,8 @@ function cargarItemsOtras() {
                         contenidoDiv +=
                         '<div class="col-xs-4 col-sm-4 col-md-4" style="border-top:1px solid; border-left:1px solid;">'+
                             '<div class="radio">'+
-                                '<label for="sele_lv_otras'+valor_options_radio+'" style="width: 100%;">'+
-                                    '<input type="radio" name="sele_otras'+valor_seleval+'" id="sele_lv_otras'+valor_options_radio+'" value="No Cumple"  required>'+
+                                '<label for="sele_lv_defectos'+valor_options_radio+'" style="width: 100%;">'+
+                                    '<input type="radio" name="sele_defectos'+valor_seleval+'" id="sele_lv_defectos'+valor_options_radio+'" value="No Cumple" required>'+
                                 '</label>'+
                             '</div>'+
                         '</div>';
@@ -1015,8 +1087,8 @@ function cargarItemsOtras() {
                         contenidoDiv +=
                         '<div class="col-xs-4 col-sm-4 col-md-4" style="border-top:1px solid; border-left:1px solid;">'+
                             '<div class="radio">'+
-                                '<label for="sele_lv_otras'+valor_options_radio+'" style="width: 100%;">'+
-                                    '<input type="radio" name="sele_otras'+valor_seleval+'" id="sele_lv_otras'+valor_options_radio+'" value="No Aplica" >'+
+                                '<label for="sele_lv_defectos'+valor_options_radio+'" style="width: 100%;">'+
+                                    '<input type="radio" name="sele_defectos'+valor_seleval+'" id="sele_lv_defectos'+valor_options_radio+'" value="No Aplica">'+
                                 '</label>'+
                             '</div>'+
                         '</div>'+
@@ -1024,14 +1096,14 @@ function cargarItemsOtras() {
 
                     '<div class="row" style="border-left:1px solid; border-right:1px solid;">'+
                         '<div class="col-xs-12 col-sm-12 col-md-12" style="border-top:1px solid; text-align: center; background-color: #5bc0de;">'+
-                            '<label for="text_otras_observacion_'+numero_item+'">OBSERVACIÓN</label>'+
+                            '<label for="text_lv_valor_observacion_'+numero_item+'">OBSERVACIÓN</label>'+
                         '</div>'+
                     '</div>'+
 
                     '<div class="row" style="border-top:1px solid; border-left:1px solid; border-right:1px solid;">'+
                         '<div class="col-xs-12 col-md-12">'+
                             '<br>'+
-                            '<textarea class="form-control" rows="3" id="text_otras_observacion_'+numero_item+'" name="text_otras_observacion_'+numero_item+'" placeholder="Ingrese aquí la observación..."></textarea>'+
+                            '<textarea class="form-control" rows="3" id="text_lv_valor_observacion_'+numero_item+'" name="text_lv_valor_observacion_'+numero_item+'" placeholder="Ingrese aquí la observación..."></textarea>'+
                             '<br>'+
                         '</div>'+
                     '</div>'+
@@ -1057,14 +1129,10 @@ function cargarItemsOtras() {
                 '<br>'+
                 '<div class="divisionItems sombra"></div>'+
                 '<br>';
-                $(contenidoDiv).appendTo("#items_otras");
+                $(contenidoDiv).appendTo("#items_defectos_3");
                 valor_for_options_radio += 1;
                 valor_options_radio += 1;
                 valor_seleval += 1;
-            }
-            if (contador_items == 0) {
-                //alert(contador_items);
-                $('#div_otras').hide();
             }
         },
         function (tx, error) {
@@ -1079,164 +1147,5 @@ function cargarItemsOtras() {
 
 function actualizarCalificacion(select){
     var calificacion = $(select).val();
-    $('#cal_item_otras55').val(calificacion);
-}
-
-/*=============================================
-* Funcion para hacer un select a la tabla puertas_items_maniobras y cargar los items en la lista
-*==============================================*/
-function cargarItemsManiobras() {
-    var valor_seleval = 76;
-    var valor_for_options_radio = 1;
-    var valor_options_radio = 1;
-    var contador_items = 0; //contador que va aumentando si encuentra items a cargar sino se queda en cero
-    db.transaction(function (tx) {
-        var query = "SELECT k_coditem_maniobras, o_descripcion, v_clasificacion FROM puertas_items_maniobras i,puertas_valores_maniobras v WHERE i.k_coditem_maniobras=v.k_coditem AND v.k_codinspeccion=? AND v.k_codusuario=? AND v.v_calificacion='No Cumple'";
-        tx.executeSql(query, [cod_inspeccion,codigo_inspector], function (tx, resultSet) {
-            for(var x = 0; x < resultSet.rows.length; x++) {
-                contador_items += 1;
-                var numero_item = resultSet.rows.item(x).k_coditem_maniobras;
-                var valor_Item = resultSet.rows.item(x).v_item;
-                var descripcion_item = resultSet.rows.item(x).o_descripcion;
-                var clasificacion_item = resultSet.rows.item(x).v_clasificacion;
-                if (clasificacion_item == "Leve") {
-                    clasificacion_item = "L";
-                }
-                if (clasificacion_item == "Grave") {
-                    clasificacion_item = "G";
-                }
-                if (clasificacion_item == "Muy Grave") {
-                    clasificacion_item = "MG";
-                }
-                var contenidoDiv = 
-                '<div class="container-fluid">'+
-                    '<input type="hidden" id="numero_item_maniobras'+numero_item+'" value="'+numero_item+'">'+
-                    '<input type="hidden" id="cal_item_maniobras'+numero_item+'" value="'+clasificacion_item+'">'+
-                    '<div class="row" style="border-left:1px solid; border-right:1px solid; text-align: center;">'+
-                        '<div class="col-xs-6 col-sm-6 col-md-6" style="border-top:1px solid; background-color: #5bc0de;">'+
-                            '<label>ÍTEM</label>'+
-                        '</div>'+
-                        '<div class="col-xs-6 col-sm-6 col-md-6" style="border-top:1px solid; border-left:1px solid; background-color: #5bc0de;">'+
-                            '<label>CAL</label>'+
-                        '</div>'+
-                    '</div>'+
-
-                    '<div class="row" style="border-left:1px solid; border-right:1px solid; text-align: center;">'+
-                        '<div class="col-xs-6 col-sm-6 col-md-6" style="border-top:1px solid;">'+
-                            '<label>'+numero_item+'</label>'+
-                        '</div>'+
-                        '<div class="col-xs-6 col-sm-6 col-md-6" style="border-top:1px solid; border-left:1px solid;">'+
-                            '<label>"'+clasificacion_item+'"</label>'+
-                        '</div>'+
-                    '</div>'+
-
-                    '<div class="row" style="border-left:1px solid; border-right:1px solid;">'+
-                        '<div class="col-xs-12 col-sm-12 col-md-12" style="border-top:1px solid; text-align: center; background-color: #5bc0de;">'+
-                            '<label>DEFECTO</label>'+
-                        '</div>'+
-                    '</div>'+
-
-                    '<div class="row" style="border-left:1px solid; border-right:1px solid;">'+
-                        '<div class="col-xs-12 col-sm-12 col-md-12" style="border-top:1px solid; text-align: justify;">'+
-                            '<p style="margin: 14px; padding: 15px; width: 88%;">'+descripcion_item+'</p>'+
-                        '</div>'+
-                    '</div>'+
-
-                    '<div class="row" style="border-left:1px solid; border-right:1px solid; text-align: center;">'+
-                        '<div class="col-xs-4 col-sm-4 col-md-4" style="border-top:1px solid; background-color: #5bc0de; padding-left: 2%;">'+
-                            '<label for="sele_lv_maniobras'+valor_for_options_radio+'">SI CUMPLE</label>'+
-                        '</div>';
-                        valor_for_options_radio += 1;
-                        contenidoDiv +=
-                        '<div class="col-xs-4 col-sm-4 col-md-4" style="border-top:1px solid; border-left:1px solid; background-color: #5bc0de; padding-left: 2%;">'+
-                            '<label for="sele_lv_maniobras'+valor_for_options_radio+'">NO CUMPLE</label>'+
-                        '</div>';
-                        valor_for_options_radio += 1;
-                        contenidoDiv +=
-                        '<div class="col-xs-4 col-sm-4 col-md-4" style="border-top:1px solid; border-left:1px solid; background-color: #5bc0de; padding-left: 2%;">'+
-                            '<label for="sele_lv_maniobras'+valor_for_options_radio+'">NO APLICA</label>'+
-                        '</div>'+
-                    '</div>'+
-
-                    '<div class="row" style="border-left:1px solid; border-right:1px solid; text-align: center;">'+
-                        '<div class="col-xs-4 col-sm-4 col-md-4" style="border-top:1px solid;">'+
-                            '<div class="radio">'+
-                                '<label for="sele_lv_maniobras'+valor_options_radio+'" style="width: 100%;">'+
-                                    '<input type="radio" name="sele_maniobras'+valor_seleval+'" id="sele_lv_maniobras'+valor_options_radio+'" value="Si Cumple">'+
-                                '</label>'+
-                            '</div>'+
-                        '</div>';
-                        valor_options_radio += 1;
-                        contenidoDiv +=
-                        '<div class="col-xs-4 col-sm-4 col-md-4" style="border-top:1px solid; border-left:1px solid;">'+
-                            '<div class="radio">'+
-                                '<label for="sele_lv_maniobras'+valor_options_radio+'" style="width: 100%;">'+
-                                    '<input type="radio" name="sele_maniobras'+valor_seleval+'" id="sele_lv_maniobras'+valor_options_radio+'" value="No Cumple"  required>'+
-                                '</label>'+
-                            '</div>'+
-                        '</div>';
-                        valor_options_radio += 1;
-                        contenidoDiv +=
-                        '<div class="col-xs-4 col-sm-4 col-md-4" style="border-top:1px solid; border-left:1px solid;">'+
-                            '<div class="radio">'+
-                                '<label for="sele_lv_maniobras'+valor_options_radio+'" style="width: 100%;">'+
-                                    '<input type="radio" name="sele_maniobras'+valor_seleval+'" id="sele_lv_maniobras'+valor_options_radio+'" value="No Aplica" >'+
-                                '</label>'+
-                            '</div>'+
-                        '</div>'+
-                    '</div>'+
-
-                    '<div class="row" style="border-left:1px solid; border-right:1px solid;">'+
-                        '<div class="col-xs-12 col-sm-12 col-md-12" style="border-top:1px solid; text-align: center; background-color: #5bc0de;">'+
-                            '<label for="text_maniobras_observacion_'+numero_item+'">OBSERVACIÓN</label>'+
-                        '</div>'+
-                    '</div>'+
-
-                    '<div class="row" style="border-top:1px solid; border-left:1px solid; border-right:1px solid;">'+
-                        '<div class="col-xs-12 col-md-12">'+
-                            '<br>'+
-                            '<textarea class="form-control" rows="3" id="text_maniobras_observacion_'+numero_item+'" name="text_maniobras_observacion_'+numero_item+'" placeholder="Ingrese aquí la observación..."></textarea>'+
-                            '<br>'+
-                        '</div>'+
-                    '</div>'+
-
-                    '<div class="row" style="border-left:1px solid; border-right:1px solid;">'+
-                        '<div class="col-xs-12 col-sm-12 col-md-12" style="border-top:1px solid; text-align: center; background-color: #5bc0de;">'+
-                            '<label for="botonIniciar'+numero_item+'">REGISTRO FOTOGRÁFICO</label>'+
-                        '</div>'+
-                    '</div>'+
-
-                    '<div class="row" style="border-top:1px solid; border-left:1px solid; border-right:1px solid; border-bottom:1px solid; text-align: center;">'+
-                        '<div class="col-xs-12 col-md-12">'+
-                            '<br>'+
-                            '<button type="button" id="botonIniciar'+numero_item+'" class="btn btn-success sombra boton_webcam" onclick="capturePhoto(this.id)">'+
-                                '<span class="glyphicon glyphicon-camera"></span>'+
-                                ' Iniciar Cámara'+
-                            '</button>'+
-                            '<br><br>'+                 
-                        '</div>'+
-                    '</div>'+
-                '</div>'+
-                
-                '<br>'+
-                '<div class="divisionItems sombra"></div>'+
-                '<br>';
-                $(contenidoDiv).appendTo("#items_maniobras");
-                valor_for_options_radio += 1;
-                valor_options_radio += 1;
-                valor_seleval += 1;
-            }
-            if (contador_items == 0) {
-                //alert(contador_items);
-                $('#div_maniobras').hide();
-            }
-        },
-        function (tx, error) {
-            console.log('SELECT error: ' + error.message);
-        });
-    }, function (error) {
-        console.log('transaction error: ' + error.message);
-    }, function () {
-        console.log('transaction ok');
-    });
+    $('#cal_item_defectos77').val(calificacion);
 }
