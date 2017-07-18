@@ -5,7 +5,7 @@ $(document).ready(function($){
   fechaFooter();
   Concurrent.Thread.create(obtenerCantidadInspeccionesPendientesEscaleras);
   //verificarCantidadInspecciones();
-  setTimeout('verificarCantidadInspecciones()',1000);
+  setTimeout('verificarCantidadInspecciones()',1500);
 });
 
 /*=============================================

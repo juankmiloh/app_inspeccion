@@ -15,7 +15,7 @@ $(document).ready(function($){
   Concurrent.Thread.create(obtenerCantidadFotosPendientesPuertas); //Ejecutamos de manera concurrente la funcion de cargar los datos de las fotos de puertas
   Concurrent.Thread.create(obtenerCantidadFotosPendientesEscaleras); //Ejecutamos de manera concurrente la funcion de cargar los datos de las fotos de escaleras
   //verificarCantidadFotografias();
-  setTimeout('verificarCantidadFotografias()',1000);
+  setTimeout('verificarCantidadFotografias()',1500);
   fechaFooter();
   //$("#text_btn_flotante").text("900");
 });

@@ -3,9 +3,9 @@ $(document).ready(function($){
   //alert("probando script");
   mostrarBarraHeader();
   fechaFooter();
-  Concurrent.Thread.create(obtenerCantidadInspeccionesPendientesPuertas);
+  Concurrent.Thread.create(obtenerCantidadInspeccionesPendientesAscensores);
   //verificarCantidadInspecciones();
-  setTimeout('verificarCantidadInspecciones()',1000);
+  setTimeout('verificarCantidadInspecciones()',1500);
 });
 
 /*=============================================
@@ -69,24 +69,24 @@ document.addEventListener("backbutton", onBackKeyDown, false);
 *==============================================*/
 function onBackKeyDown(e) {
   e.preventDefault();
-  window.location='../menu/index_puertas.html';
+  window.location='../menu/index_ascensor.html';
 }
 
-/* //////////////////////////////////////////////////// PUERTAS /////////////////////////////////////////////////// */
+/* //////////////////////////////////////////////////// ASCENSORES /////////////////////////////////////////////////// */
 
 /*=============================================
-* Funcion para hacer un select a la tabla auditoria_inspecciones_puertas y saber la cantidad de inspecciones pendientes por envio al servidor
+* Funcion para hacer un select a la tabla auditoria_inspecciones_ascensores y saber la cantidad de inspecciones pendientes por envio al servidor
 * Si es diferente de cero continua mostrando las inspecciones
 *==============================================*/
-function obtenerCantidadInspeccionesPendientesPuertas(){
+function obtenerCantidadInspeccionesPendientesAscensores(){
   db.transaction(function (tx) {
-    var query = "SELECT COUNT(*) AS c FROM auditoria_inspecciones_puertas WHERE o_estado_envio = ?";
+    var query = "SELECT COUNT(*) AS c FROM auditoria_inspecciones_ascensores WHERE o_estado_envio = ?";
     tx.executeSql(query, ["Eliminada"], function (tx, resultSet) {
       var cantidad_inspecciones = resultSet.rows.item(0).c;
-      console.log('Numero de inspecciones de puertas pendientes por cargar -> ' + cantidad_inspecciones);
-      window.sessionStorage.setItem("cantidad_inspecciones_puertas", cantidad_inspecciones); //mandamos por sesion la cantidad de inspecciones de puertas
+      console.log('Numero de inspecciones de ascensores pendientes por cargar -> ' + cantidad_inspecciones);
+      window.sessionStorage.setItem("cantidad_inspecciones_ascensores", cantidad_inspecciones); //mandamos por sesion la cantidad de inspecciones a ascensores
       if (cantidad_inspecciones > 0) {
-        obtenerCodigoInspeccionesPendientesPuertas('Eliminada');
+        obtenerCodigoInspeccionesPendientesAscensores('Eliminada');
       }
     },
     function (tx, error) {
@@ -111,18 +111,19 @@ function obtenerCantidadInspeccionesPendientesPuertas(){
 }
 
 /*=============================================
-* Funcion para hacer un select a la tabla auditoria_inspecciones_puertas y saber que inspecciones estan pendientes
+* Funcion para hacer un select a la tabla auditoria_inspecciones_ascensores y saber que inspecciones estan pendientes
 *==============================================*/
-function obtenerCodigoInspeccionesPendientesPuertas(estado){
-  $('#puertas').show('fast');
+function obtenerCodigoInspeccionesPendientesAscensores(estado){
+  $('#ascensores').show('fast');
   db.transaction(function (tx) {
-    var query = "SELECT * FROM auditoria_inspecciones_puertas WHERE o_estado_envio = ?";
+    var query = "SELECT * FROM auditoria_inspecciones_ascensores WHERE o_estado_envio = ?";
     tx.executeSql(query, [estado], function (tx, resultSet) {
       for(var x = 0; x < resultSet.rows.length; x++) {
         var k_codusuario = resultSet.rows.item(x).k_codusuario;
         var codigo_inspeccion = resultSet.rows.item(x).k_codinspeccion;
         var cantidad_nocumple = resultSet.rows.item(x).v_item_nocumple;
-        visualizarInspeccionesPuertas(k_codusuario,codigo_inspeccion,cantidad_nocumple);
+        var consecutivo_inspe = resultSet.rows.item(x).o_consecutivoinsp;
+        visualizarInspeccionesAscensores(k_codusuario,codigo_inspeccion,cantidad_nocumple,consecutivo_inspe);
       }
     },
     function (tx, error) {
@@ -138,14 +139,30 @@ function obtenerCodigoInspeccionesPendientesPuertas(estado){
 /*=============================================
 * Funcion que recibe el codigo de inspeccion que esta pendiente y la muestra en una tabal html
 *==============================================*/
-function visualizarInspeccionesPuertas(k_codusuario,codigo_inspeccion,cantidad_nocumple){
+function visualizarInspeccionesAscensores(k_codusuario,codigo_inspeccion,cantidad_nocumple,consecutivo){
   db.transaction(function (tx) {
-    var query = "SELECT * FROM puertas_valores_iniciales WHERE k_codusuario = ? AND k_codinspeccion = ?";
+    var query = "SELECT * FROM ascensor_valores_iniciales WHERE k_codusuario = ? AND k_codinspeccion = ?";
     tx.executeSql(query, [k_codusuario,codigo_inspeccion], function (tx, resultSet) {
-      var consecutivo_inspe = resultSet.rows.item(0).o_consecutivoinsp;
-      var nombre_cliente = resultSet.rows.item(0).n_cliente;
-      var nombre_equipo = resultSet.rows.item(0).n_equipo;
-      var tipo_informe = resultSet.rows.item(0).o_tipo_informe;
+      try{
+        var consecutivo_inspe = resultSet.rows.item(0).o_consecutivoinsp;
+        var nombre_cliente = resultSet.rows.item(0).n_cliente;
+        var nombre_equipo = resultSet.rows.item(0).n_equipo;
+        var tipo_informe = resultSet.rows.item(0).o_tipo_informe;
+      }catch(err) {
+        //alert(err.message);
+      }
+      if (consecutivo_inspe == undefined) {
+        consecutivo_inspe = consecutivo;
+      }
+      if (nombre_cliente == undefined) {
+        nombre_cliente = "n/a";
+      }
+      if (nombre_equipo == undefined) {
+        nombre_equipo = "n/a";
+      }
+      if (tipo_informe == undefined) {
+        tipo_informe = "n/a";
+      }
       var contenidoDiv = 
       '<br>'+
       '<div class="table-responsive">'+
@@ -178,7 +195,7 @@ function visualizarInspeccionesPuertas(k_codusuario,codigo_inspeccion,cantidad_n
                 '<tr>'+
                     '<td>'+
                       '<center>'+
-                        'Puerta'+
+                        'Ascensor'+
                       '</center>'+
                     '</td>'+
                     '<td>'+
@@ -208,15 +225,14 @@ function visualizarInspeccionesPuertas(k_codusuario,codigo_inspeccion,cantidad_n
                     '</tr>'+
                     '<td colspan="5">'+
                       '<center>'+
-                        '<a href="javascript:restaurarInspeccionPuertas('+k_codusuario+','+codigo_inspeccion+')"><span class="glyphicon glyphicon-share-alt"></span> RESTAURAR</a>'+
-                        //'&nbsp| <a href="./puertas/puertas_confirma_eliminar_lista_insp.html?cod_usuario='+k_codusuario+'&id_inspeccion='+codigo_inspeccion+'">ELIMINAR</a>'+
+                        '<a href="javascript:restaurarInspeccionAscensor('+k_codusuario+','+codigo_inspeccion+')"><span class="glyphicon glyphicon-share-alt"></span> RESTAURAR</a>'+
                       '</center>'+
                     '</td>'+
                 '</tr>'+
             '</tbody>'+
         '</table>'+
     '</div>';
-    $(contenidoDiv).appendTo("#tabla_inspeccion_puertas");
+    $(contenidoDiv).appendTo("#tabla_inspeccion_ascensores");
     },
     function (tx, error) {
       console.log('SELECT error: ' + error.message);
@@ -229,10 +245,10 @@ function visualizarInspeccionesPuertas(k_codusuario,codigo_inspeccion,cantidad_n
 }
 
 function verificarCantidadInspecciones(){
-  var cantidad_inspecciones_puertas = window.sessionStorage.getItem("cantidad_inspecciones_puertas");
+  var cantidad_inspecciones_ascensores = window.sessionStorage.getItem("cantidad_inspecciones_ascensores");
 
-  if (cantidad_inspecciones_puertas > 0 ) {
-    //alert("Cantidad de inspecciones puertas -> "+cantidad_inspecciones_puertas);
+  if (cantidad_inspecciones_ascensores > 0 ) {
+    //alert("Cantidad de inspecciones ascensores -> "+cantidad_inspecciones_ascensores);
   }else{
     swal({
       title: 'ATENCIÓN',
@@ -243,7 +259,7 @@ function verificarCantidadInspecciones(){
       confirmButtonText: '<i class="fa fa-thumbs-up"></i> oK',
       allowOutsideClick: false
     }).then(function () {
-      window.location='../menu/index_puertas.html';
+      window.location='../menu/index_ascensor.html';
     })
   }
 }

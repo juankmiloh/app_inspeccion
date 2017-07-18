@@ -11,7 +11,7 @@ $(document).ready(function($){
   Concurrent.Thread.create(obtenerCantidadInspeccionesPendientesPuertas); //Ejecutamos de manera concurrente la funcion de cargar las inspecciones de puertas
   Concurrent.Thread.create(obtenerCantidadInspeccionesPendientesEscaleras); //Ejecutamos de manera concurrente la funcion de cargar las inspecciones de escaleras
   //verificarCantidadInspecciones();
-  setTimeout('verificarCantidadInspecciones()',1000);
+  setTimeout('verificarCantidadInspecciones()',1500);
 });
 
 /*=============================================
