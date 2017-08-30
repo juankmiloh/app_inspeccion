@@ -6,6 +6,7 @@ jQuery(document).ready(function($){
   ObtenerCantidadItemsAIM();
   ObtenerCantidadItemsAIP();
   ObtenerCantidadItemsAIF();
+  console.log(contador_items_nocumple);
 });
 
 /*=============================================
@@ -39,28 +40,51 @@ function cerrarVentanaCarga(){
   $('.fb').hide();
   $('.fbback').hide();
   $('body').css('overflow','auto');
-  message = 'Todo salio bien, se guardo la inspeccion Nº. ' + window.sessionStorage.getItem("consecutivo_inspeccion") + '\n\n¿Desea realizar otra inspección?';
-  title = 'Montajes & Procesos M.P SAS';
-  if(navigator.notification && navigator.notification.alert){
-    navigator.notification.confirm(
-    message, // message
-    onConfirm, // callback to invoke with index of button pressed
-    title, // title
-    ['SI','NO'] // buttonLabels -> valores [1,0]
-  );
-  }else{
-    alert('Todo salio bien, se guardo la inspeccion Nº. ' + window.sessionStorage.getItem("consecutivo_inspeccion"));
+  swal({
+    title: 'Todo salio bien!',
+    html: 'Se guardo la inspección Nº. ' + window.sessionStorage.getItem("consecutivo_inspeccion") + '<br>¿Desea realizar otra inspección?',
+    type: 'success',
+    showCancelButton: true,
+    confirmButtonColor: '#428bca',
+    cancelButtonColor: '#d9534f',
+    confirmButtonText: 'Si',
+    cancelButtonText: 'No',
+    confirmButtonClass: 'btn btn-success',
+    cancelButtonClass: 'btn btn-danger',
+    buttonsStyling: true,
+    allowOutsideClick: false
+  }).then(function () {
     reiniciarInspeccion();
-  }
+  }, function (dismiss) {
+    // dismiss can be 'cancel', 'overlay',
+    // 'close', and 'timer'
+    if (dismiss === 'cancel') {
+      location.href="../../index.html";
+    }
+  })
+
+  // message = 'Todo salio bien, se guardo la inspeccion Nº. ' + window.sessionStorage.getItem("consecutivo_inspeccion") + '\n\n¿Desea realizar otra inspección?';
+  // title = 'Montajes & Procesos M.P SAS';
+  // if(navigator.notification && navigator.notification.alert){
+  //   navigator.notification.confirm(
+  //   message, // message
+  //   onConfirm, // callback to invoke with index of button pressed
+  //   title, // title
+  //   ['SI','NO'] // buttonLabels -> valores [1,0]
+  // );
+  // }else{
+  //   alert('Todo salio bien, se guardo la inspeccion Nº. ' + window.sessionStorage.getItem("consecutivo_inspeccion"));
+  //   reiniciarInspeccion();
+  // }
 }
 
-function onConfirm(buttonIndex) {
-  if (buttonIndex == 1) {
-    reiniciarInspeccion();
-  }else{
-    location.href="../../index.html";
-  }
-}
+// function onConfirm(buttonIndex) {
+//   if (buttonIndex == 1) {
+//     reiniciarInspeccion();
+//   }else{
+//     location.href="../../index.html";
+//   }
+// }
 
 /*=============================================
 * Funcion que se ejecuta luego de que se guarda la inspeccion
@@ -68,54 +92,58 @@ function onConfirm(buttonIndex) {
 * Se actuliza el consecutivo de inspeccion
 *==============================================*/
 function reiniciarInspeccion(){
+  /*REINICIAMOS EL CONTADOR GLOBAL DE ITEMS NO CUMPLE*/
+  contador_items_nocumple = 0;
+  console.log(contador_items_nocumple);
   /* ACTUALIZAMOS EL CONSECUTIVO */
   actualizarConsecutivoInspeccion();
+  guardarInspeccion_v1();
   /* REINICIAMOS ALGUNOS CONTROLES */
-  $("#text_equipo").val("");
-  $("#text_tipoAccionamiento").find('option:first').attr('selected', 'selected').parent('select');
-  $("#text_capacidadPersonas").val("");
-  $("#text_capacidadPeso").val("");
-  $("#text_numeroParadas").val("");
-  $("#text_ultimo_mto").val("");
-  $("#text_inicio_servicio").val("");
-  $("#text_ultima_inspec").val("");
-  $("#text_observacion_final").val("");
+  // $("#text_equipo").val("");
+  // $("#text_tipoAccionamiento").find('option:first').attr('selected', 'selected').parent('select');
+  // $("#text_capacidadPersonas").val("");
+  // $("#text_capacidadPeso").val("");
+  // $("#text_numeroParadas").val("");
+  // $("#text_ultimo_mto").val("");
+  // $("#text_inicio_servicio").val("");
+  // $("#text_ultima_inspec").val("");
+  // $("#text_observacion_final").val("");
 
-  /* REINICIAR ITEMS PRELIMINAR */
-  for (var i = 1; i <= 3; i++) {
-    $('#text_obser_item'+i+'_eval_prel').val("");
-  }
-  /* REINICIAR ITEMS PROTECCION */
-  for (var i = 1; i <= 7; i++) {
-    $('#text_obser_protec_person'+i).val("");
-  }
-  /* REINICIAR ITEMS CABINA */
-  var cantidadItemsTAIC = window.sessionStorage.getItem("cantidadItemsTablaAIC");
-  for (var i = 1; i <= cantidadItemsTAIC; i++) {
-    $('input[name="sele_cabina'+i+'"]').prop('checked', false);
-    $('#text_lv_valor_observacion_'+i).val("");
-  }
-  /* REINICIAR ITEMS MAQUINAS */
-  var cantidadItemsTAIM = window.sessionStorage.getItem("cantidadItemsTablaAIM");
-  var numero_final_item = 36 + parseInt(cantidadItemsTAIM);
-  for (var i = 36; i < numero_final_item; i++) {
-    $('input[name="sele_maquinas'+i+'"]').prop('checked', false);
-    $('#text_maquinas_observacion_'+i).val("");
-  }
-  /* REINICIAR ITEMS POZO */
-  var cantidadItemsTAIP = window.sessionStorage.getItem("cantidadItemsTablaAIP");
-  var numero_final_item = 83 + parseInt(cantidadItemsTAIP);
-  for (var i = 83; i < numero_final_item; i++) {
-    $('input[name="sele_pozo'+i+'"]').prop('checked', false);
-    $('#text_pozo_observacion_'+i).val("");
-  }
-  /* REINICIAR ITEMS FOSO */
-  var cantidadItemsTAIF = window.sessionStorage.getItem("cantidadItemsTablaAIF");
-  var numero_final_item = 148 + parseInt(cantidadItemsTAIF);
-  for (var i = 148; i < numero_final_item; i++) {
-    $('input[name="sele_foso'+i+'"]').prop('checked', false);
-    $('#text_foso_observacion_'+i).val("");
-  }
+  // /* REINICIAR ITEMS PRELIMINAR */
+  // for (var i = 1; i <= 3; i++) {
+  //   $('#text_obser_item'+i+'_eval_prel').val("");
+  // }
+  // /* REINICIAR ITEMS PROTECCION */
+  // for (var i = 1; i <= 7; i++) {
+  //   $('#text_obser_protec_person'+i).val("");
+  // }
+  // /* REINICIAR ITEMS CABINA */
+  // var cantidadItemsTAIC = window.sessionStorage.getItem("cantidadItemsTablaAIC");
+  // for (var i = 1; i <= cantidadItemsTAIC; i++) {
+  //   $('input[name="sele_cabina'+i+'"]').prop('checked', false);
+  //   $('#text_lv_valor_observacion_'+i).val("");
+  // }
+  // /* REINICIAR ITEMS MAQUINAS */
+  // var cantidadItemsTAIM = window.sessionStorage.getItem("cantidadItemsTablaAIM");
+  // var numero_final_item = 36 + parseInt(cantidadItemsTAIM);
+  // for (var i = 36; i < numero_final_item; i++) {
+  //   $('input[name="sele_maquinas'+i+'"]').prop('checked', false);
+  //   $('#text_maquinas_observacion_'+i).val("");
+  // }
+  // /* REINICIAR ITEMS POZO */
+  // var cantidadItemsTAIP = window.sessionStorage.getItem("cantidadItemsTablaAIP");
+  // var numero_final_item = 83 + parseInt(cantidadItemsTAIP);
+  // for (var i = 83; i < numero_final_item; i++) {
+  //   $('input[name="sele_pozo'+i+'"]').prop('checked', false);
+  //   $('#text_pozo_observacion_'+i).val("");
+  // }
+  // /* REINICIAR ITEMS FOSO */
+  // var cantidadItemsTAIF = window.sessionStorage.getItem("cantidadItemsTablaAIF");
+  // var numero_final_item = 148 + parseInt(cantidadItemsTAIF);
+  // for (var i = 148; i < numero_final_item; i++) {
+  //   $('input[name="sele_foso'+i+'"]').prop('checked', false);
+  //   $('#text_foso_observacion_'+i).val("");
+  // }
 }
 
 /*=============================================
@@ -229,12 +257,34 @@ function verificarSeleccionChecks(){
 *==============================================*/
 function actualizarConsecutivoInspeccion(){
   db.transaction(function (tx) {
-    var query = "SELECT MAX(k_consecutivo) AS m, n_inspeccion FROM consecutivo_ascensores";
+    var consecutivo = null;
+    var query = "SELECT COUNT(*) AS cantidad_inspecciones FROM consecutivo_ascensores";
     tx.executeSql(query, [], function (tx, resultSet) {
-      console.log('Consecutivo Inspeccion Ascensores -> '+resultSet.rows.item(0).m + '\nInspeccion Nº -> '+resultSet.rows.item(0).n_inspeccion);
-      $("#text_consecutivo").val(resultSet.rows.item(0).n_inspeccion);
-      window.sessionStorage.setItem("codigo_inspeccion", resultSet.rows.item(0).m);
-      window.sessionStorage.setItem("consecutivo_inspeccion", resultSet.rows.item(0).n_inspeccion);
+      consecutivo = (resultSet.rows.item(0).cantidad_inspecciones)-1;
+      if (consecutivo < 10) {
+        consecutivo = "0" + consecutivo;
+      }
+      if (consecutivo < 100) {
+        consecutivo = "0" + consecutivo;
+      }
+      consecutivo = String(consecutivo);
+      console.log("diana morenos -> "+consecutivo);
+      db.transaction(function (tx) {
+        var query = "SELECT * FROM consecutivo_ascensores WHERE k_consecutivo = ?";
+        tx.executeSql(query, [consecutivo], function (tx, resultSet) {
+          console.log('Consecutivo Inspeccion Ascensores -> '+resultSet.rows.item(0).k_consecutivo + '\nInspeccion Nº -> '+resultSet.rows.item(0).n_inspeccion);
+          $("#text_consecutivo").val(resultSet.rows.item(0).n_inspeccion);
+          window.sessionStorage.setItem("codigo_inspeccion", resultSet.rows.item(0).k_consecutivo);
+          window.sessionStorage.setItem("consecutivo_inspeccion", resultSet.rows.item(0).n_inspeccion);
+        },
+        function (tx, error) {
+          console.log('SELECT error: ' + error.message);
+        });
+      }, function (error) {
+        console.log('transaction error: ' + error.message);
+      }, function () {
+        console.log('transaction ok');
+      });
     },
     function (tx, error) {
       console.log('SELECT error: ' + error.message);
@@ -777,28 +827,30 @@ function addItemsAuditoriaInspeccionesAscensores(cod_usuario,cod_inspeccion,cons
 * Funcion para actualizar la tabla consecutivo_ascensores
 *==============================================*/
 function addItemConsecutivoAscensores(codigo, codigo_inspeccion) {
-    var consecutivo = parseInt(codigo_inspeccion) + 1;
-    if (consecutivo < 10) {
-        consecutivo = "0" + consecutivo;
-    }
-    if (consecutivo < 100) {
-        consecutivo = "0" + consecutivo;
-    } 
-    var inspeccion = "ASC"+codigo+"-"+consecutivo+"-"+anio;
-    db.transaction(function (tx) {
-        var query = "INSERT INTO consecutivo_ascensores (k_codusuario, k_consecutivo, n_inspeccion) VALUES (?,?,?)";
-        tx.executeSql(query, [codigo, consecutivo, inspeccion], function(tx, res) {
-          console.log("insertId: " + res.insertId + " -- probably 1");
-          console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
-        },
-        function(tx, error) {
-            console.log('INSERT error: ' + error.message);
-        });
-    }, function(error) {
-        console.log('transaction error: ' + error.message);
-    }, function() {
-        console.log('transaction ok');
-        //setTimeout('cerrarVentanaCarga()',7000); //SE LE DA UN TIEMPO PARA QUE SE CIERRE, MIENTRAS SE GUARDAN LOS VALORES EN LA BD
-        cerrarVentanaCarga();
+  var consecutivo = parseInt(codigo_inspeccion) + 1;
+  if (consecutivo < 10) {
+    consecutivo = "0" + consecutivo;
+  }
+  if (consecutivo < 100) {
+    consecutivo = "0" + consecutivo;
+  }
+  consecutivo = String(consecutivo);
+  var inspeccion = "ASC"+codigo+"-"+consecutivo+"-"+anio;
+  db.transaction(function (tx) {
+    var query = "INSERT INTO consecutivo_ascensores (k_codusuario, k_consecutivo, n_inspeccion) VALUES (?,?,?)";
+    tx.executeSql(query, [codigo, consecutivo, inspeccion], function(tx, res) {
+      console.log("insertId: " + res.insertId + " -- probably 1");
+      console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
+    },
+    function(tx, error) {
+      console.log('INSERT error: ' + error.message);
     });
+  }, function(error) {
+    console.log('transaction error: ' + error.message);
+  }, function() {
+    console.log('transaction ok');
+    //setTimeout('cerrarVentanaCarga()',7000); //SE LE DA UN TIEMPO PARA QUE SE CIERRE, MIENTRAS SE GUARDAN LOS VALORES EN LA BD
+    // cerrarVentanaCarga();
+    reiniciarInspeccion();
+  });
 }

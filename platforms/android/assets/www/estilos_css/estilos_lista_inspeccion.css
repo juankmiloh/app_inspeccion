@@ -21,21 +21,23 @@
   transition:.3s;  
   z-index:3;
 }
+.botonF1:active{
+  background:#e48683;
+}
 span{
-  transition:.5s;  
+  /*transition:.5s;  */
 }
 /*.botonF1:active{
   transform:scale(1.1) rotate(45deg);
 }*/
 .botonF1_girar{
-	transform:rotate(45deg);
+  transform:rotate(45deg);
 }
 .btn_flotante{
   width:40px;
   height:40px;
   border-radius:100%;
   border:none;
-  color:#FFF;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   font-size:28px;
   outline:none;
@@ -45,51 +47,55 @@ span{
   margin-right:26px;
   transform:scale(0);
   z-index:3;
+  color: white;
+}
+.btn_flotante:active{
+  background: #c7c7c7;
+  color: yellow;
 }
 .botonF2{
   background:#ffffff;
   margin-bottom:100px;
   font-size:17px;
+  font-weight: bold;
   transition:0.5s;
 }
 .botonF3{
   background:#ffffff;
   margin-bottom:165px;
   font-size:17px;
+  font-weight: bold;
   transition:0.7s;
 }
 .texto_boton_flotante{
   width:40px;
   height:40px;
   border:none;
-  color:#FFF;
   font-size:20px;
   position:fixed;
   right:0;
   bottom:0;
-  color: white;
   margin-right:130px;
   transform:scale(0);
   text-align: right;
-  font-weight: bold;
 }
 .img_boton_flotante{
-	color: #000;
+  color: #000;
 }
 .animacionVer{
   transform:scale(1);
 }
 
 .fbback_1{
-	display:none;
-	position:fixed;
-	opacity: 0.9;
-	top:0;
-	left:0;
-	right:0;
-	bottom:0;
-	z-index:2; /*se muestra por encima de los controles*/
-	background-color:#5cb85c;
+  display:none;
+  position:fixed;
+  opacity: 0.9;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  z-index:2; /*se muestra por encima de los controles*/
+  background-color:#5cb85c;
 }
 
 /* 

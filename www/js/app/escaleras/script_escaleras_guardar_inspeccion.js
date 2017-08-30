@@ -33,28 +33,50 @@ function cerrarVentanaCarga(){
   $('.fb').hide();
   $('.fbback').hide();
   $('body').css('overflow','auto');
-  message = 'Todo salio bien, se guardo la inspeccion Nº. ' + window.sessionStorage.getItem("consecutivo_inspeccion") + '\n\n¿Desea realizar otra inspección?';
-  title = 'Montajes & Procesos M.P SAS';
-  if(navigator.notification && navigator.notification.alert){
-    navigator.notification.confirm(
-    message, // message
-    onConfirm, // callback to invoke with index of button pressed
-    title, // title
-    ['SI','NO'] // buttonLabels -> valores [1,0]
-  );
-  }else{
-    alert('Todo salio bien, se guardo la inspeccion Nº. ' + window.sessionStorage.getItem("consecutivo_inspeccion"));
+  swal({
+    title: 'Todo salio bien!',
+    html: 'Se guardo la inspección Nº. ' + window.sessionStorage.getItem("consecutivo_inspeccion") + '<br>¿Desea realizar otra inspección?',
+    type: 'success',
+    showCancelButton: true,
+    confirmButtonColor: '#428bca',
+    cancelButtonColor: '#d9534f',
+    confirmButtonText: 'Si',
+    cancelButtonText: 'No',
+    confirmButtonClass: 'btn btn-success',
+    cancelButtonClass: 'btn btn-danger',
+    buttonsStyling: true,
+    allowOutsideClick: false
+  }).then(function () {
     reiniciarInspeccion();
-  }
+  }, function (dismiss) {
+    // dismiss can be 'cancel', 'overlay',
+    // 'close', and 'timer'
+    if (dismiss === 'cancel') {
+      location.href="../../index.html";
+    }
+  })
+  // message = 'Todo salio bien, se guardo la inspeccion Nº. ' + window.sessionStorage.getItem("consecutivo_inspeccion") + '\n\n¿Desea realizar otra inspección?';
+  // title = 'Montajes & Procesos M.P SAS';
+  // if(navigator.notification && navigator.notification.alert){
+  //   navigator.notification.confirm(
+  //   message, // message
+  //   onConfirm, // callback to invoke with index of button pressed
+  //   title, // title
+  //   ['SI','NO'] // buttonLabels -> valores [1,0]
+  // );
+  // }else{
+  //   alert('Todo salio bien, se guardo la inspeccion Nº. ' + window.sessionStorage.getItem("consecutivo_inspeccion"));
+  //   reiniciarInspeccion();
+  // }
 }
 
-function onConfirm(buttonIndex) {
-  if (buttonIndex == 1) {
-    reiniciarInspeccion();
-  }else{
-    location.href="../../index.html";
-  }
-}
+// function onConfirm(buttonIndex) {
+//   if (buttonIndex == 1) {
+//     reiniciarInspeccion();
+//   }else{
+//     location.href="../../index.html";
+//   }
+// }
 
 /*=============================================
 * Funcion que se ejecuta luego de que se guarda la inspeccion
@@ -62,6 +84,9 @@ function onConfirm(buttonIndex) {
 * Se actuliza el consecutivo de inspeccion
 *==============================================*/
 function reiniciarInspeccion(){
+  /*REINICIAMOS EL CONTADOR GLOBAL DE ITEMS NO CUMPLE*/
+  contador_items_nocumple = 0;
+  console.log(contador_items_nocumple);
   /* ACTUALIZAMOS EL CONSECUTIVO */
   actualizarConsecutivoInspeccion();
   /* REINICIAMOS ALGUNOS CONTROLES */
