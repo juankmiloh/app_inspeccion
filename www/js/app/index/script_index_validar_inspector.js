@@ -2,13 +2,14 @@
 * Funcion que se ejecuta cuando se abre la pagina web
 *==============================================*/
 $(document).ready(function(){ 
-  //alert("probando_script");
+  // alert("probando_script");
   /*
   * Llamamos la función verificarUsuario para saber si hay un inspector asignado al dispositivo
   */
   verificarUsuario();
   limpiarVariablesSession();
   obtenerCantidadFotosPendientesAscensores();
+  parpadearLabelBlanco();
 });
 
 /*=============================================
@@ -140,6 +141,22 @@ function obtenerCantidadFotosPendientesEscaleras(){
   }, function () {
     console.log('transaction ok');
   });
+}
+
+/*=============================================
+* Funcion para cambiar de color el texto de 'nuevo*' y hacer efecto de desaparecer
+*==============================================*/
+function parpadearLabelBlanco() {
+  $(".label_actualizacion").css("color", "white");
+  setTimeout(parpadearLabelRojo, 600);
+}
+
+/*=============================================
+* Funcion para cambiar de color el texto de 'nuevo*' y hacer efecto de aparecer
+*==============================================*/
+function parpadearLabelRojo() {
+  $(".label_actualizacion").css("color", "red");
+  setTimeout(parpadearLabelBlanco, 600);
 }
 
 /* /////////////////// VERIFICAR CONEXION A INTERNET ////////////////////////// */

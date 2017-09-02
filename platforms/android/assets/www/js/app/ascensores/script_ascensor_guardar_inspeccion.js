@@ -6,7 +6,6 @@ jQuery(document).ready(function($){
   ObtenerCantidadItemsAIM();
   ObtenerCantidadItemsAIP();
   ObtenerCantidadItemsAIF();
-  console.log(contador_items_nocumple);
 });
 
 /*=============================================
@@ -97,53 +96,53 @@ function reiniciarInspeccion(){
   console.log(contador_items_nocumple);
   /* ACTUALIZAMOS EL CONSECUTIVO */
   actualizarConsecutivoInspeccion();
-  guardarInspeccion_v1();
+  // guardarInspeccion_v1();
   /* REINICIAMOS ALGUNOS CONTROLES */
-  // $("#text_equipo").val("");
-  // $("#text_tipoAccionamiento").find('option:first').attr('selected', 'selected').parent('select');
-  // $("#text_capacidadPersonas").val("");
-  // $("#text_capacidadPeso").val("");
-  // $("#text_numeroParadas").val("");
-  // $("#text_ultimo_mto").val("");
-  // $("#text_inicio_servicio").val("");
-  // $("#text_ultima_inspec").val("");
-  // $("#text_observacion_final").val("");
+  $("#text_equipo").val("");
+  $("#text_tipoAccionamiento").find('option:first').attr('selected', 'selected').parent('select');
+  $("#text_capacidadPersonas").val("");
+  $("#text_capacidadPeso").val("");
+  $("#text_numeroParadas").val("");
+  $("#text_ultimo_mto").val("");
+  $("#text_inicio_servicio").val("");
+  $("#text_ultima_inspec").val("");
+  $("#text_observacion_final").val("");
 
-  // /* REINICIAR ITEMS PRELIMINAR */
-  // for (var i = 1; i <= 3; i++) {
-  //   $('#text_obser_item'+i+'_eval_prel').val("");
-  // }
-  // /* REINICIAR ITEMS PROTECCION */
-  // for (var i = 1; i <= 7; i++) {
-  //   $('#text_obser_protec_person'+i).val("");
-  // }
-  // /* REINICIAR ITEMS CABINA */
-  // var cantidadItemsTAIC = window.sessionStorage.getItem("cantidadItemsTablaAIC");
-  // for (var i = 1; i <= cantidadItemsTAIC; i++) {
-  //   $('input[name="sele_cabina'+i+'"]').prop('checked', false);
-  //   $('#text_lv_valor_observacion_'+i).val("");
-  // }
-  // /* REINICIAR ITEMS MAQUINAS */
-  // var cantidadItemsTAIM = window.sessionStorage.getItem("cantidadItemsTablaAIM");
-  // var numero_final_item = 36 + parseInt(cantidadItemsTAIM);
-  // for (var i = 36; i < numero_final_item; i++) {
-  //   $('input[name="sele_maquinas'+i+'"]').prop('checked', false);
-  //   $('#text_maquinas_observacion_'+i).val("");
-  // }
-  // /* REINICIAR ITEMS POZO */
-  // var cantidadItemsTAIP = window.sessionStorage.getItem("cantidadItemsTablaAIP");
-  // var numero_final_item = 83 + parseInt(cantidadItemsTAIP);
-  // for (var i = 83; i < numero_final_item; i++) {
-  //   $('input[name="sele_pozo'+i+'"]').prop('checked', false);
-  //   $('#text_pozo_observacion_'+i).val("");
-  // }
-  // /* REINICIAR ITEMS FOSO */
-  // var cantidadItemsTAIF = window.sessionStorage.getItem("cantidadItemsTablaAIF");
-  // var numero_final_item = 148 + parseInt(cantidadItemsTAIF);
-  // for (var i = 148; i < numero_final_item; i++) {
-  //   $('input[name="sele_foso'+i+'"]').prop('checked', false);
-  //   $('#text_foso_observacion_'+i).val("");
-  // }
+  /* REINICIAR ITEMS PRELIMINAR */
+  for (var i = 1; i <= 3; i++) {
+    $('#text_obser_item'+i+'_eval_prel').val("");
+  }
+  /* REINICIAR ITEMS PROTECCION */
+  for (var i = 1; i <= 7; i++) {
+    $('#text_obser_protec_person'+i).val("");
+  }
+  /* REINICIAR ITEMS CABINA */
+  var cantidadItemsTAIC = window.sessionStorage.getItem("cantidadItemsTablaAIC");
+  for (var i = 1; i <= cantidadItemsTAIC; i++) {
+    $('input[name="sele_cabina'+i+'"]').prop('checked', false);
+    $('#text_lv_valor_observacion_'+i).val("");
+  }
+  /* REINICIAR ITEMS MAQUINAS */
+  var cantidadItemsTAIM = window.sessionStorage.getItem("cantidadItemsTablaAIM");
+  var numero_final_item = 36 + parseInt(cantidadItemsTAIM);
+  for (var i = 36; i < numero_final_item; i++) {
+    $('input[name="sele_maquinas'+i+'"]').prop('checked', false);
+    $('#text_maquinas_observacion_'+i).val("");
+  }
+  /* REINICIAR ITEMS POZO */
+  var cantidadItemsTAIP = window.sessionStorage.getItem("cantidadItemsTablaAIP");
+  var numero_final_item = 83 + parseInt(cantidadItemsTAIP);
+  for (var i = 83; i < numero_final_item; i++) {
+    $('input[name="sele_pozo'+i+'"]').prop('checked', false);
+    $('#text_pozo_observacion_'+i).val("");
+  }
+  /* REINICIAR ITEMS FOSO */
+  var cantidadItemsTAIF = window.sessionStorage.getItem("cantidadItemsTablaAIF");
+  var numero_final_item = 148 + parseInt(cantidadItemsTAIF);
+  for (var i = 148; i < numero_final_item; i++) {
+    $('input[name="sele_foso'+i+'"]').prop('checked', false);
+    $('#text_foso_observacion_'+i).val("");
+  }
 }
 
 /*=============================================
@@ -246,6 +245,19 @@ function verificarSeleccionChecks(){
     }else{
       //alert($('input:radio[name=seleval'+i+']:checked').val());
     }
+  }
+  if ($('#text_consecutivo').val() == "") {
+    swal({
+      title: 'Oops...',
+      type: 'error',
+      html: 'No se cargo el consecutivo!',
+      showCloseButton: false,
+      showCancelButton: false,
+      confirmButtonText: '<i class="fa fa-thumbs-up"></i> Recargar',
+      allowOutsideClick: false
+    }).then(function () {
+      window.location.reload();
+    })
   }
   //alert(v_chk_noseleccionados);
   return v_chk_noseleccionados;
@@ -850,7 +862,7 @@ function addItemConsecutivoAscensores(codigo, codigo_inspeccion) {
   }, function() {
     console.log('transaction ok');
     //setTimeout('cerrarVentanaCarga()',7000); //SE LE DA UN TIEMPO PARA QUE SE CIERRE, MIENTRAS SE GUARDAN LOS VALORES EN LA BD
-    // cerrarVentanaCarga();
-    reiniciarInspeccion();
+    cerrarVentanaCarga();
+    // reiniciarInspeccion();
   });
 }

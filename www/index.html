@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!--
+  <!--
     Licensed to the Apache Software Foundation (ASF) under one
     or more contributor license agreements.  See the NOTICE file
     distributed with this work for additional information
@@ -13,147 +13,236 @@
     Unless required by applicable law or agreed to in writing,
     software distributed under the License is distributed on an
     "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
+    KIND, either express or implied.  See the License for the
     specific language governing permissions and limitations
     under the License.
--->
+  -->
 <html>
-    <head>
-        <!--
-        Customize this policy to fit your own app's needs. For more guidance, see:
-            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
-        Some notes:
-            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
-            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-                * Enable inline JS: add 'unsafe-inline' to default-src
-                montajesyprocesos.com
-        -->
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <meta http-equiv="Content-Security-Policy" content="default-src gap://ready file://* *; style-src 'self' http://* https://* 'unsafe-inline'; script-src 'self' http://* https://* 'unsafe-inline' 'unsafe-eval'">
-        <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <link rel="shortcut icon" href="images/favicon_1.ico" type="image/vnd.microsoft.icon"\>
-        <script src="js/jquery.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="estilos_css/estilos_index.css">
-        <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript" src="js/Insomnia.js"></script>
-        <script src="js/Concurrent.Thread.js"></script>
-        <script type="text/javascript" src="./js/app/index/script_index_validar_inspector.js"></script>
-        <script type="text/javascript" src="./js/app/index/script_index_cargar_bd_delservidor.js"></script>
-        <script type="text/javascript" src="./js/app/menu/script_menu_actualizar_inspecciones_ascensores.js"></script>
-        <script type="text/javascript" src="./js/app/menu/script_menu_actualizar_inspecciones_puertas.js"></script>
-        <script type="text/javascript" src="./js/app/menu/script_menu_actualizar_inspecciones_escaleras.js"></script>
-        <title>Inspección MP</title>
-    </head>
-    <body>
-        <a name="arriba"></a> 
-        <!-- DIV's de imagen de carga oculto -->
-        <div class="fbback" style="z-index: 57;"></div>
+  <head>
+    <!--
+      Customize this policy to fit your own app's needs. For more guidance, see:
+      https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+      Some notes:
+      * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+      * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+      * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+      * Enable inline JS: add 'unsafe-inline' to default-src
+      montajesyprocesos.com
+    -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Security-Policy" content="default-src gap://ready file://* *; style-src 'self' http://* https://* 'unsafe-inline'; script-src 'self' http://* https://* 'unsafe-inline' 'unsafe-eval'">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="shortcut icon" href="images/favicon_1.ico" type="image/vnd.microsoft.icon"\>
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="estilos_css/estilos_index.css">
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/Insomnia.js"></script>
+    <script src="js/Concurrent.Thread.js"></script>
+    <script type="text/javascript" src="./js/app/index/script_index_validar_inspector.js"></script>
+    <script type="text/javascript" src="./js/app/index/script_index_cargar_bd_delservidor.js"></script>
+    <script type="text/javascript" src="./js/app/index/script_index_ajustes.js"></script>
+    <script type="text/javascript" src="./js/app/menu/script_menu_actualizar_inspecciones_ascensores.js"></script>
+    <script type="text/javascript" src="./js/app/menu/script_menu_actualizar_inspecciones_puertas.js"></script>
+    <script type="text/javascript" src="./js/app/menu/script_menu_actualizar_inspecciones_escaleras.js"></script>
+    <title>Inspección MP</title>
+  </head>
+  <body>
+    <a name="arriba"></a> 
+    <!-- DIV's de imagen de carga oculto -->
+    <div class="fbback" style="z-index: 57;"></div>
 
-        <div class="container" id="fbdrag1">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="fb" style="z-index: 57;">
-                        <!--<span class="close" onclick="dragClose('fbdrag1')"></span>-->
-                        <div class="dheader">MONTAJES & PROCESOS M.P SAS</div>
-                        <div class="dcontent">
-                            <div style="text-align:center;padding-top:20px">
-                                <center>
-                                    <img src="./images/loading.gif" alt="Loading...">
-                                    <br><br>
-                                    <label style="color: black;" id="texto_carga"></label>
-                                </center>
-                            </div>
-                            <br>
-                            <!--<div style="padding-top:15px;text-align:center">
-                                <span class="buttonx" onclick="dragClose('fbdrag1')">Close</span>
-                            </div>-->
-                        </div>
-                    </div>
-                </div>
+    <div class="container" id="fbdrag1">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+          <div class="fb" style="z-index: 57;">
+            <!--<span class="close" onclick="dragClose('fbdrag1')"></span>-->
+            <div class="dheader">MONTAJES & PROCESOS M.P SAS</div>
+            <div class="dcontent">
+              <div style="text-align:center;padding-top:20px">
+                <center>
+                  <img src="./images/loading.gif" alt="Loading...">
+                  <br><br>
+                  <label style="color: black;" id="texto_carga"></label>
+                </center>
+              </div>
+              <br>
+              <!--<div style="padding-top:15px;text-align:center">
+                <span class="buttonx" onclick="dragClose('fbdrag1')">Close</span>
+              </div>-->
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="container">
+      <header>
+        <!-- Contenedor de la imagen banner y el título de la cabecera -->
+        <div class="row sombra_banner" id="top_home">
+          <div class="col-xs-12 col-sm-12 col-md-12">
+            <center>
+              <img src="./images/banner.png" class="img-responsive banner" alt="M.P SAS">
+            </center>
+          </div>
         </div>
         <br>
-        <div class="container">
-            <header>
-                <!-- Contenedor de la imagen banner y el título de la cabecera -->
-                <div class="row sombra_banner" id="top_home">
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <center>
-                            <img src="./images/banner.png" class="img-responsive banner" alt="M.P SAS">
-                        </center>
-                    </div>
-                </div>
-                <br>
-                <div class="row sombra" id="header">
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <center><label id="label_cabecera">MÓDULO PRINCIPAL</label></center>
-                    </div>
-                </div>
-            </header>            
-            <hr>
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <center>
-                        <h4><b>SELECCIONE UNA OPCIÓN<b></h4>
-                    </center>             
-                </div>
-            </div>
-            <hr>
-            <center>
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <a href="./websites/menu/index_opciones.html">
-                            <button type="button" class="btn btn-success btn-lg boton" id="boton_prueba" onclick='window.plugins.insomnia.keepAwake();'><!--keepAwake(funcion para mantener encendida la pantalla cuando se ejecute el app)-->
-                                <span class="glyphicon glyphicon-search"></span>
-                                REALIZAR INSPECCIÓN
-                            </button> 
-                        </a>
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <a href="./websites/visualizar_inspecciones.html">
-                            <button type="button" class="btn btn-success btn-lg boton" id="btn_visualizar_inspecciones" onclick="abrirVentanaCarga('Verificando...espere'); window.plugins.insomnia.keepAwake()">
-                                <span class="glyphicon glyphicon-cloud-upload"></span>
-                                CARGAR INSPECCIONES
-                            </button> 
-                        </a>
-                    </div>
-                </div> 
-                <hr>
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <a href="./websites/visualizar_fotografias.html">
-                            <button type="button" class="btn btn-success btn-lg boton" id="btn_visualizar_fotografias" onclick="abrirVentanaCarga('Verificando...espere'); window.plugins.insomnia.keepAwake()">
-                                <span class="glyphicon glyphicon-camera"></span>
-                                CARGAR<span id="text_btn_fotos_pendientes"></span> FOTOGRAFÍAS
-                            </button> 
-                        </a>
-                    </div>
-                </div>          
-            </center>
-            <br>
-            <hr>
-            <div class="container">
-                <footer>
-                    <div class="row">
-                        <div class="col-xs-12 col-md-12" style="text-align: center;">
-                            <span style="color: #428bca;"><b>Montajes & Procesos M.P SAS</b></span>
-                            <br>
-                            <span id="fecha_footer" style="color: #428bca;font-size: 0.8em;font-weight: normal;"></span>
-                        </div>
-                    </div>
-                </footer>
-            </div>
-            <hr>
-            <table><tbody id="dataTable"></tbody></table> <!--Tabla creada para probar la conexion a internet-->
+        <div class="row sombra" id="header">
+          <div class="col-xs-12 col-sm-12 col-md-12">
+            <center><label id="label_cabecera">MÓDULO PRINCIPAL</label></center>
+          </div>
         </div>
-    </body>
+      </header>            
+      <hr>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+          <center>
+            <h4><b>SELECCIONE UNA OPCIÓN<b></h4>
+          </center>             
+        </div>
+      </div>
+      <hr>
+      <center>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12">
+            <a href="./websites/menu/index_opciones.html">
+              <button type="button" class="btn btn-success btn-lg boton" id="boton_prueba" onclick='window.plugins.insomnia.keepAwake();'><!--keepAwake(funcion para mantener encendida la pantalla cuando se ejecute el app)-->
+                <span class="glyphicon glyphicon-search"></span>
+                REALIZAR INSPECCIÓN
+              </button> 
+            </a>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12">
+            <a href="./websites/visualizar_inspecciones.html">
+              <button type="button" class="btn btn-success btn-lg boton" id="btn_visualizar_inspecciones" onclick="abrirVentanaCarga('Verificando...espere'); window.plugins.insomnia.keepAwake()">
+                <span class="glyphicon glyphicon-cloud-upload"></span>
+                CARGAR INSPECCIONES
+              </button> 
+            </a>
+          </div>
+        </div> 
+        <hr>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12">
+            <a href="./websites/visualizar_fotografias.html">
+              <button type="button" class="btn btn-success btn-lg boton" id="btn_visualizar_fotografias" onclick="abrirVentanaCarga('Verificando...espere'); window.plugins.insomnia.keepAwake()">
+                <span class="glyphicon glyphicon-camera"></span>
+                CARGAR<span id="text_btn_fotos_pendientes"></span> FOTOGRAFÍAS
+              </button> 
+            </a>
+          </div>
+        </div>  
+        <hr>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12" style="text-align: left;">
+            <span class="label_actualizacion">nuevo*</span>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-12">
+            <a href="http://www.montajesyprocesos.com/inspeccion/servidor/aplicacion/Inspeccion_MP-debug.apk" target="_blank">
+              <button type="button" class="btn btn-success btn-lg boton">
+                <span class="glyphicon glyphicon-phone"></span>
+                ACTUALIZAR APLICACIÓN
+              </button>
+            </a>
+          </div>
+        </div> 
+        <!-- <hr>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12">
+            <a href="http://www.montajesyprocesos.com/inspeccion/servidor/aplicacion/Inspeccion_MP-debug1.apk" target="_blank">
+              <button type="button" class="btn btn-success btn-lg boton">
+                <span class="glyphicon glyphicon-arrow-down"></span>
+                DESCARGAR PATH
+              </button>
+            </a>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12">
+            <button type="button" class="btn btn-success btn-lg boton" onclick="insertar_consecutivo()">
+              <span class="glyphicon glyphicon-hand-up"></span>
+              AGREGAR CONSECUTIVO
+            </button>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12">
+            <button type="button" class="btn btn-success btn-lg boton" onclick="eliminar_inspeccion()">
+              <span class="glyphicon glyphicon-trash"></span>
+              ELIMINAR CONSECUTIVO
+            </button>
+          </div>
+        </div> 
+        <hr>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12">
+            <button type="button" class="btn btn-success btn-lg boton" onclick="mostrar_consecutivos()">
+              <span class="glyphicon glyphicon-list"></span>
+              LISTAR CONSECUTIVOS
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12">
+            <br>
+            <div id="lista_consecutivos">
+              
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12">
+            <button type="button" class="btn btn-success btn-lg boton" onclick="mostrar_auditoria_ascensores()">
+              <span class="glyphicon glyphicon-list"></span>
+              LISTAR AUDITORIA
+            </button>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12">
+            <button type="button" class="btn btn-success btn-lg boton" onclick="cambiar_estado_inspeccion()">
+              <span class="glyphicon glyphicon-refresh"></span>
+              CAMBIAR ESTADO INSPECCIÓN
+            </button>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12">
+            <button type="button" class="btn btn-success btn-lg boton" onclick="eliminar_datos_inspeccion()">
+              <span class="glyphicon glyphicon-trash"></span>
+              ELIMINAR DATOS INSPECCIÓN
+            </button>
+          </div>
+        </div> -->
+      </center>
+      <br>
+      <hr>
+      <div class="container">
+        <footer>
+          <div class="row">
+            <div class="col-xs-12 col-md-12" style="text-align: center;">
+              <span style="color: #428bca;"><b>Montajes & Procesos M.P SAS</b></span>
+              <br>
+              <span id="fecha_footer" class="label_footer"></span>
+              <br>
+              <span class="label_footer">Versión app 1.1.0</span>
+            </div>
+          </div>
+        </footer>
+      </div>
+      <hr>
+      <table><tbody id="dataTable"></tbody></table> <!--Tabla creada para probar la conexion a internet-->
+    </div>
+  </body>
 </html>

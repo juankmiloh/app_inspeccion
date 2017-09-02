@@ -246,6 +246,19 @@ function verificarSeleccionChecks(){
       //alert($('input:radio[name=seleval'+i+']:checked').val());
     }
   }
+  if ($('#text_consecutivo').val() == "") {
+    swal({
+      title: 'Oops...',
+      type: 'error',
+      html: 'No se cargo el consecutivo!',
+      showCloseButton: false,
+      showCancelButton: false,
+      confirmButtonText: '<i class="fa fa-thumbs-up"></i> Recargar',
+      allowOutsideClick: false
+    }).then(function () {
+      window.location.reload();
+    })
+  }
   //alert(v_chk_noseleccionados);
   return v_chk_noseleccionados;
 }

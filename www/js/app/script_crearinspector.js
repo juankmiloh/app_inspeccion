@@ -70,7 +70,7 @@ function crearDatosInspector(){
 	
 	if (cedula!="" && nombre!="" && apellido!="" && correo!="" && rol!=""){
 		if (codigo != "Procesando, espere por favor...") {
-			$.post('http://192.168.0.23:8888/inspeccion/servidor/php/crear_inspector.php',{
+			$.post('http://www.montajesyprocesos.com/inspeccion/servidor/php/crear_inspector.php',{
 				Caso:'Crear',
 				Id: codigo,
 				Usuario: nombre_usuario,

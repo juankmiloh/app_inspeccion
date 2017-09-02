@@ -42,6 +42,14 @@
 	z-index:1 !important;
 }
 
+.label_footer{
+	color: #428bca;font-size: 0.8em;font-weight: normal;
+}
+
+.label_actualizacion{
+	color: red;
+}
+
 /* 
 * ======================================================================
 * //////////////////// Estilos para ventana de cargar //////////////////
