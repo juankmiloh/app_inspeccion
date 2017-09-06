@@ -296,7 +296,7 @@ function uploadFotoAscensores(directorio,nombre_archivo,cod_usuario,codi_inspecc
     bandera_fotos_ascensores += 1;
   }
 
-  var uri = encodeURI("http://www.montajesyprocesos.com/inspeccion/servidor/php/ascensor_upload_fotografias.php");
+  var uri = encodeURI("http://192.168.0.26:8888/inspeccion/servidor/php/ascensor_upload_fotografias.php");
 
   var options = new FileUploadOptions();
   options.fileKey="file";
@@ -344,7 +344,7 @@ function fallo_eliminar_archivo(error){
 *==============================================*/
 function enviarInspeccionesSeleccionadasAscensores(cod_usuario,cod_inspeccion,cod_item,n_fotografia,json,cantidad_archivos_ascensores){
   $('#texto_carga').text('Enviando fotografía '+n_fotografia+'...Espere');
-  $.post('http://www.montajesyprocesos.com/inspeccion/servidor/php/ascensor_guardar_datos_lista_inspeccion.php',{
+  $.post('http://192.168.0.26:8888/inspeccion/servidor/php/ascensor_guardar_datos_lista_inspeccion.php',{
     json_AVFG: json
   },function(e){
     //alert("enviarInspeccionesSeleccionadasAscensores-> "+e);
@@ -520,7 +520,7 @@ function uploadFotoPuertas(directorio,nombre_archivo,cod_usuario,codi_inspeccion
     bandera_fotos_puertas += 1;
   }
 
-  var uri = encodeURI("http://www.montajesyprocesos.com/inspeccion/servidor/php/puertas_upload_fotografias.php");
+  var uri = encodeURI("http://192.168.0.26:8888/inspeccion/servidor/php/puertas_upload_fotografias.php");
 
   var options = new FileUploadOptions();
   options.fileKey="file";
@@ -568,7 +568,7 @@ function fallo_eliminar_archivo(error){
 *==============================================*/
 function enviarInspeccionesSeleccionadasPuertas(cod_usuario,cod_inspeccion,cod_item,n_fotografia,json,cantidad_archivos_puertas){
   $('#texto_carga').text('Enviando fotografía '+n_fotografia+'...Espere');
-  $.post('http://www.montajesyprocesos.com/inspeccion/servidor/php/puertas_guardar_datos_lista_inspeccion.php',{
+  $.post('http://192.168.0.26:8888/inspeccion/servidor/php/puertas_guardar_datos_lista_inspeccion.php',{
     json_PVFG: json
   },function(e){
     //alert("enviarInspeccionesSeleccionadaspuertas-> "+e);
@@ -745,7 +745,7 @@ function uploadFotoEscaleras(directorio,nombre_archivo,cod_usuario,codi_inspecci
     bandera_fotos_escaleras += 1;
   }
 
-  var uri = encodeURI("http://www.montajesyprocesos.com/inspeccion/servidor/php/escaleras_upload_fotografias.php");
+  var uri = encodeURI("http://192.168.0.26:8888/inspeccion/servidor/php/escaleras_upload_fotografias.php");
 
   var options = new FileUploadOptions();
   options.fileKey="file";
@@ -793,7 +793,7 @@ function fallo_eliminar_archivo(error){
 *==============================================*/
 function enviarInspeccionesSeleccionadasEscaleras(cod_usuario,cod_inspeccion,cod_item,n_fotografia,json,cantidad_archivos_escaleras){
   $('#texto_carga').text('Enviando fotografía '+n_fotografia+'...Espere');
-  $.post('http://www.montajesyprocesos.com/inspeccion/servidor/php/escaleras_guardar_datos_lista_inspeccion.php',{
+  $.post('http://192.168.0.26:8888/inspeccion/servidor/php/escaleras_guardar_datos_lista_inspeccion.php',{
     json_EVFG: json
   },function(e){
     //alert("enviarInspeccionesSeleccionadasescaleras-> "+e);

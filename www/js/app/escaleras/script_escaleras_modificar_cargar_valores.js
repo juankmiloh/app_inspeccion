@@ -93,9 +93,9 @@ function clickBtnF2_guardar() {
 *==============================================*/
 function dejarContenerdorBtnsFLot() {
   $('.contenedor_btns_flotantes').mouseleave(function(){
-    $('.botonF1').removeClass('botonF1_girar');
-    $('.btn_flotante').removeClass('animacionVer');
-    $('.fbback_1').hide();
+    // $('.botonF1').removeClass('botonF1_girar');
+    // $('.btn_flotante').removeClass('animacionVer');
+    // $('.fbback_1').hide();
   })
 }
 

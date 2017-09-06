@@ -36,14 +36,25 @@ function cerrarVentanaCarga(){
   $('.fbback').hide();
   $('body').css('overflow','auto');
   var consecutivo_inspeccion = $("#text_consecutivo").val();
-  message = 'Todo salio bien, se modifico la inspeccion Nº. ' + consecutivo_inspeccion;
-  if(navigator.notification && navigator.notification.alert){
-    navigator.notification.alert(message, null, "Montajes & Procesos M.P SAS", "Aceptar");
+  swal({
+    title: 'TODO SALIO BIEN!',
+    type: 'success',
+    html: 'Se modifico la inspección Nº. ' + consecutivo_inspeccion,
+    showCloseButton: false,
+    showCancelButton: false,
+    confirmButtonText: '<i class="fa fa-thumbs-up"></i> oK',
+    allowOutsideClick: false
+  }).then(function () {
     window.location='../visualizar_inspecciones.html';
-  }else{
-    alert(message);
-    window.location='../visualizar_inspecciones.html';
-  }
+  })
+  // message = 'Todo salio bien, se modifico la inspeccion Nº. ' + consecutivo_inspeccion;
+  // if(navigator.notification && navigator.notification.alert){
+  //   navigator.notification.alert(message, null, "Montajes & Procesos M.P SAS", "Aceptar");
+  //   window.location='../visualizar_inspecciones.html';
+  // }else{
+  //   alert(message);
+  //   window.location='../visualizar_inspecciones.html';
+  // }
 }
 
 /*=============================================

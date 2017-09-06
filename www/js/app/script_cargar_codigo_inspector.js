@@ -8,7 +8,7 @@ $(document).ready(function(){
 *==============================================*/
 function verificarCodUsuario(){
   $.ajax({
-    url: "http://www.montajesyprocesos.com/inspeccion/servidor/php/cargar_codigo_inspector.php",
+    url: "http://192.168.0.26:8888/inspeccion/servidor/php/cargar_codigo_inspector.php",
     type: "POST",
     dataType : "JSON",
     beforeSend: function () {

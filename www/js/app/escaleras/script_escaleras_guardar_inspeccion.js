@@ -89,6 +89,7 @@ function reiniciarInspeccion(){
   console.log(contador_items_nocumple);
   /* ACTUALIZAMOS EL CONSECUTIVO */
   actualizarConsecutivoInspeccion();
+  // guardarInspeccion_v1();
   /* REINICIAMOS ALGUNOS CONTROLES */
   $("#text_equipo").val("");
   $("#text_velocidad").val("");
@@ -224,12 +225,34 @@ function verificarSeleccionChecks(){
 *==============================================*/
 function actualizarConsecutivoInspeccion(){
   db.transaction(function (tx) {
-    var query = "SELECT MAX(k_consecutivo) AS m, n_inspeccion FROM consecutivo_escaleras";
+    var consecutivo = null;
+    var query = "SELECT COUNT(*) AS cantidad_inspecciones FROM consecutivo_escaleras";
     tx.executeSql(query, [], function (tx, resultSet) {
-      console.log('Consecutivo Inspeccion Escaleras -> '+resultSet.rows.item(0).m + '\nInspeccion Nº -> '+resultSet.rows.item(0).n_inspeccion);
-      $("#text_consecutivo").val(resultSet.rows.item(0).n_inspeccion);
-      window.sessionStorage.setItem("codigo_inspeccion", resultSet.rows.item(0).m);
-      window.sessionStorage.setItem("consecutivo_inspeccion", resultSet.rows.item(0).n_inspeccion);
+      consecutivo = (resultSet.rows.item(0).cantidad_inspecciones)-1;
+      if (consecutivo < 10) {
+        consecutivo = "0" + consecutivo;
+      }
+      if (consecutivo < 100) {
+        consecutivo = "0" + consecutivo;
+      }
+      consecutivo = String(consecutivo);
+      console.log("conecutivo_actual -> "+consecutivo);
+      db.transaction(function (tx) {
+        var query = "SELECT * FROM consecutivo_escaleras WHERE k_consecutivo = ?";
+        tx.executeSql(query, [consecutivo], function (tx, resultSet) {
+          console.log('Consecutivo Inspeccion escaleras -> '+resultSet.rows.item(0).k_consecutivo + '\nInspeccion Nº -> '+resultSet.rows.item(0).n_inspeccion);
+          $("#text_consecutivo").val(resultSet.rows.item(0).n_inspeccion);
+          window.sessionStorage.setItem("codigo_inspeccion", resultSet.rows.item(0).k_consecutivo);
+          window.sessionStorage.setItem("consecutivo_inspeccion", resultSet.rows.item(0).n_inspeccion);
+        },
+        function (tx, error) {
+          console.log('SELECT error: ' + error.message);
+        });
+      }, function (error) {
+        console.log('transaction error: ' + error.message);
+      }, function () {
+        console.log('transaction ok');
+      });
     },
     function (tx, error) {
       console.log('SELECT error: ' + error.message);
@@ -521,18 +544,18 @@ function addItemsAuditoriaInspeccionesEscaleras(cod_usuario,cod_inspeccion,conse
     estado_revision = "No";
   }
   db.transaction(function (tx) {
-      var query = "INSERT INTO auditoria_inspecciones_escaleras (k_codusuario,k_codinspeccion,o_consecutivoinsp,o_estado_envio,o_revision,v_item_nocumple,k_codusuario_modifica) VALUES (?,?,?,?,?,?,?)";
-      tx.executeSql(query, [cod_usuario,cod_inspeccion,consecutivo_insp,estado,estado_revision,revision,k_codusuario_modifica], function(tx, res) {
-        console.log("insertId: " + res.insertId + " -- probably 1");
-        console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
-      },
-      function(tx, error) {
-        console.log('INSERT error: ' + error.message);
-      });
+    var query = "INSERT INTO auditoria_inspecciones_escaleras (k_codusuario,k_codinspeccion,o_consecutivoinsp,o_estado_envio,o_revision,v_item_nocumple,k_codusuario_modifica) VALUES (?,?,?,?,?,?,?)";
+    tx.executeSql(query, [cod_usuario,cod_inspeccion,consecutivo_insp,estado,estado_revision,revision,k_codusuario_modifica], function(tx, res) {
+      console.log("insertId: " + res.insertId + " -- probably 1");
+      console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
+    },
+    function(tx, error) {
+      console.log('INSERT error: ' + error.message);
+    });
   }, function(error) {
-      console.log('transaction error: ' + error.message);
+    console.log('transaction error: ' + error.message);
   }, function() {
-      console.log('transaction ok');
+    console.log('transaction ok');
   });
 }
 
@@ -540,28 +563,30 @@ function addItemsAuditoriaInspeccionesEscaleras(cod_usuario,cod_inspeccion,conse
 * Funcion para actualizar la tabla consecutivo_escaleras
 *==============================================*/
 function addItemConsecutivoEscaleras(codigo, codigo_inspeccion) {
-    var consecutivo = parseInt(codigo_inspeccion) + 1;
-    if (consecutivo < 10) {
-        consecutivo = "0" + consecutivo;
-    }
-    if (consecutivo < 100) {
-        consecutivo = "0" + consecutivo;
-    } 
-    var inspeccion = "ESC"+codigo+"-"+consecutivo+"-"+anio;
-    db.transaction(function (tx) {
-        var query = "INSERT INTO consecutivo_escaleras (k_codusuario, k_consecutivo, n_inspeccion) VALUES (?,?,?)";
-        tx.executeSql(query, [codigo, consecutivo, inspeccion], function(tx, res) {
-          console.log("insertId: " + res.insertId + " -- probably 1");
-          console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
-        },
-        function(tx, error) {
-            console.log('INSERT error: ' + error.message);
-        });
-    }, function(error) {
-        console.log('transaction error: ' + error.message);
-    }, function() {
-        console.log('transaction ok');
-        //setTimeout('cerrarVentanaCarga()',7000); //SE LE DA UN TIEMPO PARA QUE SE CIERRE, MIENTRAS SE GUARDAN LOS VALORES EN LA BD
-        cerrarVentanaCarga();
+  var consecutivo = parseInt(codigo_inspeccion) + 1;
+  if (consecutivo < 10) {
+    consecutivo = "0" + consecutivo;
+  }
+  if (consecutivo < 100) {
+    consecutivo = "0" + consecutivo;
+  }
+  consecutivo = String(consecutivo);
+  var inspeccion = "ESC"+codigo+"-"+consecutivo+"-"+anio;
+  db.transaction(function (tx) {
+    var query = "INSERT INTO consecutivo_escaleras (k_codusuario, k_consecutivo, n_inspeccion) VALUES (?,?,?)";
+    tx.executeSql(query, [codigo, consecutivo, inspeccion], function(tx, res) {
+      console.log("insertId: " + res.insertId + " -- probably 1");
+      console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
+    },
+    function(tx, error) {
+      console.log('INSERT error: ' + error.message);
     });
+  }, function(error) {
+    console.log('transaction error: ' + error.message);
+  }, function() {
+    console.log('transaction ok');
+    //setTimeout('cerrarVentanaCarga()',7000); //SE LE DA UN TIEMPO PARA QUE SE CIERRE, MIENTRAS SE GUARDAN LOS VALORES EN LA BD
+    cerrarVentanaCarga();
+    // reiniciarInspeccion();
+  });
 }

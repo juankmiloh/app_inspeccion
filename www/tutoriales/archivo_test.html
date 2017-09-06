@@ -147,7 +147,7 @@
         var ft = new FileTransfer();
         // SERVER must be a URL that can handle the request, like
         // http://some.server.com/upload.php
-        ft.upload(fileURL, encodeURI("http://www.montajesyprocesos.com/inspeccion/cliente/php/upload.php"), success, fail, options);
+        ft.upload(fileURL, encodeURI("http://192.168.0.26:8888/inspeccion/cliente/php/upload.php"), success, fail, options);
     };*/
 
     function upload() {
@@ -173,7 +173,7 @@
             alert("No hay archivos a ser cargados! Code = " + error.code);
         }
 
-        var uri = encodeURI("http://www.montajesyprocesos.com/inspeccion/cliente/php/upload.php");
+        var uri = encodeURI("http://192.168.0.26:8888/inspeccion/cliente/php/upload.php");
 
         var options = new FileUploadOptions();
         options.fileKey="file";
