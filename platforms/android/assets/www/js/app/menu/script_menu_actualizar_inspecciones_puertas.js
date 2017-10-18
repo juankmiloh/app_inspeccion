@@ -42,7 +42,7 @@ function llenarTablaPuertasValoresMecanicos(){
   var parametros = {"inspector" : cod_inspector};
   $.ajax({
     async:  true,
-    url: "http://www.montajesyprocesos.com/inspeccion/servidor/php/json_app_puertas_valores_mecanicos.php",
+    url: "http://192.168.0.30:8888/inspeccion/servidor/php/json_app_puertas_valores_mecanicos.php",
     data: parametros,
     type: "POST",
     dataType : "JSON",
@@ -143,7 +143,7 @@ function llenarTablaPuertasValoresElementos(){
   var parametros = {"inspector" : cod_inspector};
   $.ajax({
     async:  true,
-    url: "http://www.montajesyprocesos.com/inspeccion/servidor/php/json_app_puertas_valores_elementos.php",
+    url: "http://192.168.0.30:8888/inspeccion/servidor/php/json_app_puertas_valores_elementos.php",
     data: parametros,
     type: "POST",
     dataType : "JSON",
@@ -239,7 +239,7 @@ function llenarTablaPuertasValoresFinales(){
   var parametros = {"inspector" : cod_inspector};
   $.ajax({
     async:  true,
-    url: "http://www.montajesyprocesos.com/inspeccion/servidor/php/json_app_puertas_valores_finales.php",
+    url: "http://192.168.0.30:8888/inspeccion/servidor/php/json_app_puertas_valores_finales.php",
     data: parametros,
     type: "POST",
     dataType : "JSON",
@@ -331,7 +331,7 @@ function llenarTablaPuertasValoresElectrica(){
   var parametros = {"inspector" : cod_inspector};
   $.ajax({
     async:  true,
-    url: "http://www.montajesyprocesos.com/inspeccion/servidor/php/json_app_puertas_valores_electrica.php",
+    url: "http://192.168.0.30:8888/inspeccion/servidor/php/json_app_puertas_valores_electrica.php",
     data: parametros,
     type: "POST",
     dataType : "JSON",
@@ -430,7 +430,7 @@ function llenarTablaPuertasValoresIniciales(){
   var parametros = {"inspector" : cod_inspector};
   $.ajax({
     async:  true,
-    url: "http://www.montajesyprocesos.com/inspeccion/servidor/php/json_app_puertas_valores_iniciales.php",
+    url: "http://192.168.0.30:8888/inspeccion/servidor/php/json_app_puertas_valores_iniciales.php",
     data: parametros,
     type: "POST",
     dataType : "JSON",
@@ -565,7 +565,7 @@ function llenarTablaPuertasValoresMotorizacion(){
   var parametros = {"inspector" : cod_inspector};
   $.ajax({
     async:  true,
-    url: "http://www.montajesyprocesos.com/inspeccion/servidor/php/json_app_puertas_valores_motorizacion.php",
+    url: "http://192.168.0.30:8888/inspeccion/servidor/php/json_app_puertas_valores_motorizacion.php",
     data: parametros,
     type: "POST",
     dataType : "JSON",
@@ -664,7 +664,7 @@ function llenarTablaPuertasValoresOtras(){
   var parametros = {"inspector" : cod_inspector};
   $.ajax({
     async:  true,
-    url: "http://www.montajesyprocesos.com/inspeccion/servidor/php/json_app_puertas_valores_otras.php",
+    url: "http://192.168.0.30:8888/inspeccion/servidor/php/json_app_puertas_valores_otras.php",
     data: parametros,
     type: "POST",
     dataType : "JSON",
@@ -765,7 +765,7 @@ function llenarTablaPuertasValoresManiobras(){
   var parametros = {"inspector" : cod_inspector};
   $.ajax({
     async:  true,
-    url: "http://www.montajesyprocesos.com/inspeccion/servidor/php/json_app_puertas_valores_maniobras.php",
+    url: "http://192.168.0.30:8888/inspeccion/servidor/php/json_app_puertas_valores_maniobras.php",
     data: parametros,
     type: "POST",
     dataType : "JSON",
@@ -866,7 +866,7 @@ function llenarTablaPuertasValoresPreliminar(){
   var parametros = {"inspector" : cod_inspector};
   $.ajax({
     async:  true,
-    url: "http://www.montajesyprocesos.com/inspeccion/servidor/php/json_app_puertas_valores_preliminar.php",
+    url: "http://192.168.0.30:8888/inspeccion/servidor/php/json_app_puertas_valores_preliminar.php",
     data: parametros,
     type: "POST",
     dataType : "JSON",
@@ -962,7 +962,7 @@ function llenarTablaPuertasValoresProteccion(){
   var parametros = {"inspector" : cod_inspector};
   $.ajax({
     async:  true,
-    url: "http://www.montajesyprocesos.com/inspeccion/servidor/php/json_app_puertas_valores_proteccion.php",
+    url: "http://192.168.0.30:8888/inspeccion/servidor/php/json_app_puertas_valores_proteccion.php",
     data: parametros,
     type: "POST",
     dataType : "JSON",
@@ -1060,7 +1060,7 @@ function llenarTablaPuertasValoresAuditoriaPuertas(){
   var parametros = {"inspector" : cod_inspector};
   $.ajax({
     async:  true,
-    url: "http://www.montajesyprocesos.com/inspeccion/servidor/php/json_app_puertas_valores_auditoria_puertas.php",
+    url: "http://192.168.0.30:8888/inspeccion/servidor/php/json_app_puertas_valores_auditoria_puertas.php",
     data: parametros,
     type: "POST",
     dataType : "JSON",
@@ -1170,7 +1170,7 @@ function llenarTablaPuertasValoresCliente(){
   var parametros = {"inspector" : cod_inspector};
   $.ajax({
     async:  true,
-    url: "http://www.montajesyprocesos.com/inspeccion/servidor/php/json_app_puertas_valores_cliente.php",
+    url: "http://192.168.0.30:8888/inspeccion/servidor/php/json_app_puertas_valores_cliente.php",
     data: parametros,
     type: "POST",
     dataType : "JSON",
@@ -1266,7 +1266,7 @@ function llenarTablaPuertasValoresInforme(){
   var parametros = {"inspector" : cod_inspector};
   $.ajax({
     async:  true,
-    url: "http://www.montajesyprocesos.com/inspeccion/servidor/php/json_app_puertas_valores_informe.php",
+    url: "http://192.168.0.30:8888/inspeccion/servidor/php/json_app_puertas_valores_informe.php",
     data: parametros,
     type: "POST",
     dataType : "JSON",
@@ -1359,7 +1359,7 @@ function comprobarCambiosBD_Puertas(){
   var parametros = {"inspector" : cod_inspector};
   $.ajax({
     async:  true,
-    url: "http://www.montajesyprocesos.com/inspeccion/servidor/php/json_app_puertas_comprobar_cambios_en_bd.php",
+    url: "http://192.168.0.30:8888/inspeccion/servidor/php/json_app_puertas_comprobar_cambios_en_bd.php",
     data: parametros,
     type: "POST",
     dataType : "JSON",
@@ -1405,7 +1405,7 @@ function actualizarTablaAuditoriaPuertasServidor(k_codusuario,k_codinspeccion){
   var parametros = {"inspector" : k_codusuario, "inspeccion" : k_codinspeccion, "o_actualizar_inspeccion" : 'No'};
   $.ajax({
     async:  true,
-    url: "http://www.montajesyprocesos.com/inspeccion/servidor/php/json_app_puertas_actualizar_valores_auditoria.php",
+    url: "http://192.168.0.30:8888/inspeccion/servidor/php/json_app_puertas_actualizar_valores_auditoria.php",
     data: parametros,
     type: "POST",
     dataType : "JSON",

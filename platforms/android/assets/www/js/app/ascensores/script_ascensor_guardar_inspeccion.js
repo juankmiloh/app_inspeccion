@@ -280,7 +280,7 @@ function actualizarConsecutivoInspeccion(){
         consecutivo = "0" + consecutivo;
       }
       consecutivo = String(consecutivo);
-      console.log("diana morenos -> "+consecutivo);
+      console.log("consecutivo actual -> "+consecutivo);
       db.transaction(function (tx) {
         var query = "SELECT * FROM consecutivo_ascensores WHERE k_consecutivo = ?";
         tx.executeSql(query, [consecutivo], function (tx, resultSet) {

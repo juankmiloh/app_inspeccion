@@ -44,7 +44,7 @@ function click_btn_revision(){
 			//si esta visible
 		}else{
 			//si no esta visible
-		  	$('#div_titulo').hide('fast');
+			$('#texto_seleccion').text('SELECCIONE UNA INSPECCIÓN');
 			$('#div_btn_informe_inicial').hide('fast');
 			$('#div_btn_eliminadas').hide('fast');
 			$('#div_btn_revision').hide('fast');
@@ -61,7 +61,7 @@ function click_btn_regresar(){
 	$("#btn_regresar").click(function(){
 		if( $('#div_revision').is(":visible") ){
 			//si esta visible
-			$('#div_titulo').show('fast');
+			$('#texto_seleccion').text('SELECCIONE UNA OPCIÓN');
 			$('#div_btn_informe_inicial').show('fast');
 			$('#div_btn_eliminadas').show('fast');
 			$('#div_btn_revision').show('fast');

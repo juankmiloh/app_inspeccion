@@ -30,7 +30,7 @@
       montajesyprocesos.com
     -->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta http-equiv="Content-Security-Policy" content="default-src gap://ready file://* *; style-src 'self' http://* https://* 'unsafe-inline'; script-src 'self' http://* https://* 'unsafe-inline' 'unsafe-eval'">
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src gap://ready file://* *; style-src 'self' http://* https://* 'unsafe-inline'; script-src 'self' http://* https://* 'unsafe-inline' 'unsafe-eval'"> -->
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
@@ -39,10 +39,13 @@
     <script src="js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="estilos_css/estilos_index.css">
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
+    <link rel="stylesheet" href="bower_components/angular-sidebarjs/dist/angular-sidebarjs.min.css">
+    <link rel="stylesheet" href="bower_components/angular-sidebarjs/demo/demo.css">
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript" src="js/Insomnia.js"></script>
-    <script src="js/Concurrent.Thread.js"></script>
+    <!-- <script src="js/Concurrent.Thread.js"></script> -->
     <script type="text/javascript" src="./js/app/index/script_index_validar_inspector.js"></script>
     <script type="text/javascript" src="./js/app/index/script_index_cargar_bd_delservidor.js"></script>
     <script type="text/javascript" src="./js/app/index/script_index_ajustes.js"></script>
@@ -51,7 +54,7 @@
     <script type="text/javascript" src="./js/app/menu/script_menu_actualizar_inspecciones_escaleras.js"></script>
     <title>Inspección MP</title>
   </head>
-  <body>
+  <body ng-app="procesarSstApp" ng-controller="AppCtrl" ng-cloak>
     <a name="arriba"></a> 
     <!-- DIV's de imagen de carga oculto -->
     <div class="fbback" style="z-index: 57;"></div>
@@ -80,23 +83,88 @@
       </div>
     </div>
     <br>
-    <div class="container">
-      <header>
-        <!-- Contenedor de la imagen banner y el título de la cabecera -->
-        <div class="row sombra_banner" id="top_home">
-          <div class="col-xs-12 col-sm-12 col-md-12">
-            <center>
-              <img src="./images/banner.png" class="img-responsive banner" alt="M.P SAS">
-            </center>
+    
+    <div class="container-fluid" id="contenedor_app">
+
+      <!-- <div class="md-padding" id="popupContainer" ng-cloak>
+        <p class="inset">
+          Open a dialog over the app's content. Press escape or click outside to close the dialog and
+          send focus back to the triggering button.
+        </p>
+
+        <div class="dialog-demo-content" layout="row" layout-wrap layout-margin layout-align="center">
+          <md-button class="md-primary md-raised" ng-click="showAlert($event)"   >
+            Alert Dialog
+          </md-button>
+          <md-button class="md-primary md-raised" ng-click="showConfirm($event)" >
+            Confirm Dialog
+          </md-button>
+          <md-button class="md-primary md-raised" ng-click="showPrompt($event)"  >
+            Prompt Dialog
+          </md-button>
+          <md-button class="md-primary md-raised" ng-click="showAdvanced($event)">
+            Custom Dialog
+          </md-button>
+          <md-button class="md-primary md-raised" ng-click="showTabDialog($event)" >
+            Tab Dialog
+          </md-button>
+          <md-button class="md-primary md-raised" ng-if="listPrerenderedButton" ng-click="showPrerenderedDialog($event)">
+            Pre-Rendered Dialog
+          </md-button>
+        </div>
+        <p class="footer">Note: The <b>Confirm</b> dialog does not use <code>$mdDialog.clickOutsideToClose(true)</code>.</p>
+
+        <div ng-if="status" id="status">
+          <b layout="row" layout-align="center center" class="md-padding">
+            {{status}}
+          </b>
+        </div>
+
+        <div class="dialog-demo-prerendered">
+          <md-checkbox ng-model="listPrerenderedButton">Show Pre-Rendered Dialog</md-checkbox>
+          <p class="md-caption">Sometimes you may not want to compile the dialogs template on each opening.</p>
+          <md-checkbox ng-model="customFullscreen" aria-label="Fullscreen custom dialog">Use full screen mode for custom dialog</md-checkbox>
+          <p class="md-caption">Allows the dialog to consume all available space on small devices</p>
+        </div>
+
+        <div style="visibility: hidden">
+          <div class="md-dialog-container" id="myDialog">
+            <md-dialog layout-padding>
+              <h2>Pre-Rendered Dialog</h2>
+              <p>
+                This is a pre-rendered dialog, which means that <code>$mdDialog</code> doesn't compile its
+                template on each opening.
+                <br/><br/>
+                The Dialog Element is a static element in the DOM, which is just visually hidden.<br/>
+                Once the dialog opens, we just fetch the element from the DOM into our dialog and upon close
+                we restore the element back into its old DOM position.
+              </p>
+            </md-dialog>
           </div>
         </div>
-        <br>
-        <div class="row sombra" id="header">
-          <div class="col-xs-12 col-sm-12 col-md-12">
-            <center><label id="label_cabecera">MÓDULO PRINCIPAL</label></center>
-          </div>
+      </div> -->
+
+
+
+      <!-- Contenedor de la imagen banner y el título de la cabecera -->
+      <div class="row sombra_banner" id="top_home">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+          <center>
+            <img src="./images/banner.png" class="img-responsive banner" alt="M.P SAS">
+          </center>
         </div>
-      </header>            
+      </div>
+      <br>
+
+      <div class="row sombra" style="background-color: #5cb85c;">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+          <header>
+            <div class="icon hamburger-icon" sidebarjs-toggle=""></div>
+            <h1 id="label_header" style="margin-top: 18px; font-weight: bold; font-size: 130%;">MÓDULO PRINCIPAL</h1>
+          </header>
+        </div>
+      </div>
+             
       <hr>
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -106,6 +174,28 @@
         </div>
       </div>
       <hr>
+
+      <div ng-if="status" id="status">
+          <b layout="row" layout-align="center center" class="md-padding">
+            {{status}}
+          </b>
+        </div>
+
+      <sidebarjs sidebarjs="" class="sidebarjs--left" on-close="onSidebarClose()" on-open="onSidebarOpen()">
+        <div id="menu_lateral" style="background-color: #5cb85c;"><h3 style="background-color: #5cb85c;">Title</h3></div>
+        <md-list style="overflow: scroll;">
+          <md-list-item ng-repeat="option in options" ng-click="navigateTo(option.title, $event, option)" ng-class="{active: activeOption == option}">
+            <p>{{option.title}}</p>
+          </md-list-item>
+          <md-divider></md-divider>
+          <md-subheader class="md-no-sticky">Configuración</md-subheader>
+          <md-divider></md-divider>
+          <md-list-item ng-repeat="option in options_1" ng-click="navigateTo(option.title, $event, option)" ng-class="{active: activeOption == option}">
+            <p>{{option.title}}</p>
+          </md-list-item>
+        </md-list>
+      </sidebarjs>
+    
       <center>
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12">
@@ -145,7 +235,7 @@
             <span class="label_actualizacion">nuevo*</span>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-12">
-            <a href="http://192.168.0.26:8888/inspeccion/servidor/aplicacion/Inspeccion_MP-debug.apk" target="_blank">
+            <a href="http://192.168.0.30:8888/inspeccion/servidor/aplicacion/Inspeccion_MP-debug.apk" target="_blank">
               <button type="button" class="btn btn-success btn-lg boton">
                 <span class="glyphicon glyphicon-phone"></span>
                 ACTUALIZAR APLICACIÓN
@@ -156,7 +246,7 @@
         <!-- <hr>
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12">
-            <a href="http://192.168.0.26:8888/inspeccion/servidor/aplicacion/Inspeccion_MP-debug1.apk" target="_blank">
+            <a href="http://192.168.0.30:8888/inspeccion/servidor/aplicacion/Inspeccion_MP-debug1.apk" target="_blank">
               <button type="button" class="btn btn-success btn-lg boton">
                 <span class="glyphicon glyphicon-arrow-down"></span>
                 DESCARGAR PATH
@@ -244,5 +334,23 @@
       <hr>
       <table><tbody id="dataTable"></tbody></table> <!--Tabla creada para probar la conexion a internet-->
     </div>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+    <script src="bower_components/angular-sidebarjs/dist/angular-sidebarjs.min.js"></script>
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="./js/scripts/app.js"></script>
+    <!-- <script src="./js/scripts/controllers/main.js"></script>
+    <script src="./js/scripts/controllers/about.js"></script> -->
+    <!-- endbuild -->
   </body>
 </html>

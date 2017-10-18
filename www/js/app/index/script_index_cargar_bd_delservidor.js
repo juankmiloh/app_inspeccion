@@ -1,7 +1,7 @@
 $(document).ready(function(){  
   fechaFooter();
   comprobarBD();
-  //alert("probando_script");
+  // alert("probando_script");
 });
 
 /*=============================================
@@ -26,6 +26,7 @@ function fechaFooter(){
 * Funcion que permite abrir la ventana de carga
 *==============================================*/
 function abrirVentanaCarga(texto){
+  location.href = "#arriba";
   if (texto != "") {
     $('#texto_carga').text(texto);
   }else{
@@ -644,7 +645,7 @@ function comprobarExistenciaTablaAscensorItemsCabina(){
 * Funcion para llenar la tabla ascensor_items_cabina, trayendo del servidor los items en un archivo JSON
 *==============================================*/
 function llenarTablaAscensorItemsCabina(){
-  var url="http://192.168.0.26:8888/inspeccion/servidor/php/json_ascensor_items_cabina.php";
+  var url="http://192.168.0.30:8888/inspeccion/servidor/php/json_ascensor_items_cabina.php";
   $.getJSON(url,function(ascensor_items_cabina){
     crearTablaAscensorItemsCabina();
     $.each(ascensor_items_cabina, function(i,items){
@@ -718,7 +719,7 @@ function comprobarExistenciaTablaAscensorItemsFoso(){
 * Funcion para llenar la tabla ascensor_items_foso, trayendo del servidor los items en un archivo JSON
 *==============================================*/
 function llenarTablaAscensorItemsFoso(){
-  var url="http://192.168.0.26:8888/inspeccion/servidor/php/json_ascensor_items_foso.php";
+  var url="http://192.168.0.30:8888/inspeccion/servidor/php/json_ascensor_items_foso.php";
   $.getJSON(url,function(ascensor_items_foso){
     crearTablaAscensorItemsFoso(); 
     $.each(ascensor_items_foso, function(i,items){
@@ -792,7 +793,7 @@ function comprobarExistenciaTablaAscensorItemsMaquinas(){
 * Funcion para llenar la tabla ascensor_items_maquinas, trayendo del servidor los items en un archivo JSON
 *==============================================*/
 function llenarTablaAscensorItemsMaquinas(){
-  var url="http://192.168.0.26:8888/inspeccion/servidor/php/json_ascensor_items_maquinas.php";
+  var url="http://192.168.0.30:8888/inspeccion/servidor/php/json_ascensor_items_maquinas.php";
   $.getJSON(url,function(ascensor_items_maquinas){
     crearTablaAscensorItemsMaquinas(); 
     $.each(ascensor_items_maquinas, function(i,items){
@@ -866,7 +867,7 @@ function comprobarExistenciaTablaAscensorItemsPozo(){
 * Funcion para llenar la tabla ascensor_items_pozo, trayendo del servidor los items en un archivo JSON
 *==============================================*/
 function llenarTablaAscensorItemsPozo(){
-  var url="http://192.168.0.26:8888/inspeccion/servidor/php/json_ascensor_items_pozo.php";
+  var url="http://192.168.0.30:8888/inspeccion/servidor/php/json_ascensor_items_pozo.php";
   $.getJSON(url,function(ascensor_items_pozo){
     crearTablaAscensorItemsPozo(); 
     $.each(ascensor_items_pozo, function(i,items){
@@ -940,7 +941,7 @@ function comprobarExistenciaTablaAscensorItemsPreliminar(){
 * Funcion para llenar la tabla ascensor_items_preliminar, trayendo del servidor los items en un archivo JSON
 *==============================================*/
 function llenarTablaAscensorItemsPreliminar(){
-  var url="http://192.168.0.26:8888/inspeccion/servidor/php/json_ascensor_items_preliminar.php";
+  var url="http://192.168.0.30:8888/inspeccion/servidor/php/json_ascensor_items_preliminar.php";
   $.getJSON(url,function(ascensor_items_preliminar){
     crearTablaAscensorItemsPreliminar(); 
     $.each(ascensor_items_preliminar, function(i,items){
@@ -1014,7 +1015,7 @@ function comprobarExistenciaTablaAscensorItemsProteccion(){
 * Funcion para llenar la tabla ascensor_items_proteccion, trayendo del servidor los items en un archivo JSON
 *==============================================*/
 function llenarTablaAscensorItemsProteccion(){
-  var url="http://192.168.0.26:8888/inspeccion/servidor/php/json_ascensor_items_proteccion.php";
+  var url="http://192.168.0.30:8888/inspeccion/servidor/php/json_ascensor_items_proteccion.php";
   $.getJSON(url,function(ascensor_items_proteccion){
     crearTablaAscensorItemsProteccion();
     $.each(ascensor_items_proteccion, function(i,items){
@@ -1088,7 +1089,7 @@ function comprobarExistenciaTablaAscensorItemsElementos(){
 * Funcion para llenar la tabla ascensor_items_elementos, trayendo del servidor los items en un archivo JSON
 *==============================================*/
 function llenarTablaAscensorItemsElementos(){
-  var url="http://192.168.0.26:8888/inspeccion/servidor/php/json_ascensor_items_elementos.php";
+  var url="http://192.168.0.30:8888/inspeccion/servidor/php/json_ascensor_items_elementos.php";
   $.getJSON(url,function(ascensor_items_elementos){
     crearTablaAscensorItemsElementos();
     $.each(ascensor_items_elementos, function(i,items){
@@ -1162,7 +1163,7 @@ function comprobarExistenciaTablaEscalerasItemsPreliminar(){
 * Funcion para llenar la tabla escaleras_items_preliminar, trayendo del servidor los items en un archivo JSON
 *==============================================*/
 function llenarTablaEscalerasItemsPreliminar(){
-  var url="http://192.168.0.26:8888/inspeccion/servidor/php/json_escaleras_items_preliminar.php";
+  var url="http://192.168.0.30:8888/inspeccion/servidor/php/json_escaleras_items_preliminar.php";
   $.getJSON(url,function(escaleras_items_preliminar){
     crearTablaEscalerasItemsPreliminar(); 
     $.each(escaleras_items_preliminar, function(i,items){
@@ -1236,7 +1237,7 @@ function comprobarExistenciaTablaEscalerasItemsProteccion(){
 * Funcion para llenar la tabla escaleras_items_proteccion, trayendo del servidor los items en un archivo JSON
 *==============================================*/
 function llenarTablaEscalerasItemsProteccion(){
-  var url="http://192.168.0.26:8888/inspeccion/servidor/php/json_escaleras_items_proteccion.php";
+  var url="http://192.168.0.30:8888/inspeccion/servidor/php/json_escaleras_items_proteccion.php";
   $.getJSON(url,function(escaleras_items_proteccion){
     crearTablaEscalerasItemsProteccion();
     $.each(escaleras_items_proteccion, function(i,items){
@@ -1310,7 +1311,7 @@ function comprobarExistenciaTablaEscalerasItemsElementos(){
 * Funcion para llenar la tabla escaleras_items_elementos, trayendo del servidor los items en un archivo JSON
 *==============================================*/
 function llenarTablaEscalerasItemsElementos(){
-  var url="http://192.168.0.26:8888/inspeccion/servidor/php/json_escaleras_items_elementos.php";
+  var url="http://192.168.0.30:8888/inspeccion/servidor/php/json_escaleras_items_elementos.php";
   $.getJSON(url,function(escaleras_items_elementos){
     crearTablaEscalerasItemsElementos();
     $.each(escaleras_items_elementos, function(i,items){
@@ -1384,7 +1385,7 @@ function comprobarExistenciaTablaEscalerasItemsDefectos(){
 * Funcion para llenar la tabla escaleras_items_defectos, trayendo del servidor los items en un archivo JSON
 *==============================================*/
 function llenarTablaEscalerasItemsDefectos(){
-  var url="http://192.168.0.26:8888/inspeccion/servidor/php/json_escaleras_items_defectos.php";
+  var url="http://192.168.0.30:8888/inspeccion/servidor/php/json_escaleras_items_defectos.php";
   $.getJSON(url,function(escaleras_items_defectos){
     crearTablaEscalerasItemsDefectos(); 
     $.each(escaleras_items_defectos, function(i,items){
@@ -1458,7 +1459,7 @@ function comprobarExistenciaTablaPuertasItemsPreliminar(){
 * Funcion para llenar la tabla puertas_items_preliminar, trayendo del servidor los items en un archivo JSON
 *==============================================*/
 function llenarTablaPuertasItemsPreliminar(){
-  var url="http://192.168.0.26:8888/inspeccion/servidor/php/json_puertas_items_preliminar.php";
+  var url="http://192.168.0.30:8888/inspeccion/servidor/php/json_puertas_items_preliminar.php";
   $.getJSON(url,function(puertas_items_preliminar){
     crearTablaPuertasItemsPreliminar(); 
     $.each(puertas_items_preliminar, function(i,items){
@@ -1532,7 +1533,7 @@ function comprobarExistenciaTablaPuertasItemsProteccion(){
 * Funcion para llenar la tabla puertas_items_proteccion, trayendo del servidor los items en un archivo JSON
 *==============================================*/
 function llenarTablaPuertasItemsProteccion(){
-  var url="http://192.168.0.26:8888/inspeccion/servidor/php/json_puertas_items_proteccion.php";
+  var url="http://192.168.0.30:8888/inspeccion/servidor/php/json_puertas_items_proteccion.php";
   $.getJSON(url,function(puertas_items_proteccion){
     crearTablaPuertasItemsProteccion();
     $.each(puertas_items_proteccion, function(i,items){
@@ -1606,7 +1607,7 @@ function comprobarExistenciaTablaPuertasItemsElementos(){
 * Funcion para llenar la tabla puertas_items_elementos, trayendo del servidor los items en un archivo JSON
 *==============================================*/
 function llenarTablaPuertasItemsElementos(){
-  var url="http://192.168.0.26:8888/inspeccion/servidor/php/json_puertas_items_elementos.php";
+  var url="http://192.168.0.30:8888/inspeccion/servidor/php/json_puertas_items_elementos.php";
   $.getJSON(url,function(puertas_items_elementos){
     crearTablaPuertasItemsElementos();
     $.each(puertas_items_elementos, function(i,items){
@@ -1680,7 +1681,7 @@ function comprobarExistenciaTablaPuertasItemsMecanicos(){
 * Funcion para llenar la tabla puertas_items_mecanicos, trayendo del servidor los items en un archivo JSON
 *==============================================*/
 function llenarTablaPuertasItemsMecanicos(){
-  var url="http://192.168.0.26:8888/inspeccion/servidor/php/json_puertas_items_mecanicos.php";
+  var url="http://192.168.0.30:8888/inspeccion/servidor/php/json_puertas_items_mecanicos.php";
   $.getJSON(url,function(puertas_items_mecanicos){
     crearTablaPuertasItemsMecanicos(); 
     $.each(puertas_items_mecanicos, function(i,items){
@@ -1754,7 +1755,7 @@ function comprobarExistenciaTablaPuertasItemsElectrica(){
 * Funcion para llenar la tabla puertas_items_electrica, trayendo del servidor los items en un archivo JSON
 *==============================================*/
 function llenarTablaPuertasItemsElectrica(){
-  var url="http://192.168.0.26:8888/inspeccion/servidor/php/json_puertas_items_electrica.php";
+  var url="http://192.168.0.30:8888/inspeccion/servidor/php/json_puertas_items_electrica.php";
   $.getJSON(url,function(puertas_items_electrica){
     crearTablaPuertasItemsElectrica(); 
     $.each(puertas_items_electrica, function(i,items){
@@ -1828,7 +1829,7 @@ function comprobarExistenciaTablaPuertasItemsManiobras(){
 * Funcion para llenar la tabla puertas_items_maniobras, trayendo del servidor los items en un archivo JSON
 *==============================================*/
 function llenarTablaPuertasItemsManiobras(){
-  var url="http://192.168.0.26:8888/inspeccion/servidor/php/json_puertas_items_maniobras.php";
+  var url="http://192.168.0.30:8888/inspeccion/servidor/php/json_puertas_items_maniobras.php";
   $.getJSON(url,function(puertas_items_maniobras){
     crearTablaPuertasItemsManiobras(); 
     $.each(puertas_items_maniobras, function(i,items){
@@ -1902,7 +1903,7 @@ function comprobarExistenciaTablaPuertasItemsMotorizacion(){
 * Funcion para llenar la tabla puertas_items_motorizacion, trayendo del servidor los items en un archivo JSON
 *==============================================*/
 function llenarTablaPuertasItemsMotorizacion(){
-  var url="http://192.168.0.26:8888/inspeccion/servidor/php/json_puertas_items_motorizacion.php";
+  var url="http://192.168.0.30:8888/inspeccion/servidor/php/json_puertas_items_motorizacion.php";
   $.getJSON(url,function(puertas_items_motorizacion){
     crearTablaPuertasItemsMotorizacion(); 
     $.each(puertas_items_motorizacion, function(i,items){
@@ -1976,7 +1977,7 @@ function comprobarExistenciaTablaPuertasItemsOtras(){
 * Funcion para llenar la tabla puertas_items_otras, trayendo del servidor los items en un archivo JSON
 *==============================================*/
 function llenarTablaPuertasItemsOtras(){
-  var url="http://192.168.0.26:8888/inspeccion/servidor/php/json_puertas_items_otras.php";
+  var url="http://192.168.0.30:8888/inspeccion/servidor/php/json_puertas_items_otras.php";
   $.getJSON(url,function(puertas_items_otras){
     crearTablaPuertasItemsOtras();
     $.each(puertas_items_otras, function(i,items){

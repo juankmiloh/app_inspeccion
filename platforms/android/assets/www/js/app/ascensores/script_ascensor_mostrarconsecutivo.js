@@ -316,6 +316,7 @@ function mostrarFecha(){
 /*=============================================
 * Funcion que carga el ultimo consecutivo de inspeccion para mostrarlo en el campo del formulario
 * Se guardan en variables de sesion los valores del codigo y consecutivo de inspeccion
+* Se hizo una actualizacion donde se cuenta el numero de filas insertadas y se busca este numero en la tabla
 *==============================================*/
 function mostrarConsecutivoInspeccion(){
   db.transaction(function (tx) {

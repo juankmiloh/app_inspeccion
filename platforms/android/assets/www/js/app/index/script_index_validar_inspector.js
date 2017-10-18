@@ -10,6 +10,7 @@ $(document).ready(function(){
   limpiarVariablesSession();
   obtenerCantidadFotosPendientesAscensores();
   parpadearLabelBlanco();
+  bloquearScroll();
 });
 
 /*=============================================
@@ -25,6 +26,7 @@ var cantidad_fotos_pendientes = 0;
 * FUNCION PARA DETECTAR SI SE PRESIONA EL BOTON ATRAS DEL DISPOSITIVO
 *==============================================*/
 document.addEventListener("backbutton", onBackKeyDown, false);
+// document.addEventListener("touchmove", onBackKeyDown, false);
 /*=============================================
 * FUNCION PARA DENEGAR EL USO DEL BOTON ATRAS DEL DISPOSITIVO
 * SE MUESTRA UNA ALERTA DE ADVERTENCIA
@@ -36,6 +38,19 @@ function onBackKeyDown(e) {
   }else{
     alert("Advertencia:\n\n<<Acción no permitida>>");
   }
+}
+
+function bloquearScroll() {
+  // if( $('#menu_lateral').is(":visible") ){ //esta visible
+  //   //si esta visible
+  //   // document.body.addEventListener('touchmove', function(e) {
+  //   //   e.preventDefault();
+  //   // }, false);
+  //   alert("visible!");
+  // }else{
+  //   //si no esta visible
+  //   alert("no esta visible!");
+  // }
 }
 
 /*=============================================

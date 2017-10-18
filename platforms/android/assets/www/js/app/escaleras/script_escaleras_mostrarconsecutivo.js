@@ -286,15 +286,38 @@ function mostrarFecha(){
 /*=============================================
 * Funcion que carga el ultimo consecutivo de inspeccion para mostrarlo en el campo del formulario
 * Se guardan en variables de sesion los valores del codigo y consecutivo de inspeccion
+* Se hizo una actualizacion donde se cuenta el numero de filas insertadas y se busca este numero en la tabla
 *==============================================*/
 function mostrarConsecutivoInspeccion(){
   db.transaction(function (tx) {
-    var query = "SELECT MAX(k_consecutivo) AS m, n_inspeccion FROM consecutivo_escaleras";
+    var consecutivo = null;
+    var query = "SELECT COUNT(*) AS cantidad_inspecciones FROM consecutivo_escaleras";
     tx.executeSql(query, [], function (tx, resultSet) {
-      console.log('Consecutivo Inspeccion escaleras -> '+resultSet.rows.item(0).m + '\nInspeccion Nº -> '+resultSet.rows.item(0).n_inspeccion);
-      $("#text_consecutivo").val(resultSet.rows.item(0).n_inspeccion);
-      window.sessionStorage.setItem("codigo_inspeccion", resultSet.rows.item(0).m);
-      window.sessionStorage.setItem("consecutivo_inspeccion", resultSet.rows.item(0).n_inspeccion);
+      consecutivo = (resultSet.rows.item(0).cantidad_inspecciones)-1;
+      if (consecutivo < 10) {
+        consecutivo = "0" + consecutivo;
+      }
+      if (consecutivo < 100) {
+        consecutivo = "0" + consecutivo;
+      }
+      consecutivo = String(consecutivo);
+      console.log("conecutivo_actual -> "+consecutivo);
+      db.transaction(function (tx) {
+        var query = "SELECT * FROM consecutivo_escaleras WHERE k_consecutivo = ?";
+        tx.executeSql(query, [consecutivo], function (tx, resultSet) {
+          console.log('Consecutivo Inspeccion escaleras -> '+resultSet.rows.item(0).k_consecutivo + '\nInspeccion Nº -> '+resultSet.rows.item(0).n_inspeccion);
+          $("#text_consecutivo").val(resultSet.rows.item(0).n_inspeccion);
+          window.sessionStorage.setItem("codigo_inspeccion", resultSet.rows.item(0).k_consecutivo);
+          window.sessionStorage.setItem("consecutivo_inspeccion", resultSet.rows.item(0).n_inspeccion);
+        },
+        function (tx, error) {
+          console.log('SELECT error: ' + error.message);
+        });
+      }, function (error) {
+        console.log('transaction error: ' + error.message);
+      }, function () {
+        console.log('transaction ok');
+      });
     },
     function (tx, error) {
       console.log('SELECT error: ' + error.message);

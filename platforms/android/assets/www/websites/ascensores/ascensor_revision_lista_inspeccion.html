@@ -13,6 +13,8 @@
     <script src="../../js/jquery.js"></script>
     <script type="text/javascript" charset="utf-8" src="../../cordova.js"></script>
     <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/sweetalert2/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="../../css/sweetalert2.min.css">
     <script type="text/javascript" src="../../js/app/ascensores/script_ascensor_revision_cargar_items.js"></script>
     <script type="text/javascript" src="../../js/app/ascensores/script_ascensor_revision_cargar_valores.js"></script>
     <script type="text/javascript" src="../../js/app/ascensores/script_ascensor_revision_guardar_inspeccion.js"></script>
@@ -110,18 +112,6 @@
                     <input type="date" class="form-control" id="text_fecha" name="text_fecha" placeholder="Fecha de Inspección">
                 </div>
                 <div class="col-xs-12 col-md-4">
-                    <div class="row">
-                        <div class="col-xs-12 col-md-6">
-                            <label for="text_codigo">CÓDIGO</label>
-                            <input type="text" value="IN-R-08" class="form-control" id="text_codigo" name="text_codigo" readonly>
-                        </div>
-                        <div class="col-xs-12 col-md-6">
-                            <label for="text_consecutivo">CONSECUTIVO</label>
-                            <input type="text" class="form-control" id="text_consecutivo" name="text_consecutivo" readonly>
-                        </div>
-                    </div>  
-                </div>
-                <div class="col-xs-12 col-md-4">
                     <label for="text_ultimo_mto">FECHA ÚLTIMO MANTENIMIENTO</label>
                     <input type="date" class="form-control" id="text_ultimo_mto" name="text_ultimo_mto" placeholder="Seleccione una fecha">
                 </div>
@@ -132,6 +122,18 @@
                 <div class="col-xs-12 col-md-4">
                     <label for="text_ultima_inspec">FECHA ÚLTIMA INSPECCIÓN</label>
                     <input type="date" class="form-control" id="text_ultima_inspec" name="text_ultima_inspec">
+                </div>
+                <div class="col-xs-12 col-md-4">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6">
+                            <label for="text_codigo">CÓDIGO</label>
+                            <input type="text" value="IN-R-08" class="form-control" id="text_codigo" name="text_codigo" readonly>
+                        </div>
+                        <div class="col-xs-12 col-md-6">
+                            <label for="text_consecutivo">CONSECUTIVO</label>
+                            <input type="text" class="form-control" id="text_consecutivo" name="text_consecutivo" readonly>
+                        </div>
+                    </div>  
                 </div>
             </div>
             <hr>
@@ -490,10 +492,10 @@
                     <span class="texto_boton_flotante">Guardar</span>
                     <span class="glyphicon glyphicon-floppy-disk img_boton_flotante"></span>
                 </button>
-                <a href="../../index.html">
+                <a href="../menu/index_ascensor.html">
                     <button type="button" class="btn_flotante botonF3">
-                        <span class="texto_boton_flotante">Principal</span>
-                        <span class="glyphicon glyphicon-home img_boton_flotante"></span>
+                        <span class="texto_boton_flotante">Regresar</span>
+                        <span class="glyphicon glyphicon-arrow-left img_boton_flotante"></span>
                     </button>
                 </a>
             </div>
