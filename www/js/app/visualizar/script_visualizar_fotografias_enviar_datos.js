@@ -1,5 +1,5 @@
 $(document).ready(function($){
-  //alert("script funcionando!");
+  alert("script funcionando!");
 });
 
 var bandera = 0;
