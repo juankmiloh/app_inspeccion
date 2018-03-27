@@ -42,7 +42,7 @@ function llenarTablaEscalerasValoresElementos(){
   var parametros = {"inspector" : cod_inspector};
   $.ajax({
     async:  true,
-    url: "http://192.168.0.30:8888/inspeccion/servidor/php/json_app_escaleras_valores_elementos.php",
+    url: "http://192.168.0.26:8888/inspeccion/servidor/php/json_app_escaleras_valores_elementos.php",
     data: parametros,
     type: "POST",
     dataType : "JSON",
@@ -138,7 +138,7 @@ function llenarTablaEscalerasValoresFinales(){
   var parametros = {"inspector" : cod_inspector};
   $.ajax({
     async:  true,
-    url: "http://192.168.0.30:8888/inspeccion/servidor/php/json_app_escaleras_valores_finales.php",
+    url: "http://192.168.0.26:8888/inspeccion/servidor/php/json_app_escaleras_valores_finales.php",
     data: parametros,
     type: "POST",
     dataType : "JSON",
@@ -230,7 +230,7 @@ function llenarTablaEscalerasValoresIniciales(){
   var parametros = {"inspector" : cod_inspector};
   $.ajax({
     async:  true,
-    url: "http://192.168.0.30:8888/inspeccion/servidor/php/json_app_escaleras_valores_iniciales.php",
+    url: "http://192.168.0.26:8888/inspeccion/servidor/php/json_app_escaleras_valores_iniciales.php",
     data: parametros,
     type: "POST",
     dataType : "JSON",
@@ -351,7 +351,7 @@ function llenarTablaEscalerasValoresDefectos(){
   var parametros = {"inspector" : cod_inspector};
   $.ajax({
     async:  true,
-    url: "http://192.168.0.30:8888/inspeccion/servidor/php/json_app_escaleras_valores_defectos.php",
+    url: "http://192.168.0.26:8888/inspeccion/servidor/php/json_app_escaleras_valores_defectos.php",
     data: parametros,
     type: "POST",
     dataType : "JSON",
@@ -452,7 +452,7 @@ function llenarTablaEscalerasValoresPreliminar(){
   var parametros = {"inspector" : cod_inspector};
   $.ajax({
     async:  true,
-    url: "http://192.168.0.30:8888/inspeccion/servidor/php/json_app_escaleras_valores_preliminar.php",
+    url: "http://192.168.0.26:8888/inspeccion/servidor/php/json_app_escaleras_valores_preliminar.php",
     data: parametros,
     type: "POST",
     dataType : "JSON",
@@ -548,7 +548,7 @@ function llenarTablaEscalerasValoresProteccion(){
   var parametros = {"inspector" : cod_inspector};
   $.ajax({
     async:  true,
-    url: "http://192.168.0.30:8888/inspeccion/servidor/php/json_app_escaleras_valores_proteccion.php",
+    url: "http://192.168.0.26:8888/inspeccion/servidor/php/json_app_escaleras_valores_proteccion.php",
     data: parametros,
     type: "POST",
     dataType : "JSON",
@@ -646,7 +646,7 @@ function llenarTablaEscalerasValoresAuditoriaEscaleras(){
   var parametros = {"inspector" : cod_inspector};
   $.ajax({
     async:  true,
-    url: "http://192.168.0.30:8888/inspeccion/servidor/php/json_app_escaleras_valores_auditoria_escaleras.php",
+    url: "http://192.168.0.26:8888/inspeccion/servidor/php/json_app_escaleras_valores_auditoria_escaleras.php",
     data: parametros,
     type: "POST",
     dataType : "JSON",
@@ -756,7 +756,7 @@ function llenarTablaEscalerasValoresCliente(){
   var parametros = {"inspector" : cod_inspector};
   $.ajax({
     async:  true,
-    url: "http://192.168.0.30:8888/inspeccion/servidor/php/json_app_escaleras_valores_cliente.php",
+    url: "http://192.168.0.26:8888/inspeccion/servidor/php/json_app_escaleras_valores_cliente.php",
     data: parametros,
     type: "POST",
     dataType : "JSON",
@@ -852,7 +852,7 @@ function llenarTablaEscalerasValoresInforme(){
   var parametros = {"inspector" : cod_inspector};
   $.ajax({
     async:  true,
-    url: "http://192.168.0.30:8888/inspeccion/servidor/php/json_app_escaleras_valores_informe.php",
+    url: "http://192.168.0.26:8888/inspeccion/servidor/php/json_app_escaleras_valores_informe.php",
     data: parametros,
     type: "POST",
     dataType : "JSON",
@@ -945,7 +945,7 @@ function comprobarCambiosBD_escaleras(){
   var parametros = {"inspector" : cod_inspector};
   $.ajax({
     async:  true,
-    url: "http://192.168.0.30:8888/inspeccion/servidor/php/json_app_escaleras_comprobar_cambios_en_bd.php",
+    url: "http://192.168.0.26:8888/inspeccion/servidor/php/json_app_escaleras_comprobar_cambios_en_bd.php",
     data: parametros,
     type: "POST",
     dataType : "JSON",
@@ -991,7 +991,7 @@ function actualizarTablaAuditoriaEscalerasServidor(k_codusuario,k_codinspeccion)
   var parametros = {"inspector" : k_codusuario, "inspeccion" : k_codinspeccion, "o_actualizar_inspeccion" : 'No'};
   $.ajax({
     async:  true,
-    url: "http://192.168.0.30:8888/inspeccion/servidor/php/json_app_escaleras_actualizar_valores_auditoria.php",
+    url: "http://192.168.0.26:8888/inspeccion/servidor/php/json_app_escaleras_actualizar_valores_auditoria.php",
     data: parametros,
     type: "POST",
     dataType : "JSON",
