@@ -8,11 +8,10 @@
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../estilos_css/estilos_visualizar_fotografias.css"/>
     <script src="../js/jquery.js"></script>
-    <script type="text/javascript" charset="utf-8" src="../cordova.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/sweetalert2/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="../css/sweetalert2.min.css">
-    <script src="../js/Concurrent.Thread.js"></script>
+    <!-- <script src="../js/Concurrent.Thread.js"></script> -->
     <script type="text/javascript" src="../js/app/visualizar/script_visualizar_fotografias.js"/></script>
     <script type="text/javascript" src="../js/app/visualizar/script_visualizar_fotografias_enviar_datos.js"/></script>
 </head>
@@ -32,7 +31,8 @@
                             <center>
                                 <img src="../images/loading.gif" alt="Loading...">
                                 <br><br>
-                                <label id="texto_carga" style="color: black;"></label>
+                                <label id="texto_carga" style="color: black;"></label><br>
+                                <div id="mensaje">Iniciando carga...</div>
                             </center>
                         </div>
                         <br>
@@ -193,5 +193,6 @@
         <hr>
         <table><tbody id="dataTable"></tbody></table> <!--Tabla creada para probar la conexion a internet-->
     </div>
+    <script type="text/javascript" src="../cordova.js"></script>
 </body>
 </html>

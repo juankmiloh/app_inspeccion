@@ -3,10 +3,11 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>VISUALIZAR / INSPECCIONES</title>
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="shortcut icon" href="../images/favicon_1.ico" type="image/vnd.microsoft.icon">
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../estilos_css/estilos_visualizar_inspecciones.css"/>
+    <link rel="stylesheet" href="../estilos_css/signature-pad.css">
     <script src="../js/jquery.js"></script>
     <script type="text/javascript" charset="utf-8" src="../cordova.js"></script>
     <script src="../js/bootstrap.min.js"></script>
@@ -16,6 +17,17 @@
     <script type="text/javascript" src="../js/app/visualizar/script_visualizar_inspecciones.js"/></script>
     <script type="text/javascript" src="../js/app/visualizar/script_visualizar_guardar_enviar_datos.js"/></script>
     <script type="text/javascript" src="../js/app/visualizar/script_visualizar_btnGrabadora.js"/></script>
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-39365077-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
 </head>
 <body>
     <a name="arriba"></a> <!--ESTO SE PONE PARA CUANDO SE GUARDE, SE DEVUELVA A LA PARTE DE ARRIBA DE LA PAGINA-->
@@ -256,6 +268,33 @@
                     </div>
                 </div>
             </div>
+
+            <div id="signature-pad" class="signature-pad">
+                <div class="signature-pad--body">
+                  <canvas></canvas>
+                </div>
+                <div class="signature-pad--footer">
+                  <div class="description">Sign above</div>
+
+                  <div class="signature-pad--actions">
+                    <div>
+                      <button type="button" class="button clear" data-action="clear">Clear</button>
+                      <button type="button" class="button" data-action="change-color">Change color</button>
+                      <button type="button" class="button" data-action="undo">Undo</button>
+
+                    </div>
+                    <div>
+                      <button type="button" class="button save" data-action="save-png">Save as PNG</button>
+                      <button type="button" class="button save" data-action="save-jpg">Save as JPG</button>
+                      <button type="button" class="button save" data-action="save-svg">Save as SVG</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <script src="../js/app/visualizar/signature_pad.js"></script>
+              <script src="../js/app/visualizar/app.js"></script>
+
 
             <br>
             <div class="divisionItems sombra"></div>

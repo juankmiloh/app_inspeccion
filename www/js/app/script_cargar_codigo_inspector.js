@@ -7,20 +7,11 @@ $(document).ready(function(){
 * el codigo capturado sera el asignado al inspector del dispositivo
 *==============================================*/
 function verificarCodUsuario(){
-  $.ajax({
-    url: "http://192.168.0.26:8888/inspeccion/servidor/php/cargar_codigo_inspector.php",
-    type: "POST",
-    dataType : "JSON",
-    beforeSend: function () {
-      $('#txt_codigo').val("Procesando, espere por favor...");
-      $('#txt_nombre_usuario').val("Procesando, espere por favor...");
-    },
-    success: function(response){ //response recibe los datos en formato JSON
-      $.each(response, function(i,items){
-        $('#txt_codigo').val(items.k_codusuario);
-        $('#txt_nombre_usuario').val("Inspector_"+items.k_codusuario);
-      });
-    }
+  $.post("http://www.montajesyprocesos.com/inspeccion/servidor/php/cargar_codigo_inspector.php", function(data, status){
+    var obj = JSON.parse(data);
+    alert(obj[0].k_codusuario);
+    $('#txt_codigo').val(obj[0].k_codusuario);
+    $('#txt_nombre_usuario').val("Inspector_"+obj[0].k_codusuario);
   });
 }
 

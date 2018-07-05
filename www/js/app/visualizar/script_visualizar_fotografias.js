@@ -11,9 +11,14 @@ $(document).ready(function($){
   seleccionarTodasInspeccionesAscensores();
   seleccionarTodasInspeccionesPuertas();
   seleccionarTodasInspeccionesEscaleras();
-  Concurrent.Thread.create(obtenerCantidadFotosPendientesAscensores); //Ejecutamos de manera concurrente la funcion de cargar los datos de las fotos de ascensores
-  Concurrent.Thread.create(obtenerCantidadFotosPendientesPuertas); //Ejecutamos de manera concurrente la funcion de cargar los datos de las fotos de puertas
-  Concurrent.Thread.create(obtenerCantidadFotosPendientesEscaleras); //Ejecutamos de manera concurrente la funcion de cargar los datos de las fotos de escaleras
+
+  obtenerCantidadFotosPendientesAscensores();
+  obtenerCantidadFotosPendientesPuertas();
+  obtenerCantidadFotosPendientesEscaleras();
+  
+  // Concurrent.Thread.create(obtenerCantidadFotosPendientesAscensores); //Ejecutamos de manera concurrente la funcion de cargar los datos de las fotos de ascensores
+  // Concurrent.Thread.create(obtenerCantidadFotosPendientesPuertas); //Ejecutamos de manera concurrente la funcion de cargar los datos de las fotos de puertas
+  // Concurrent.Thread.create(obtenerCantidadFotosPendientesEscaleras); //Ejecutamos de manera concurrente la funcion de cargar los datos de las fotos de escaleras
   //verificarCantidadFotografias();
   setTimeout('verificarCantidadFotografias()',1500);
   fechaFooter();

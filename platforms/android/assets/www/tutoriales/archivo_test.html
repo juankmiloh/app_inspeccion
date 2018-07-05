@@ -19,12 +19,10 @@
 -->
 <html>
   <head>
-    <meta http-equiv="Content-Security-Policy" content="default-src gap://ready file://* *; style-src 'self' http://* https://* 'unsafe-inline'; script-src 'self' http://* https://* 'unsafe-inline' 'unsafe-eval'">
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="estilos_css/estilos_index.css">
-    <script type="text/javascript" src="./js/subir_archivos_servidor.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../estilos_css/estilos_index.css">
     <title>Capture Photo</title>
 
     <script type="text/javascript" charset="utf-8">
@@ -147,8 +145,45 @@
         var ft = new FileTransfer();
         // SERVER must be a URL that can handle the request, like
         // http://some.server.com/upload.php
-        ft.upload(fileURL, encodeURI("http://192.168.0.26:8888/inspeccion/cliente/php/upload.php"), success, fail, options);
+        ft.upload(fileURL, encodeURI("http://192.168.0.28:8888/inspeccion/cliente/php/upload.php"), success, fail, options);
     };*/
+
+    function probando_upload() {
+        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
+            console.log('file system open: ' + fs.name);
+            fs.root.getFile('bot.png', { create: true, exclusive: false }, function (fileEntry) {
+                fileEntry.file(function (file) {
+                    //var archivo = JSON.stringify(file);
+                    var archivo = file.name;
+                    $.ajax({
+                        beforeSend: function(xhr){
+                            $("#mensaje").html("Enviando...");
+                        },
+                        type: 'POST',
+                        url: 'http://www.montajesyprocesos.com/inspeccion/servidor/php/upload.php?archivo='+archivo,
+                        processData: false,
+                        data: file
+                    }).done(function(res){
+                        $("#mensaje").html("Respuesta: " + res);
+                    });
+
+                }, function (err) { alert('error getting fileentry file!' + err); });
+            }, function (err) { alert('error getting file! ' + err); });
+        }, function (err) { alert('error getting persistent fs! ' + err); });
+    }
+
+    function upload3() {
+        var file = $('input[type="file"]')[0].files[0];
+        console.log(file);
+        $.ajax({
+            type: 'POST',
+            url: 'http://www.montajesyprocesos.com/inspeccion/servidor/php/upload.php?archivo='+file.name,
+            processData: false,
+            data: file
+        }).done(function(res){
+            $("#mensaje").html("Respuesta: " + res);
+        });
+    }
 
     function upload() {
         // !! Assumes variable fileURL contains a valid URL to a text file on the device,
@@ -161,11 +196,13 @@
         //alert("ruta -> "+fileURL);
 
         var win = function (r) {
-            console.log("Successful upload...");
-            console.log("Code = " + r.responseCode);
-            //alert(r.fullPath + " (content uploaded to server)");
-            alert("content uploaded to server");
-            borrarArchivo(directorio, nombreDeArchivo);
+            // console.log("Successful upload...");
+            // console.log("Code = " + r.responseCode);
+            // alert("content uploaded to server");
+            // borrarArchivo(directorio, nombreDeArchivo);
+
+            // alert("Response = " + r.response);
+            $("#mensaje").html("Response: " + r.response);
         }
 
         var fail = function (error) {
@@ -173,14 +210,25 @@
             alert("No hay archivos a ser cargados! Code = " + error.code);
         }
 
-        var uri = encodeURI("http://192.168.0.26:8888/inspeccion/cliente/php/upload.php");
+        var uri = encodeURI("http://www.montajesyprocesos.com/inspeccion/servidor/php/upload.php");
 
         var options = new FileUploadOptions();
         options.fileKey="file";
         options.fileName=fileURL.substr(fileURL.lastIndexOf('/')+1);
         options.mimeType="text/plain";
 
-        var headers={'headerParam':'headerValue'};
+        var headers={
+                        'Authorization': 'Basic dGVzdHVzZXJuYW1lOnRlc3RwYXNzd29yZA==',
+                        'Cache-Control' : 'max-age=0',
+                        'Upgrade-Insecure-Requests' : '1',
+                        'Origin' : 'http://www.montajesyprocesos.com',
+                        'Accept' : 'text/html, /; q=0.01',
+                        'Origin' : 'file://',
+                        'User-Agent' : 'Mozilla/5.0 (Linux; Android 8.0.0; SM-A520F Build/R16NW; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/67.0.3396.87 Mobile Safari/537.36',
+                        'Accept-Encoding' : 'gzip, deflate',
+                        'Accept-Language' : 'es-US,en-US;q=0.9',
+                        'X-Requested-With' : 'com.juankmilo.prueba_v1'
+                    };
 
         options.headers = headers;
 
@@ -238,20 +286,67 @@
         alert("El archivo no existe! Code = " + error.code);
     }
 
+    function upload_final() {
+        var directorio = "file:///sdcard/inspeccion_mp/ascensores/inspecciones";
+        var nombreDeArchivo = "foto.jpg";
+
+        window.resolveLocalFileSystemURL(directorio, function(dir) {
+            dir.getFile(nombreDeArchivo, {create:false}, function(fileEntry) {
+                fileEntry.file(function (file) {
+                    var reader = new FileReader();
+
+                    reader.onloadend = function() {
+                        //alert(JSON.stringify(fileEntry));
+                        //alert(JSON.stringify(file.localURL));
+                        // var elem = document.getElementById('imageFile');
+                        // elem.src = fileEntry.toURL();
+                        //alert("Successful file read: " + this.result);
+                        //alert(fileEntry.fullPath + ": " + this.result);
+                        var archivo = file.name;
+                        var blob = new Blob([new Uint8Array(this.result)], { type: "image/jpg" });
+                        $.ajax({
+                            beforeSend: function(){
+                                $("#mensaje").html("Enviando archivo desde SUPER...");
+                            },
+                            type: 'POST',
+                            url: 'http://www.montajesyprocesos.com/inspeccion/servidor/php/upload.php?archivo='+archivo,
+                            processData: false,
+                            data: blob
+                        }).done(function(res){
+                            $("#mensaje").html("Respuesta: " + res);
+                        });
+
+                    };
+
+                    reader.readAsArrayBuffer(file);
+
+                }, fallo);
+            }, fallo);
+        }, fallo);
+    }
+
     </script>
   </head>
   <body>
     <br><br><br>
     <center>
+        <a href="subir_archivo.html">
+            <button type="button" style="width:260px;height:160px;">
+                subir archivo
+            </button> 
+        </a><br><br>
         <button onclick="crearArchivo();" style="width:260px;height:160px;">Create file</button><br><br>
         <a href="leer.html">
             <button type="button" style="width:260px;height:160px;">
                 Read file
             </button> 
         </a><br><br>
+        <img id="imageFile">
+        <div id="mensaje">hola</div><br>
+        <button onclick="upload_final();" style="width:260px;height:160px;">probando upload</button><br><br>
         <button onclick="upload();" style="width:260px;height:160px;">Upload file</button><br><br>
         <button onclick="borrarArchivo_v1();" style="width:260px;height:160px;">Drop file</button><br><br>
     </center>    
-    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="../cordova.js"></script>
   </body>
 </html>

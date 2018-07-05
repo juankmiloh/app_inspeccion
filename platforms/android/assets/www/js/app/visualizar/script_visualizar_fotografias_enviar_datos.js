@@ -271,7 +271,7 @@ function enviarArchivosFotograficosAscensores(){
 /*=============================================
 * Funcion que permite subir los archivos fotográficos al servidor
 *==============================================*/
-function uploadFotoAscensores(directorio,nombre_archivo,cod_usuario,codi_inspeccion,cod_item,cantidad_archivos_ascensores,json) {
+function uploadFotoAscensores_fileTransfer(directorio,nombre_archivo,cod_usuario,codi_inspeccion,cod_item,cantidad_archivos_ascensores,json) {
   //var directorio = "file:///storage/emulated/0"+directorio;
   var directorio = "file:///sdcard"+directorio;
   var nombreDeArchivo = nombre_archivo;
@@ -296,7 +296,7 @@ function uploadFotoAscensores(directorio,nombre_archivo,cod_usuario,codi_inspecc
     bandera_fotos_ascensores += 1;
   }
 
-  var uri = encodeURI("http://192.168.0.26:8888/inspeccion/servidor/php/ascensor_upload_fotografias.php");
+  var uri = encodeURI("http://www.montajesyprocesos.com/inspeccion/servidor/php/ascensor_upload_fotografias.php");
 
   var options = new FileUploadOptions();
   options.fileKey="file";
@@ -317,6 +317,53 @@ function uploadFotoAscensores(directorio,nombre_archivo,cod_usuario,codi_inspecc
   };
   ft.upload(fileURL, uri, win, fail, options);
 };
+
+function uploadFotoAscensores(directorio,nombre_archivo,cod_usuario,codi_inspeccion,cod_item,cantidad_archivos_ascensores,json) {
+  var directorio = "file:///sdcard"+directorio;
+  var nombreDeArchivo = nombre_archivo;
+  var codigo_inspeccion = parseInt(codi_inspeccion);//se obtiene el codigo de inspeccion y se pasa a entero para eliminar los ceros iniciales que se le colocan al consecutivo
+  var cod_inspeccion = codigo_inspeccion.toString();//se vuelve a pasar a string para poder acceder a la carpeta en el dispositivo
+  var fileURL = directorio + "/" + cod_inspeccion;
+
+  window.resolveLocalFileSystemURL(fileURL, function(dir) {
+      dir.getFile(nombreDeArchivo, {create:false}, function(fileEntry) {
+          fileEntry.file(function (file) {
+              var reader = new FileReader();
+
+              reader.onloadend = function() {
+                  var archivo = file.name;
+                  var blob = new Blob([new Uint8Array(this.result)], { type: "image/jpg" });
+                  $.ajax({
+                      beforeSend: function(){
+                        $("#mensaje").html(archivo);
+                      },
+                      type: 'POST',
+                      url: 'http://www.montajesyprocesos.com/inspeccion/servidor/php/ascensor_upload_fotografias.php?archivo='+archivo,
+                      processData: false,
+                      data: blob
+                  }).done(function(res){
+                      //$("#mensaje").html("Respuesta: " + res);
+                      enviarInspeccionesSeleccionadasAscensores(cod_usuario,codi_inspeccion,cod_item,nombre_archivo,json);
+                      carpeta = directorio + "/" + cod_inspeccion;
+                      //borrarArchivo(carpeta, nombreDeArchivo);
+                      $('#texto_carga').text("Foto ascensor "+nombre_archivo+" subida...ok");
+                      bandera_fotos_ascensores += 1;
+                  });
+
+              };
+
+              reader.readAsArrayBuffer(file);
+
+          }, fallo);
+      }, fallo);
+  }, fallo);
+
+  var fallo = function (error) {
+    alert("Error code: " + error.code);
+    enviarInspeccionesSeleccionadasAscensores(cod_usuario,codi_inspeccion,cod_item,nombre_archivo,json);
+    bandera_fotos_ascensores += 1;
+  }  
+}
 
 function borrarArchivo(directorio, nombreDeArchivo){
   //alert("entro a borrar"+directorio+" "+nombreDeArchivo);
@@ -344,7 +391,7 @@ function fallo_eliminar_archivo(error){
 *==============================================*/
 function enviarInspeccionesSeleccionadasAscensores(cod_usuario,cod_inspeccion,cod_item,n_fotografia,json,cantidad_archivos_ascensores){
   $('#texto_carga').text('Enviando fotografía '+n_fotografia+'...Espere');
-  $.post('http://192.168.0.26:8888/inspeccion/servidor/php/ascensor_guardar_datos_lista_inspeccion.php',{
+  $.post('http://www.montajesyprocesos.com/inspeccion/servidor/php/ascensor_guardar_datos_lista_inspeccion.php',{
     json_AVFG: json
   },function(e){
     //alert("enviarInspeccionesSeleccionadasAscensores-> "+e);
@@ -495,7 +542,7 @@ function enviarArchivosFotograficosPuertas(){
 /*=============================================
 * Funcion que permite subir los archivos fotográficos al servidor
 *==============================================*/
-function uploadFotoPuertas(directorio,nombre_archivo,cod_usuario,codi_inspeccion,cod_item,cantidad_archivos_puertas,json) {
+function uploadFotoPuertas_fileTransfer(directorio,nombre_archivo,cod_usuario,codi_inspeccion,cod_item,cantidad_archivos_puertas,json) {
   //var directorio = "file:///storage/emulated/0"+directorio;
   var directorio = "file:///sdcard"+directorio;
   var nombreDeArchivo = nombre_archivo;
@@ -520,7 +567,7 @@ function uploadFotoPuertas(directorio,nombre_archivo,cod_usuario,codi_inspeccion
     bandera_fotos_puertas += 1;
   }
 
-  var uri = encodeURI("http://192.168.0.26:8888/inspeccion/servidor/php/puertas_upload_fotografias.php");
+  var uri = encodeURI("http://www.montajesyprocesos.com/inspeccion/servidor/php/puertas_upload_fotografias.php");
 
   var options = new FileUploadOptions();
   options.fileKey="file";
@@ -541,6 +588,53 @@ function uploadFotoPuertas(directorio,nombre_archivo,cod_usuario,codi_inspeccion
   };
   ft.upload(fileURL, uri, win, fail, options);
 };
+
+function uploadFotoPuertas(directorio,nombre_archivo,cod_usuario,codi_inspeccion,cod_item,cantidad_archivos_puertas,json) {
+  var directorio = "file:///sdcard"+directorio;
+  var nombreDeArchivo = nombre_archivo;
+  var codigo_inspeccion = parseInt(codi_inspeccion);//se obtiene el codigo de inspeccion y se pasa a entero para eliminar los ceros iniciales que se le colocan al consecutivo
+  var cod_inspeccion = codigo_inspeccion.toString();//se vuelve a pasar a string para poder acceder a la carpeta en el dispositivo
+  var fileURL = directorio + "/" + cod_inspeccion;
+
+  window.resolveLocalFileSystemURL(fileURL, function(dir) {
+      dir.getFile(nombreDeArchivo, {create:false}, function(fileEntry) {
+          fileEntry.file(function (file) {
+              var reader = new FileReader();
+
+              reader.onloadend = function() {
+                  var archivo = file.name;
+                  var blob = new Blob([new Uint8Array(this.result)], { type: "image/jpg" });
+                  $.ajax({
+                      beforeSend: function(){
+                        $("#mensaje").html(archivo);
+                      },
+                      type: 'POST',
+                      url: 'http://www.montajesyprocesos.com/inspeccion/servidor/php/puertas_upload_fotografias.php?archivo='+archivo,
+                      processData: false,
+                      data: blob
+                  }).done(function(res){
+                      //$("#mensaje").html("Respuesta: " + res);
+                      enviarInspeccionesSeleccionadasPuertas(cod_usuario,codi_inspeccion,cod_item,nombre_archivo,json);
+                      carpeta = directorio + "/" + cod_inspeccion;
+                      //borrarArchivo(carpeta, nombreDeArchivo);
+                      $('#texto_carga').text("Foto puertas "+nombre_archivo+" subida...ok");
+                      bandera_fotos_puertas += 1;
+                  });
+
+              };
+
+              reader.readAsArrayBuffer(file);
+
+          }, fallo);
+      }, fallo);
+  }, fallo);
+
+  var fallo = function (error) {
+    alert("Error code: " + error.code);
+    enviarInspeccionesSeleccionadasPuertas(cod_usuario,codi_inspeccion,cod_item,nombre_archivo,json);
+    bandera_fotos_puertas += 1;
+  }  
+}
 
 function borrarArchivo(directorio, nombreDeArchivo){
   //alert("entro a borrar"+directorio+" "+nombreDeArchivo);
@@ -568,7 +662,7 @@ function fallo_eliminar_archivo(error){
 *==============================================*/
 function enviarInspeccionesSeleccionadasPuertas(cod_usuario,cod_inspeccion,cod_item,n_fotografia,json,cantidad_archivos_puertas){
   $('#texto_carga').text('Enviando fotografía '+n_fotografia+'...Espere');
-  $.post('http://192.168.0.26:8888/inspeccion/servidor/php/puertas_guardar_datos_lista_inspeccion.php',{
+  $.post('http://www.montajesyprocesos.com/inspeccion/servidor/php/puertas_guardar_datos_lista_inspeccion.php',{
     json_PVFG: json
   },function(e){
     //alert("enviarInspeccionesSeleccionadaspuertas-> "+e);
@@ -720,7 +814,7 @@ function enviarArchivosFotograficosEscaleras(){
 /*=============================================
 * Funcion que permite subir los archivos fotográficos al servidor
 *==============================================*/
-function uploadFotoEscaleras(directorio,nombre_archivo,cod_usuario,codi_inspeccion,cod_item,cantidad_archivos_escaleras,json) {
+function uploadFotoEscaleras_fileTransfer(directorio,nombre_archivo,cod_usuario,codi_inspeccion,cod_item,cantidad_archivos_escaleras,json) {
   //var directorio = "file:///storage/emulated/0"+directorio;
   var directorio = "file:///sdcard"+directorio;
   var nombreDeArchivo = nombre_archivo;
@@ -745,7 +839,7 @@ function uploadFotoEscaleras(directorio,nombre_archivo,cod_usuario,codi_inspecci
     bandera_fotos_escaleras += 1;
   }
 
-  var uri = encodeURI("http://192.168.0.26:8888/inspeccion/servidor/php/escaleras_upload_fotografias.php");
+  var uri = encodeURI("http://www.montajesyprocesos.com/inspeccion/servidor/php/escaleras_upload_fotografias.php");
 
   var options = new FileUploadOptions();
   options.fileKey="file";
@@ -766,6 +860,53 @@ function uploadFotoEscaleras(directorio,nombre_archivo,cod_usuario,codi_inspecci
   };
   ft.upload(fileURL, uri, win, fail, options);
 };
+
+function uploadFotoEscaleras(directorio,nombre_archivo,cod_usuario,codi_inspeccion,cod_item,cantidad_archivos_escaleras,json) {
+  var directorio = "file:///sdcard"+directorio;
+  var nombreDeArchivo = nombre_archivo;
+  var codigo_inspeccion = parseInt(codi_inspeccion);//se obtiene el codigo de inspeccion y se pasa a entero para eliminar los ceros iniciales que se le colocan al consecutivo
+  var cod_inspeccion = codigo_inspeccion.toString();//se vuelve a pasar a string para poder acceder a la carpeta en el dispositivo
+  var fileURL = directorio + "/" + cod_inspeccion;
+
+  window.resolveLocalFileSystemURL(fileURL, function(dir) {
+      dir.getFile(nombreDeArchivo, {create:false}, function(fileEntry) {
+          fileEntry.file(function (file) {
+              var reader = new FileReader();
+
+              reader.onloadend = function() {
+                  var archivo = file.name;
+                  var blob = new Blob([new Uint8Array(this.result)], { type: "image/jpg" });
+                  $.ajax({
+                      beforeSend: function(){
+                        $("#mensaje").html(archivo);
+                      },
+                      type: 'POST',
+                      url: 'http://www.montajesyprocesos.com/inspeccion/servidor/php/escaleras_upload_fotografias.php?archivo='+archivo,
+                      processData: false,
+                      data: blob
+                  }).done(function(res){
+                      //$("#mensaje").html("Respuesta: " + res);
+                      enviarInspeccionesSeleccionadasEscaleras(cod_usuario,codi_inspeccion,cod_item,nombre_archivo,json);
+                      carpeta = directorio + "/" + cod_inspeccion;
+                      //borrarArchivo(carpeta, nombreDeArchivo);
+                      $('#texto_carga').text("Foto escaleras "+nombre_archivo+" subida...ok");
+                      bandera_fotos_escaleras += 1;
+                  });
+
+              };
+
+              reader.readAsArrayBuffer(file);
+
+          }, fallo);
+      }, fallo);
+  }, fallo);
+
+  var fallo = function (error) {
+    alert("Error code: " + error.code);
+    enviarInspeccionesSeleccionadasEscaleras(cod_usuario,codi_inspeccion,cod_item,nombre_archivo,json);
+    bandera_fotos_escaleras += 1;
+  }  
+}
 
 function borrarArchivo(directorio, nombreDeArchivo){
   //alert("entro a borrar"+directorio+" "+nombreDeArchivo);
@@ -793,7 +934,7 @@ function fallo_eliminar_archivo(error){
 *==============================================*/
 function enviarInspeccionesSeleccionadasEscaleras(cod_usuario,cod_inspeccion,cod_item,n_fotografia,json,cantidad_archivos_escaleras){
   $('#texto_carga').text('Enviando fotografía '+n_fotografia+'...Espere');
-  $.post('http://192.168.0.26:8888/inspeccion/servidor/php/escaleras_guardar_datos_lista_inspeccion.php',{
+  $.post('http://www.montajesyprocesos.com/inspeccion/servidor/php/escaleras_guardar_datos_lista_inspeccion.php',{
     json_EVFG: json
   },function(e){
     //alert("enviarInspeccionesSeleccionadasescaleras-> "+e);

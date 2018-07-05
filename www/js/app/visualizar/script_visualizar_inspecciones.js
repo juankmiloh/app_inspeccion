@@ -28,6 +28,8 @@ var anio = fecha.getFullYear();
 /* Inicializamos la variable withClass */
 var withClass = false;
 
+
+
 /*=============================================
 * Funcion que permite mostrar la barra fija al header cuando se scrollea la pagina
 *==============================================*/
