@@ -39,6 +39,12 @@
     },
     "cordova-plugin-file-transfer": {
       "PACKAGE_NAME": "com.juankmilo.inspeccion_MP"
+    },
+    "cordova-plugin-save-image": {
+      "PACKAGE_NAME": "com.juankmilo.inspeccion_MP"
+    },
+    "cordova-save-image-gallery": {
+      "PACKAGE_NAME": "com.juankmilo.inspeccion_MP"
     }
   },
   "dependent_plugins": {}

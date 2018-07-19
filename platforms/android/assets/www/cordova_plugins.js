@@ -354,6 +354,22 @@ module.exports = [
     "clobbers": [
       "window.FileTransfer"
     ]
+  },
+  {
+    "id": "cordova-plugin-save-image.SaveImage",
+    "file": "plugins/cordova-plugin-save-image/www/SaveImage.js",
+    "pluginId": "cordova-plugin-save-image",
+    "clobbers": [
+      "cordova.plugins.imagesaver"
+    ]
+  },
+  {
+    "id": "cordova-save-image-gallery.saveImageGallery",
+    "file": "plugins/cordova-save-image-gallery/www/saveImageGallery.js",
+    "pluginId": "cordova-save-image-gallery",
+    "clobbers": [
+      "cordova.saveImageGallery"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -369,7 +385,9 @@ module.exports.metadata =
   "cordova-plugin-vibration": "2.1.4",
   "cordova-plugin-whitelist": "1.3.1",
   "cordova-plugin-file": "6.0.1",
-  "cordova-plugin-file-transfer": "1.7.1"
+  "cordova-plugin-file-transfer": "1.7.1",
+  "cordova-plugin-save-image": "0.3.0",
+  "cordova-save-image-gallery": "0.0.26"
 };
 // BOTTOM OF METADATA
 });

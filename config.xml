@@ -40,4 +40,6 @@
     <plugin name="cordova-plugin-compat" spec="^1.2.0" />
     <plugin name="cordova-plugin-file" spec="^6.0.1" />
     <plugin name="cordova-plugin-file-transfer" spec="^1.7.1" />
+    <plugin name="cordova-plugin-save-image" spec="^0.3.0" />
+    <plugin name="cordova-save-image-gallery" spec="0.0.26" />
 </widget>

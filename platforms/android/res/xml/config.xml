@@ -37,6 +37,12 @@
     <feature name="FileTransfer">
         <param name="android-package" value="org.apache.cordova.filetransfer.FileTransfer" />
     </feature>
+    <feature name="SaveImage">
+        <param name="android-package" value="com.quiply.cordova.saveimage.SaveImage" />
+    </feature>
+    <feature name="SaveImageGallery">
+        <param name="android-package" value="com.agomezmoron.saveImageGallery.SaveImageGallery" />
+    </feature>
     <name>Inspección MP</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
